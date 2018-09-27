@@ -5,9 +5,7 @@ export default class ItemComponent extends Component {
   render () {
     return (
       <View style={styles.itemComponent}>
-      <Text>Skriv inn noe:</Text>
-      <TextInput>
-      </TextInput>
+      <Text style={styles.textStyle2}> - Her kommer ToDoItem - </Text>
       </View>
     );
   }
@@ -15,6 +13,13 @@ export default class ItemComponent extends Component {
 
 const styles = StyleSheet.create ({
   itemComponent: {
-    backgroundColor: "aliceblue"
+    backgroundColor: "aliceblue",
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50
   },
-})
+  textStyle2: {
+    fontFamily: 'GillSans-BoldItalic',
+
+  }
+});
