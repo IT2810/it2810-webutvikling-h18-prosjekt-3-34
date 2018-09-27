@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import PedoMeter from "./components/pedometer.js"
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker } from 'react-native'
+import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
 
 export default class App extends Component {
+  state = {
+     items: [
+        {
+           id: 0,
+           inputid: 'input1',
+           name: 'Rad 1',
+        },
+        {
+           id: 1,
+           inputid: 'input2',
+           name: 'Rad 2',
+        }
+     ]
+  }
 
-   alertItemName = (item) => {
-      alert("asdasdasda")
-   }
+addItem = () => {
+
+}
+
    render() {
       return (
         <React.Fragment>
@@ -23,11 +38,11 @@ export default class App extends Component {
 
 
           <View style={styles.siteContainer}>
-            <ToDoList>
-            </ToDoList>
+            <ToDoList items={this.state.items}/>
 
-            <PedoMeter>
-            </PedoMeter>
+            <StepCounter />
+
+            <View style={styles.addItemButton} title="Done" color="black" onPress={handleDoneClick}/>
 
           </View>
          </React.Fragment>
@@ -40,6 +55,7 @@ const styles = StyleSheet.create ({
     backgroundColor: '#dedede',
     height: '100%',
     marginTop: 0,
+    alignItems: "center",
   },
   topBorder: {
     height: 20,
@@ -66,7 +82,14 @@ const styles = StyleSheet.create ({
      textAlignVertical: 'top',
      color: 'black',
    },
-
+   addItemButton: {
+    backgroundColor: "black",
+    height: 35,
+    width: 35,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginTop: 15,
+   },
    kolonne: {
      padding: 10,
    },

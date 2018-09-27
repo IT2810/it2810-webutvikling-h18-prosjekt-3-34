@@ -3,68 +3,22 @@ import { Text, View, TouchableOpacity, StyleSheet, TextInput, ScrollView } from 
 import ItemComponent from './itemcomponent.js'
 
 export default class ToDoList extends Component {
-  state = {
-     rader: [
-        {
-           id: 0,
-           inputid: 'input1',
-           fragmentid: 'frag1',
-           name: 'Rad 1',
-        },
-        {
-           id: 1,
-           inputid: 'input2',
-           fragmentid: 'frag2',
-           name: 'Rad 2',
-        },
-        {
-           id: 2,
-           inputid: 'input3',
-           fragmentid: 'frag3',
-           name: 'Rad 3',
-        },
-        {
-           id: 3,
-           inputid: 'input4',
-           fragmentid: 'frag4',
-           name: 'Rad 4',
-        },
-        {
-           id: 5,
-           inputid: 'input5',
-           fragmentid: 'frag5',
-           name: 'Rad 5',
-        },
-        {
-           id: 6,
-           inputid: 'input6',
-           fragmentid: 'frag6',
-           name: 'Rad 6',
-        },
-     ]
-  }
+
 
   render () {
     return (
       <ScrollView style={styles.container}>
          {
-            this.state.rader.map((item) => (
-              <React.Fragment key={item.fragmentid}>
+            this.props.items.map((item) => (
 
-               <TouchableOpacity
-                  key = {item.id}
-                  style = {[styles.rad]}
-                  onPress = {() => this.alertItemName(item)}>
+              <ItemComponent id={item.id} key={item.inputid}/>
 
-                  <Text key= {item.id} style = {styles.text}>
-                     {item.name}
-                  </Text>
-               </TouchableOpacity>
 
-               <ItemComponent
-               key = {item.inputid}/>
-               </React.Fragment>
+
+
+
             ))
+
           }
       </ScrollView>
     );
@@ -77,7 +31,11 @@ const styles = StyleSheet.create ({
     marginLeft: 20,
     marginRight: 20,
     maxHeight:300,
-    borderWidth: 1
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: "85%",
+
   },
   text: {
      color: 'black',
@@ -90,5 +48,5 @@ const styles = StyleSheet.create ({
      marginTop: 0,
      backgroundColor: '#ADD8E6',
      alignItems: 'center',
-  },
+  }
 });

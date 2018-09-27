@@ -3,7 +3,7 @@ import React from "react";
 import { Pedometer } from "expo";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class PedometerSensor extends React.Component {
+export default class StepCounter extends React.Component {
   state = {
     isPedometerAvailable: "checking",
     pastStepCount: 0,
@@ -89,4 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
-Expo.registerRootComponent(PedometerSensor);
+Expo.registerRootComponent(StepCounter);
