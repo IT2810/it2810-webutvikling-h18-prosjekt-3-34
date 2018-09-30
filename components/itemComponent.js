@@ -1,80 +1,81 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Button, Vibration } from 'react-native'
 
-handleDoneClick = (item) => {
-   alert("MARK THIS AS DONE");
-
-}
-
-handleDeleteClick = (item) => {
-   alert("DELETE THIS")
-}
-
-
 
 export default class ItemComponent extends Component {
+  state = {
+    backgroundColor: "#bdbdbd",
+  }
+
+  handleDoneClick = () => {
+    this.setState({backgroundColor:"green"});
+  }
+
   render () {
+    const styles = StyleSheet.create ({
+      itemComponent: {
+        flexDirection: "row",
+        backgroundColor: this.state.backgroundColor,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: 50,
+        marginTop: 10,
+        borderRadius: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+      },
+      buttonView: {
+        flexDirection: "row",
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      },
+      doneButton: {
+        backgroundColor: "#a5d6a7",
+        height: 30,
+        width: 50,
+        borderRadius: 5,
+        borderWidth: 1,
+        marginTop: 0,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      deleteButton: {
+        backgroundColor: "#ef9a9a",
+        height: 30,
+        width: 70,
+        marginLeft: 5,
+        borderRadius: 5,
+        borderWidth: 1,
+        marginTop: 0,
+        justifyContent: "center",
+        alignItems: "center",
+      },
+      textStyle: {
+        fontFamily: 'GillSans-BoldItalic',
+      }
+    });
+
     return (
       <View style={styles.itemComponent}>
 
-          <Text style={styles.textStyle}> - ToDoItem - </Text>
+          <Text style={styles.textStyle}> - ToDoItem Nr {this.props.id}- </Text>
 
             <View style={styles.buttonView}>
 
-              <View style={styles.doneButton} onPress={handleDoneClick}>
+              <TouchableOpacity style={styles.doneButton} onPress={this.handleDoneClick}>
               <Text style={styles.textStyle}>Done</Text>
-              </View>
+              </TouchableOpacity>
 
-              <View style={styles.deleteButton} onPress={handleDeleteClick}>
+              <TouchableOpacity style={styles.deleteButton} onPress={ () => this.props.handleDelete(this.props.id)}>
               <Text style={styles.textStyle}>Delete</Text>
-              </View>
+              </TouchableOpacity>
 
             </View>
 
       </View>
     );
+
+
+
   }
 }
-
-const styles = StyleSheet.create ({
-  itemComponent: {
-    flexDirection: "row",
-    backgroundColor: "#bdbdbd",
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 50,
-    marginTop: 10,
-    borderRadius: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  buttonView: {
-    flexDirection: "row",
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  doneButton: {
-    backgroundColor: "#a5d6a7",
-    height: 30,
-    width: 50,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginTop: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  deleteButton: {
-    backgroundColor: "#ef9a9a",
-    height: 30,
-    width: 70,
-    marginLeft: 5,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginTop: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  textStyle: {
-    fontFamily: 'GillSans-BoldItalic',
-  }
-});

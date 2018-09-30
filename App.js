@@ -5,23 +5,39 @@ import ToDoList from "./components/todolist.js"
 
 export default class App extends Component {
   state = {
-     items: [
-        {
-           id: 0,
-           inputid: 'input1',
-           name: 'Rad 1',
-        },
-        {
-           id: 1,
-           inputid: 'input2',
-           name: 'Rad 2',
-        }
-     ]
+     items: [],
+     itemCounter:0,
   }
 
 addItem = () => {
-
+  let newList = this.state.items.slice();
+  newList.push({
+     id: this.state.itemCounter,
+     inputid: 'input' + this.state.itemCounter,
+     name: 'Rad ' + this.state.itemCounter,
+  })
+  this.setState({items:newList});
+  this.state.itemCounter++;
 }
+
+handleDeleteClick = (index) => {
+    if (this.state.items.length > 0) {
+    var newList = []
+    this.state.items.forEach(function(element) {
+      if (element.id != index) {
+          newList.push({
+             id: element.id,
+             inputid: 'input' + element.inputid,
+             name: 'Rad ' + element.name,
+          });
+      }
+    });
+
+    this.setState({items:newList});
+  }
+}
+
+
 
    render() {
       return (
@@ -38,11 +54,13 @@ addItem = () => {
 
 
           <View style={styles.siteContainer}>
-            <ToDoList items={this.state.items}/>
+            <ToDoList items={this.state.items} handleDelete={this.handleDeleteClick}/>
 
             <StepCounter />
 
-            <View style={styles.addItemButton} title="Done" color="black" onPress={handleDoneClick}/>
+            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.addItem}>
+            <Text style={styles.text}>Add New Item</Text>
+            </TouchableOpacity>
 
           </View>
          </React.Fragment>
@@ -83,9 +101,11 @@ const styles = StyleSheet.create ({
      color: 'black',
    },
    addItemButton: {
-    backgroundColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#4f4f4f",
     height: 35,
-    width: 35,
+    width: 110,
     borderRadius: 5,
     borderWidth: 1,
     marginTop: 15,
@@ -94,6 +114,6 @@ const styles = StyleSheet.create ({
      padding: 10,
    },
     text: {
-       color: '#4f603c'
+       color: "white",
     },
 })

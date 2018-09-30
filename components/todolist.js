@@ -9,16 +9,12 @@ export default class ToDoList extends Component {
     return (
       <ScrollView style={styles.container}>
          {
-            this.props.items.map((item) => (
-
-              <ItemComponent id={item.id} key={item.inputid}/>
-
-
-
-
-
-            ))
-
+                this.props.items.map((item) => (
+                  <ItemComponent id={item.id}
+                  key={item.inputid}
+                  handleDelete={this.props.handleDelete}
+                  status={this.props.status}/>
+                ))
           }
       </ScrollView>
     );
