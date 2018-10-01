@@ -1,13 +1,45 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import PedoMeter from "./components/pedometer.js"
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker } from 'react-native'
+import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
 
 export default class App extends Component {
+  state = {
+     items: [],
+     itemCounter:0,
+     completedItems: [],
+  }
 
-   alertItemName = (item) => {
-      alert("asdasdasda")
-   }
+addItem = () => {
+  let newList = this.state.items.slice();
+  newList.push({
+     id: this.state.itemCounter,
+     inputid: 'input' + this.state.itemCounter,
+     name: 'Rad ' + this.state.itemCounter,
+  })
+  this.setState({items:newList});
+  this.state.itemCounter++;
+}
+
+handleDeleteClick = (index) => {
+    if (this.state.items.length > 0) {
+    var newList = []
+    this.state.items.forEach(function(element) {
+      if (element.id != index) {
+          newList.push({
+             id: element.id,
+             inputid: 'input' + element.inputid,
+             name: 'Rad ' + element.name,
+          });
+      }
+    });
+
+    this.setState({items:newList});
+  }
+}
+
+
+
    render() {
       return (
         <React.Fragment>
@@ -23,11 +55,13 @@ export default class App extends Component {
 
 
           <View style={styles.siteContainer}>
-            <ToDoList>
-            </ToDoList>
+            <ToDoList items={this.state.items} handleDelete={this.handleDeleteClick}/>
 
-            <PedoMeter>
-            </PedoMeter>
+            <StepCounter />
+
+            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.addItem}>
+            <Text style={styles.text}>Add New Item</Text>
+            </TouchableOpacity>
 
           </View>
          </React.Fragment>
@@ -40,6 +74,7 @@ const styles = StyleSheet.create ({
     backgroundColor: '#dedede',
     height: '100%',
     marginTop: 0,
+    alignItems: "center",
   },
   topBorder: {
     height: 20,
@@ -53,24 +88,33 @@ const styles = StyleSheet.create ({
     flexDirection: 'row'
   },
    textStyleBanner: {
-     fontFamily: 'GillSans-BoldItalic',
+
      fontSize:22,
     lineHeight:80,
     textAlignVertical: 'top',
     color: 'black',
   },
    textStyleTM: {
-     fontFamily: 'GillSans-BoldItalic',
+     
      fontSize:9,
      lineHeight:60,
      textAlignVertical: 'top',
      color: 'black',
    },
-
+   addItemButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#4f4f4f",
+    height: 35,
+    width: 110,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginTop: 15,
+   },
    kolonne: {
      padding: 10,
    },
     text: {
-       color: '#4f603c'
+       color: "white",
     },
 })
