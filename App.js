@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Button,
-  Picker
-} from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import StepCounter from "./components/stepcounter.js";
 import ToDoList from "./components/todolist.js";
 
@@ -14,7 +7,7 @@ import Addtodo from "./components/addtodo.js";
 
 export default class App extends Component {
   state = {
-    items: [],
+    items: [{ id: 0, inputid: "input0", name: "rad0", type: "todo" }],
     itemCounter: 0,
     completedItems: [],
     addComponent: "",
@@ -23,14 +16,15 @@ export default class App extends Component {
 
   addItem = () => {
     let newList = this.state.items.slice();
-    const type = "todo"; //change this!
     newList.push({
       id: this.state.itemCounter,
       inputid: "input" + this.state.itemCounter,
-      name: "Rad " + this.state.itemCounter
+      name: "Rad " + this.state.itemCounter,
+      type: "todo"
     });
     this.setState({ items: newList });
     this.state.itemCounter++;
+    this.toggleModal();
   };
 
   handleDeleteClick = index => {
@@ -57,7 +51,6 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <View style={styles.topBorder} />
-
         <View style={styles.banner}>
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
