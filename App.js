@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import StepCounter from "./components/stepcounter.js";
 import ToDoList from "./components/todolist.js";
-import Modal from "react-native-modal";
+
+import Addtodo from "./components/addtodo.js";
 
 export default class App extends Component {
   state = {
@@ -49,7 +50,7 @@ export default class App extends Component {
     }
   };
 
-  _toggleModal = () =>
+  toggleModal = () =>
     this.setState({ isModalVisible: !this.state.isModalVisible });
 
   render() {
@@ -68,25 +69,16 @@ export default class App extends Component {
             handleDelete={this.handleDeleteClick}
           />
 
-          <Modal isVisible={this.state.isModalVisible}>
-            <View style={styles.modal}>
-              <Text>Add goal:</Text>
-              <TouchableOpacity>
-                <Text>Todo</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text>Steps</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.state._toggleModal}>
-                <Text>Exit</Text>
-              </TouchableOpacity>
-            </View>
-          </Modal>
+          <Addtodo
+            isModalVisible={this.state.isModalVisible}
+            toggleModal={this.toggleModal}
+            addItem={this.addItem}
+          />
 
           <TouchableOpacity
             style={styles.addGoalButton}
             color="white"
-            onPress={this._toggleModal}
+            onPress={this.toggleModal}
           >
             <Text style={styles.addGoalText}>+</Text>
           </TouchableOpacity>
@@ -126,16 +118,7 @@ const styles = StyleSheet.create({
     textAlignVertical: "top",
     color: "black"
   },
-  addItemButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#4f4f4f",
-    height: 35,
-    width: 110,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginTop: 15
-  },
+
   addGoalButton: {
     justifyContent: "center",
     alignItems: "center",
@@ -148,10 +131,18 @@ const styles = StyleSheet.create({
     top: 440 //TODO: Change this to bottom
   },
 
+  //knapper inne i modal
+  addItemBtn: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10
+  },
+  //Tekst i modalknapp
+  modalText: {
+    fontSize: 20
+  },
   modal: {
-    backgroundColor: "white",
-    justifyContent: "flex-end",
-    margin: 0
+    backgroundColor: "white"
   },
 
   addGoalText: {
