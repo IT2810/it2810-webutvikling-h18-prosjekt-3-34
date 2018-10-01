@@ -9,7 +9,6 @@ export default class TodoComponent extends ItemComponent {
     
 
     return (
-
     )
 
 }

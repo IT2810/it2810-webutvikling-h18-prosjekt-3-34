@@ -19,7 +19,7 @@ export default class ToDoList extends Component {
             key={item.inputid}
             handleDelete={this.props.handleDelete}
             status={this.props.status}
-            text={item.todo}
+            text={item.description}
           />
         );
       } else if (item.type === "step") {
@@ -29,6 +29,7 @@ export default class ToDoList extends Component {
             key={item.inputid}
             handleDelete={this.props.handleDelete}
             status={this.props.status}
+            text={item.description}
           />
         );
       }
