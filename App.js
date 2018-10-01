@@ -7,25 +7,50 @@ import Addtodo from "./components/addtodo.js";
 
 export default class App extends Component {
   state = {
-    items: [{ id: 0, inputid: "input0", name: "rad0", type: "todo" }],
-    itemCounter: 0,
+    items: [
+      {
+        id: 0,
+        inputid: "input0",
+        name: "rad0",
+        text: "kjøp brød",
+        type: "todo"
+      }
+    ],
+    itemCounter: 1,
     completedItems: [],
-    addComponent: "",
-    isModalVisible: false
+    isModalVisible: false,
+    type: null,
+    text: "hallo"
   };
 
-  addItem = () => {
+  renderList() {
+    let newList = this.state.items.slice();
+    this.setState({ items: newList });
+  }
+
+  addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
       id: this.state.itemCounter,
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
-      type: "todo"
+      type: "todo",
+      text: this.state.text
     });
     this.setState({ items: newList });
     this.state.itemCounter++;
     this.toggleModal();
+    this.setState({ text: null });
+    this.setState({ type: null });
   };
+
+  handleInput = todoText => {
+    this.setState({ text: todoText });
+  };
+
+  setType(type) {
+    this.setState({ type: type });
+  }
 
   handleDeleteClick = index => {
     if (this.state.items.length > 0) {
@@ -53,6 +78,7 @@ export default class App extends Component {
         <View style={styles.topBorder} />
         <View style={styles.banner}>
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
+          <Text>{this.state.text}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
 
@@ -66,6 +92,7 @@ export default class App extends Component {
             isModalVisible={this.state.isModalVisible}
             toggleModal={this.toggleModal}
             addItem={this.addItem}
+            handleInput={this.handleInput}
           />
 
           <TouchableOpacity

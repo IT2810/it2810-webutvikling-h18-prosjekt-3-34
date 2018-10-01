@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
+import Iteminput from "./iteminput";
 
 class Addtodo extends Component {
   render() {
@@ -13,6 +14,7 @@ class Addtodo extends Component {
             onPress={this.props.addItem}
           >
             <Text style={styles.modalText}>Todo</Text>
+            <Iteminput handleInput={this.props.handleInput} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.addItemBtn}>
             <Text style={styles.modalText}>Steps</Text>

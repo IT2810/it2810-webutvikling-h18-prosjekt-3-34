@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-  ScrollView
-} from "react-native";
+import { StyleSheet, ScrollView } from "react-native";
 import ItemComponent from "./itemcomponent.js";
 
 export default class ToDoList extends Component {
   render() {
+    // render component based on type
     const itemMapper = item => {
       if (item.type === "todo") {
         return (
@@ -19,7 +13,8 @@ export default class ToDoList extends Component {
             key={item.inputid}
             handleDelete={this.props.handleDelete}
             status={this.props.status}
-            text={item.description}
+            text={item.text}
+            handleInput={this.props.handleInput}
           />
         );
       } else if (item.type === "step") {
@@ -29,12 +24,14 @@ export default class ToDoList extends Component {
             key={item.inputid}
             handleDelete={this.props.handleDelete}
             status={this.props.status}
-            text={item.description}
+            text={item.text}
+            handleInput={this.props.handleInput}
           />
         );
       }
     };
     return (
+      // Maps the items list in app to components through itemMapper method
       <ScrollView style={styles.container}>
         {this.props.items.map(itemMapper)}
       </ScrollView>
