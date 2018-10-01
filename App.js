@@ -7,6 +7,7 @@ export default class App extends Component {
   state = {
      items: [],
      itemCounter:0,
+     completedItems: [],
   }
 
 addItem = () => {
@@ -87,14 +88,14 @@ const styles = StyleSheet.create ({
     flexDirection: 'row'
   },
    textStyleBanner: {
-     fontFamily: 'GillSans-BoldItalic',
+
      fontSize:22,
     lineHeight:80,
     textAlignVertical: 'top',
     color: 'black',
   },
    textStyleTM: {
-     fontFamily: 'GillSans-BoldItalic',
+     
      fontSize:9,
      lineHeight:60,
      textAlignVertical: 'top',

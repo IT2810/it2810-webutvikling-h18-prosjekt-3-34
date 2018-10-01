@@ -51,7 +51,7 @@ export default class ItemComponent extends Component {
         alignItems: "center",
       },
       textStyle: {
-        fontFamily: 'GillSans-BoldItalic',
+        
       }
     });
 

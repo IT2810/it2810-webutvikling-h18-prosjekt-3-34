@@ -35,7 +35,7 @@ const styles = StyleSheet.create ({
   },
   text: {
      color: 'black',
-     fontFamily: 'GillSans-BoldItalic',
+     
      fontSize: 18
 
   },
