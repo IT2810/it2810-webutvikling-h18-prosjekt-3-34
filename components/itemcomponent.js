@@ -1,33 +1,39 @@
-import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Button, Vibration } from 'react-native'
-
+import React, { Component } from "react";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Button,
+  Vibration
+} from "react-native";
 
 export default class ItemComponent extends Component {
   state = {
-    backgroundColor: "#bdbdbd",
-  }
+    backgroundColor: "#bdbdbd"
+  };
 
   handleDoneClick = () => {
-    this.setState({backgroundColor:"green"});
-  }
+    this.setState({ backgroundColor: "green" });
+  };
 
-  render () {
-    const styles = StyleSheet.create ({
+  render() {
+    const styles = StyleSheet.create({
       itemComponent: {
         flexDirection: "row",
         backgroundColor: this.state.backgroundColor,
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        alignItems: "center",
+        justifyContent: "space-between",
         height: 50,
         marginTop: 10,
         borderRadius: 5,
         paddingLeft: 10,
-        paddingRight: 10,
+        paddingRight: 10
       },
       buttonView: {
         flexDirection: "row",
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        alignItems: "center",
+        justifyContent: "space-between"
       },
       doneButton: {
         backgroundColor: "#a5d6a7",
@@ -37,7 +43,7 @@ export default class ItemComponent extends Component {
         borderWidth: 1,
         marginTop: 0,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       },
       deleteButton: {
         backgroundColor: "#ef9a9a",
@@ -48,34 +54,34 @@ export default class ItemComponent extends Component {
         borderWidth: 1,
         marginTop: 0,
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       },
-      textStyle: {
-        
-      }
+      textStyle: {}
     });
 
     return (
       <View style={styles.itemComponent}>
+        <Text style={styles.textStyle}>
+          {" "}
+          - {this.props.text} id: {this.props.id}-{" "}
+        </Text>
 
-          <Text style={styles.textStyle}> - ToDoItem Nr {this.props.id}- </Text>
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            style={styles.doneButton}
+            onPress={this.handleDoneClick}
+          >
+            <Text style={styles.textStyle}>Done</Text>
+          </TouchableOpacity>
 
-            <View style={styles.buttonView}>
-
-              <TouchableOpacity style={styles.doneButton} onPress={this.handleDoneClick}>
-              <Text style={styles.textStyle}>Done</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.deleteButton} onPress={ () => this.props.handleDelete(this.props.id)}>
-              <Text style={styles.textStyle}>Delete</Text>
-              </TouchableOpacity>
-
-            </View>
-
+          <TouchableOpacity
+            style={styles.deleteButton}
+            onPress={() => this.props.handleDelete(this.props.id)}
+          >
+            <Text style={styles.textStyle}>Delete</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
-
-
-
   }
 }
