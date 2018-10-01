@@ -92,7 +92,8 @@ export default class App extends Component {
             isModalVisible={this.state.isModalVisible}
             toggleModal={this.toggleModal}
             addItem={this.addItem}
-            handleInput={this.handleInput}
+            handleInput={this.handleInput.bind(this)}
+            text={this.state.text}
           />
 
           <TouchableOpacity

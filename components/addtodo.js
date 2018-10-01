@@ -14,7 +14,10 @@ class Addtodo extends Component {
             onPress={this.props.addItem}
           >
             <Text style={styles.modalText}>Todo</Text>
-            <Iteminput handleInput={this.props.handleInput} />
+            <Iteminput
+              handleInput={() => this.props.handleInput()}
+              text={this.props.text}
+            />
           </TouchableOpacity>
           <TouchableOpacity style={styles.addItemBtn}>
             <Text style={styles.modalText}>Steps</Text>

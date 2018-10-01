@@ -14,7 +14,6 @@ export default class ToDoList extends Component {
             handleDelete={this.props.handleDelete}
             status={this.props.status}
             text={item.text}
-            handleInput={this.props.handleInput}
           />
         );
       } else if (item.type === "step") {
@@ -25,7 +24,6 @@ export default class ToDoList extends Component {
             handleDelete={this.props.handleDelete}
             status={this.props.status}
             text={item.text}
-            handleInput={this.props.handleInput}
           />
         );
       }
