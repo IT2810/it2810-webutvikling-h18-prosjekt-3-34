@@ -4,24 +4,77 @@ import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
 
 class Addtodo extends Component {
+  state = {
+    showTodoInputField: false,
+    showStepInputField: false
+  };
+
+  toggleTodoInput = () => {
+    this.props.setType("todo");
+    this.setState({ showTodoInputField: !this.state.showTodoInputField });
+  };
+
+  toggleStepInput = () => {
+    this.props.setType("step");
+    this.setState({ showStepInputField: !this.state.showStepInputField });
+  };
+
+  renderTodoInput = Iteminput => {
+    if (this.state.showTodoInputField) {
+      return (
+        <Iteminput
+          handleInput={this.props.handleInput}
+          text={this.props.text}
+          addItem={this.props.addItem}
+          toggleTodoInput={this.toggleTodoInput}
+          setType={this.props.setType}
+        />
+      );
+    } else {
+      return null;
+    }
+    //hide stepinput
+  };
+  // number validation
+  renderStepInput = Iteminput => {
+    if (this.state.showStepInputField) {
+      return (
+        <Iteminput
+          handleInput={this.props.handleInput}
+          text={this.props.text}
+          addItem={this.props.addItem}
+          toggleTodoInput={this.toggleTodoInput}
+          setType={this.props.setType}
+        />
+      );
+    } else {
+      return null;
+    }
+    //hide stepinput
+  };
+
   render() {
+    const todoinput = this.renderTodoInput(Iteminput);
+    const stepsinput = this.renderStepInput(Iteminput);
+
     return (
       <Modal isVisible={this.props.isModalVisible}>
         <View style={styles.modal}>
           <Text>Add Goal: </Text>
           <TouchableOpacity
             style={styles.addItemBtn}
-            onPress={this.props.addItem}
+            onPress={this.toggleTodoInput}
           >
             <Text style={styles.modalText}>Todo</Text>
-            <Iteminput
-              handleInput={() => this.props.handleInput()}
-              text={this.props.text}
-            />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.addItemBtn}>
+          {todoinput}
+          <TouchableOpacity
+            style={styles.addItemBtn}
+            onPress={this.toggleStepInput}
+          >
             <Text style={styles.modalText}>Steps</Text>
           </TouchableOpacity>
+          {stepsinput}
           <TouchableOpacity onPress={this.props.toggleModal}>
             <Text>Exit</Text>
           </TouchableOpacity>

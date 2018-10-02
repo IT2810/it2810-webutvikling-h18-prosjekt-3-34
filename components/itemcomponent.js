@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Button,
-  Vibration
-} from "react-native";
+import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 
 export default class ItemComponent extends Component {
   state = {
@@ -61,10 +54,7 @@ export default class ItemComponent extends Component {
 
     return (
       <View style={styles.itemComponent}>
-        <Text style={styles.textStyle}>
-          {" "}
-          - {this.props.text} id: {this.props.id}-{" "}
-        </Text>
+        <Text style={styles.textStyle}> {this.props.text}</Text>
 
         <View style={styles.buttonView}>
           <TouchableOpacity
@@ -77,6 +67,7 @@ export default class ItemComponent extends Component {
           <TouchableOpacity
             style={styles.deleteButton}
             onPress={() => this.props.handleDelete(this.props.id)}
+            text={this.props.text}
           >
             <Text style={styles.textStyle}>Delete</Text>
           </TouchableOpacity>

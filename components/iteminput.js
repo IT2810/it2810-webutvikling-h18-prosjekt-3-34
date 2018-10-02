@@ -1,17 +1,20 @@
 import React, { Component } from "react";
-import { TextInput } from "react-native";
+import { TextInput, View, TouchableOpacity, Text } from "react-native";
 
 export default class Iteminput extends Component {
-  state = {
-    text: null
+  addItem = () => {
+    this.props.addItem();
+    this.props.toggleTodoInput();
   };
+
   render() {
     return (
-      <TextInput
-        onChangeText={text => {
-          this.props.handleInput;
-        }}
-      />
+      <View>
+        <TextInput onChangeText={this.props.handleInput} />
+        <TouchableOpacity onPress={this.addItem}>
+          <Text>V</Text>
+        </TouchableOpacity>
+      </View>
     );
   }
 }

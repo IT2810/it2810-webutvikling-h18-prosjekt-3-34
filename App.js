@@ -7,20 +7,12 @@ import Addtodo from "./components/addtodo.js";
 
 export default class App extends Component {
   state = {
-    items: [
-      {
-        id: 0,
-        inputid: "input0",
-        name: "rad0",
-        text: "kjøp brød",
-        type: "todo"
-      }
-    ],
-    itemCounter: 1,
+    items: [],
+    itemCounter: 0,
     completedItems: [],
     isModalVisible: false,
     type: null,
-    text: "hallo"
+    text: null
   };
 
   renderList() {
@@ -34,7 +26,7 @@ export default class App extends Component {
       id: this.state.itemCounter,
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
-      type: "todo",
+      type: this.state.type,
       text: this.state.text
     });
     this.setState({ items: newList });
@@ -44,13 +36,13 @@ export default class App extends Component {
     this.setState({ type: null });
   };
 
-  handleInput = todoText => {
-    this.setState({ text: todoText });
+  handleInput = text => {
+    this.setState({ text: text });
   };
 
-  setType(type) {
-    this.setState({ type: type });
-  }
+  setType = text => {
+    this.setState({ type: text });
+  };
 
   handleDeleteClick = index => {
     if (this.state.items.length > 0) {
@@ -64,7 +56,6 @@ export default class App extends Component {
           });
         }
       });
-
       this.setState({ items: newList });
     }
   };
@@ -78,7 +69,6 @@ export default class App extends Component {
         <View style={styles.topBorder} />
         <View style={styles.banner}>
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
-          <Text>{this.state.text}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
 
@@ -92,10 +82,10 @@ export default class App extends Component {
             isModalVisible={this.state.isModalVisible}
             toggleModal={this.toggleModal}
             addItem={this.addItem}
-            handleInput={this.handleInput.bind(this)}
-            text={this.state.text}
+            handleInput={this.handleInput}
+            setType={this.setType}
           />
-
+          <StepCounter />
           <TouchableOpacity
             style={styles.addGoalButton}
             color="white"
@@ -197,11 +187,12 @@ const styles = StyleSheet.create({
             <Picker.Item label="Steps" value="js" />
           </Picker>
           
-           {
+
+            {
         id: 0,
-        inputid: 0,
-        name: "Rad 0",
-        type: "todo",
-        description: "Vaske klær"
+        inputid: "input0",
+        name: "rad0",
+        text: "kjøp brød",
+        type: "todo"
       }
           */
