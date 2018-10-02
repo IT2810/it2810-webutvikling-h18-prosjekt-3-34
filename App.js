@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker } from 'react-native'
 import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
+import DateComponent from "./components/datecomponent.js"
 
 export default class App extends Component {
+
   state = {
      items: [],
      itemCounter:0,
      completedItems: [],
+     viewDate: new Date()
   }
 
 addItem = () => {
@@ -39,6 +42,24 @@ handleDeleteClick = (index) => {
 }
 
 
+handlePrevDayClick = () => {
+  let currentDate = new Date()
+  if(this.state.viewDate.getDate() !== currentDate.getDate()-1){
+    this.setState({
+      viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()-1))
+    })
+  }
+}
+
+handleNextDayClick = () => {
+  let currentDate = new Date()
+  if(this.state.viewDate.getDate() !== currentDate.getDate()+1){
+    this.setState({
+      viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()+1))
+    })
+  }
+}
+
 
    render() {
       return (
@@ -53,6 +74,9 @@ handleDeleteClick = (index) => {
           <Text style={styles.textStyleTM}>{"TM"}</Text>
           </View>
 
+          <View>
+            <DateComponent viewDate={this.state.viewDate} handlePrevDayClick={this.handlePrevDayClick} handleNextDayClick={this.handleNextDayClick}/>
+          </View>
 
           <View style={styles.siteContainer}>
             <ToDoList items={this.state.items} handleDelete={this.handleDeleteClick}/>
@@ -95,7 +119,7 @@ const styles = StyleSheet.create ({
     color: 'black',
   },
    textStyleTM: {
-     
+
      fontSize:9,
      lineHeight:60,
      textAlignVertical: 'top',
