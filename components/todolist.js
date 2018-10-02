@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView } from "react-native";
 import ItemComponent from "./itemcomponent.js";
 
 export default class ToDoList extends Component {
+
   render() {
     // render component based on type
     const itemMapper = item => {
@@ -28,10 +29,13 @@ export default class ToDoList extends Component {
         );
       }
     };
+
     return (
       // Maps the items list in app to components through itemMapper method
       <ScrollView style={styles.container}>
+      
         {this.props.items.map(itemMapper)}
+
       </ScrollView>
     );
   }
@@ -49,9 +53,8 @@ const styles = StyleSheet.create({
     width: "85%"
   },
   text: {
-    color: "black",
-
-    fontSize: 18
+     color: 'black',
+     fontSize: 18
   },
   rad: {
     padding: 10,

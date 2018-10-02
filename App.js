@@ -1,7 +1,8 @@
-import React, { Component } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import StepCounter from "./components/stepcounter.js";
-import ToDoList from "./components/todolist.js";
+import React, { Component } from 'react'
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker, AsyncStorage } from 'react-native'
+import StepCounter from "./components/stepcounter.js"
+import ToDoList from "./components/todolist.js"
+import styles from "./stylesheets/app.style.js";
 
 import Addtodo from "./components/addtodo.js";
 
@@ -20,6 +21,36 @@ export default class App extends Component {
     this.setState({ items: newList });
   }
 
+componentDidMount() {
+  let storedArray = [];
+  let currentCounter = 0;
+  AsyncStorage.getAllKeys((err, keys) => {
+  AsyncStorage.multiGet(keys, (err, stores) => {
+    stores.map((result, i, store) => {
+      // get at each store's key/value so you can work with it
+        let key = parseInt(store[i][0]) +1;
+        let value = store[i][1];
+        this.setState({itemCounter:key});
+        storedArray.push(JSON.parse(value));
+        console.log(storedArray);
+        this.setState({items:storedArray});
+      });
+    });
+  });
+}
+
+storeItemData = async (items) => {
+  try {
+    let storeArray = [];
+    for (let i = 0; i < items.length; i++ ) {
+      storeArray.push([i.toString(), JSON.stringify(items[i])]);
+    }
+    await AsyncStorage.multiSet(storeArray);
+  } catch (error) {
+    alert("wat" + error);
+  }
+}
+
   addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
@@ -29,6 +60,7 @@ export default class App extends Component {
       type: this.state.type,
       text: this.state.text
     });
+    this.storeItemData(newList);
     this.setState({ items: newList });
     this.state.itemCounter++;
     this.toggleModal();
@@ -54,13 +86,22 @@ export default class App extends Component {
             inputid: "input" + element.inputid,
             name: "Rad " + element.name
           });
-        }
-      });
-      this.setState({ items: newList });
-    }
-  };
+      }
+    });
+    this.setState({items:newList});
+  }
+}
 
-  toggleModal = () =>
+handleClear = async () => {
+  try {
+    await AsyncStorage.clear();
+  }
+  catch(error){
+    console.log(error);
+  }
+}
+
+toggleModal = () =>
     this.setState({ isModalVisible: !this.state.isModalVisible });
 
   render() {
@@ -94,6 +135,10 @@ export default class App extends Component {
             <Text style={styles.addGoalText}>+</Text>
           </TouchableOpacity>
         </View>
+      
+            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.handleClear}>
+            <Text style={styles.text}>clear</Text>
+            </TouchableOpacity>
       </React.Fragment>
     );
   }
@@ -166,33 +211,3 @@ const styles = StyleSheet.create({
     color: "white"
   }
 });
-
-/*
-  <TouchableOpacity
-            style={styles.addItemButton}
-            color="black"
-            onPress={this.addItem}
-          >
-            <Text style={styles.text}> New Item</Text>
-          </TouchableOpacity>
-
-        <Picker
-            selectedValue={this.state.addComponent}
-            style={{ height: 50, width: 100 }}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({ addComponent: itemValue })
-            }
-          >
-            <Picker.Item label="Todo" value="java" />
-            <Picker.Item label="Steps" value="js" />
-          </Picker>
-          
-
-            {
-        id: 0,
-        inputid: "input0",
-        name: "rad0",
-        text: "kjøp brød",
-        type: "todo"
-      }
-          */
