@@ -19,6 +19,12 @@ class Addtodo extends Component {
     this.setState({ showStepInputField: !this.state.showStepInputField });
   };
 
+  closeModal = () => {
+    this.setState({ showTodoInputField: false });
+    this.setState({ showStepInputField: false });
+    this.props.toggleModal();
+  };
+
   renderTodoInput = Iteminput => {
     if (this.state.showTodoInputField) {
       return (
@@ -75,7 +81,7 @@ class Addtodo extends Component {
             <Text style={styles.modalText}>Steps</Text>
           </TouchableOpacity>
           {stepsinput}
-          <TouchableOpacity onPress={this.props.toggleModal}>
+          <TouchableOpacity onPress={this.closeModal}>
             <Text>Exit</Text>
           </TouchableOpacity>
         </View>
