@@ -4,12 +4,11 @@ import ItemComponent from './itemcomponent.js'
 
 export default class ToDoList extends Component {
 
-
   render () {
     return (
       <ScrollView style={styles.container}>
          {
-                this.props.items.map((item) => (
+                this.props.items.map(item => (
                   <ItemComponent id={item.id}
                   key={item.inputid}
                   handleDelete={this.props.handleDelete}
@@ -35,7 +34,7 @@ const styles = StyleSheet.create ({
   },
   text: {
      color: 'black',
-     
+
      fontSize: 18
 
   },
