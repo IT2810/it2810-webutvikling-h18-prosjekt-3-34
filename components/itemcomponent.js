@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import styles from "../stylesheets/itemcomponent.style.js";
 
 export default class ItemComponent extends Component {
   state = {
@@ -11,7 +12,7 @@ export default class ItemComponent extends Component {
   };
 
   render() {
-    const styles = StyleSheet.create({
+    const styleItemComponent = StyleSheet.create({
       itemComponent: {
         flexDirection: "row",
         backgroundColor: this.state.backgroundColor,
@@ -22,38 +23,11 @@ export default class ItemComponent extends Component {
         borderRadius: 5,
         paddingLeft: 10,
         paddingRight: 10
-      },
-      buttonView: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between"
-      },
-      doneButton: {
-        backgroundColor: "#a5d6a7",
-        height: 30,
-        width: 50,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 0,
-        justifyContent: "center",
-        alignItems: "center"
-      },
-      deleteButton: {
-        backgroundColor: "#ef9a9a",
-        height: 30,
-        width: 70,
-        marginLeft: 5,
-        borderRadius: 5,
-        borderWidth: 1,
-        marginTop: 0,
-        justifyContent: "center",
-        alignItems: "center"
-      },
-      textStyle: {}
+      }
     });
 
     return (
-      <View style={styles.itemComponent}>
+      <View style={styleItemComponent.itemComponent}>
         <Text style={styles.textStyle}> {this.props.text}</Text>
 
         <View style={styles.buttonView}>
@@ -69,7 +43,7 @@ export default class ItemComponent extends Component {
             onPress={() => this.props.handleDelete(this.props.id)}
             text={this.props.text}
           >
-            <Text style={styles.textStyle}>Delete</Text>
+            <Text style={styles.textStyle}>Delete {this.props.id}</Text>
           </TouchableOpacity>
         </View>
       </View>

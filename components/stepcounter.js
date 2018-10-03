@@ -2,6 +2,7 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { StyleSheet, Text, View } from "react-native";
+import styles from "../stylesheets/stepcounter.style.js";
 
 export default class StepCounter extends React.Component {
   state = {
@@ -74,20 +75,5 @@ export default class StepCounter extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginLeft: 20,
-    marginRight: 20,
-    borderWidth: 1,
-    maxHeight: 100,
-    padding: 20,
-    flex: 1,
-    marginTop: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: '#eeeeee',
-  }
-});
 
 Expo.registerRootComponent(StepCounter);

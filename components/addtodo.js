@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
+import styles from "../stylesheets/addtodo.style.js";
+
 
 class Addtodo extends Component {
   state = {
@@ -89,21 +91,5 @@ class Addtodo extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  //knapper inne i modal
-  addItemBtn: {
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10
-  },
-  //Tekst i modalknapp
-  modalText: {
-    fontSize: 20
-  },
-  modal: {
-    backgroundColor: "white"
-  }
-});
 
 export default Addtodo;

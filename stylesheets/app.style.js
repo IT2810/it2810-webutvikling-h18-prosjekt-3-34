@@ -19,39 +19,49 @@ export default StyleSheet.create({
       flexDirection: 'row'
     },
      textStyleBanner: {
-
-       fontSize:22,
+      fontSize:22,
       lineHeight:80,
       textAlignVertical: 'top',
       color: 'black',
     },
      textStyleTM: {
-
        fontSize:9,
        lineHeight:60,
        textAlignVertical: 'top',
        color: 'black',
      },
-     addItemButton: {
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#4f4f4f",
-      height: 35,
-      width: 110,
-      borderRadius: 5,
-      borderWidth: 1,
-      marginTop: 15,
+     addGoalButton: {
+       justifyContent: "center",
+       alignItems: "center",
+       backgroundColor: "white",
+       height: 50,
+       width: 50,
+       borderRadius: 100,
+       position: "absolute",
+       right: 20,
+       top: 440 //TODO: Change this to bottom
+     },
+     //knapper inne i modal
+     addItemBtn: {
+       justifyContent: "center",
+       alignItems: "center",
+       margin: 10
+     },
+     //Tekst i modalknapp
+     modalText: {
+       fontSize: 20
+     },
+     modal: {
+       backgroundColor: "white"
+     },
+
+     addGoalText: {
+       fontSize: 40
      },
      kolonne: {
-       padding: 10,
+       padding: 10
      },
-      text: {
-         color: "white",
-      },
-      knapp: {
-        justifyContent: "center",
-        alignItems: "center",
-        height: 35,
-        width: 35,
-      },
-});
+     text: {
+       color: "white"
+     }
+   });

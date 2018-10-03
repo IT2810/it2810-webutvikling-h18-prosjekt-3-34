@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TextInput, View, TouchableOpacity, Text } from "react-native";
+import styles from "../stylesheets/iteminput.style.js";
 
 export default class Iteminput extends Component {
   addItem = () => {
@@ -11,8 +12,8 @@ export default class Iteminput extends Component {
     return (
       <View>
         <TextInput onChangeText={this.props.handleInput} />
-        <TouchableOpacity onPress={this.addItem}>
-          <Text>V</Text>
+        <TouchableOpacity style={styles.addItemStyle} onPress={this.addItem}>
+          <Text>Add</Text>
         </TouchableOpacity>
       </View>
     );
