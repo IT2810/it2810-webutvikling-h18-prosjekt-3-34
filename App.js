@@ -21,21 +21,27 @@ export default class App extends Component {
   }
 
 componentDidMount() {
-
+  let key = 0;
   let storedArray = [];
-  let currentCounter = 0;
   AsyncStorage.getAllKeys((err, keys) => {
+
   AsyncStorage.multiGet(keys, (err, stores) => {
     stores.map((result, i, store) => {
-        let idvalue = i +1;
+      let jsonresult= result[1][6];
+      console.log("stores[] " + store[i][0] + "result: " + jsonresult);
+        if (key < parseInt(jsonresult)) {
+          key = parseInt(jsonresult) +1;
+        }
+        console.log("KEY ER: " + key);
         let value = store[i][1];
-        this.setState({itemCounter:idvalue});
+        this.setState({itemCounter:key});
         storedArray.push(JSON.parse(value));
         console.log(storedArray);
         this.setState({items:storedArray});
       });
     });
   });
+
 }
 
 storeItemData = async (items) => {
@@ -87,6 +93,9 @@ storeItemData = async (items) => {
             type: element.type,
             text: element.text
           });
+      }
+      else if (element.id === index) {
+          AsyncStorage.removeItem(index.toString());
       }
     });
     this.setState({items:newList});
