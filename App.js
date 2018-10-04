@@ -4,15 +4,18 @@ import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
 import styles from "./stylesheets/app.style.js";
 import Addtodo from "./components/addtodo.js";
+import DateComponent from "./components/datecomponent.js";
 
 export default class App extends Component {
+
   state = {
     items: [],
     itemCounter: 0,
     completedItems: [],
     isModalVisible: false,
     type: null,
-    text: null
+    text: null,
+    viewDate: new Date()
   };
 
   renderList() {
@@ -102,8 +105,27 @@ handleClear = async () => {
   }
 }
 
+handlePrevDayClick = () => {
+  let currentDate = new Date()
+  if(this.state.viewDate.getDate() !== currentDate.getDate()-1){
+    this.setState({
+      viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()-1))
+    })
+  }
+}
+
+handleNextDayClick = () => {
+  let currentDate = new Date()
+  if(this.state.viewDate.getDate() !== currentDate.getDate()+1){
+    this.setState({
+      viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()+1))
+    })
+  }
+}
+
 toggleModal = () =>
     this.setState({ isModalVisible: !this.state.isModalVisible });
+
 
   render() {
     return (
@@ -112,6 +134,10 @@ toggleModal = () =>
         <View style={styles.banner}>
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
+        </View>
+
+        <View>
+          <DateComponent viewDate={this.state.viewDate} handlePrevDayClick={this.handlePrevDayClick} handleNextDayClick={this.handleNextDayClick}/>
         </View>
 
         <View style={styles.siteContainer}>
