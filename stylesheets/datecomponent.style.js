@@ -51,4 +51,4 @@ borderRadius: 5,
 borderWidth: 1,
 },
 
-})
+});

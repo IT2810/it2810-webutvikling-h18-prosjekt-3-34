@@ -1,46 +1,109 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker, AsyncStorage } from 'react-native'
 import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
-import DateComponent from "./components/datecomponent.js"
+import styles from "./stylesheets/app.style.js";
+import Addtodo from "./components/addtodo.js";
+import DateComponent from "./components/datecomponent.js";
 
 export default class App extends Component {
 
   state = {
-     items: [],
-     itemCounter:0,
-     completedItems: [],
-     viewDate: new Date()
+    items: [],
+    itemCounter: 0,
+    completedItems: [],
+    isModalVisible: false,
+    type: null,
+    text: null,
+    viewDate: new Date()
+  };
+
+  renderList() {
+    let newList = this.state.items.slice();
+    this.setState({ items: newList });
   }
 
-addItem = () => {
-  let newList = this.state.items.slice();
-  newList.push({
-     id: this.state.itemCounter,
-     inputid: 'input' + this.state.itemCounter,
-     name: 'Rad ' + this.state.itemCounter,
-  })
-  this.setState({items:newList});
-  this.state.itemCounter++;
+componentDidMount() {
+
+  let storedArray = [];
+  let currentCounter = 0;
+  AsyncStorage.getAllKeys((err, keys) => {
+  AsyncStorage.multiGet(keys, (err, stores) => {
+    stores.map((result, i, store) => {
+        let idvalue = i +1;
+        let value = store[i][1];
+        this.setState({itemCounter:idvalue});
+        storedArray.push(JSON.parse(value));
+        console.log(storedArray);
+        this.setState({items:storedArray});
+      });
+    });
+  });
 }
 
-handleDeleteClick = (index) => {
+storeItemData = async (items) => {
+  try {
+    let storeArray = [];
+    for (let i = 0; i < items.length; i++ ) {
+      storeArray.push([i.toString(), JSON.stringify(items[i])]);
+    }
+    await AsyncStorage.multiSet(storeArray);
+  } catch (error) {
+    alert("wat" + error);
+  }
+}
+
+  addItem = item => {
+    let newList = this.state.items.slice();
+    newList.push({
+      id: this.state.itemCounter,
+      inputid: "input" + this.state.itemCounter,
+      name: "Rad " + this.state.itemCounter,
+      type: this.state.type,
+      text: this.state.text
+    });
+    this.storeItemData(newList);
+    this.setState({ items: newList });
+    this.state.itemCounter++;
+    this.toggleModal();
+    this.setState({ text: null });
+    this.setState({ type: null });
+  };
+
+  handleInput = text => {
+    this.setState({ text: text });
+  };
+
+  setType = text => {
+    this.setState({ type: text });
+  };
+
+  handleDeleteClick = index => {
     if (this.state.items.length > 0) {
-    var newList = []
-    this.state.items.forEach(function(element) {
-      if (element.id != index) {
+      var newList = [];
+      this.state.items.forEach(function(element) {
+        if (element.id !== index) {
           newList.push({
-             id: element.id,
-             inputid: 'input' + element.inputid,
-             name: 'Rad ' + element.name,
+            id: element.id,
+            inputid: "input" + element.inputid,
+            name: "Rad " + element.name,
+            type: element.type,
+            text: element.text
           });
       }
     });
-
     this.setState({items:newList});
   }
 }
 
+handleClear = async () => {
+  try {
+    await AsyncStorage.clear();
+  }
+  catch(error){
+    console.log(error);
+  }
+}
 
 handlePrevDayClick = () => {
   let currentDate = new Date()
@@ -60,85 +123,50 @@ handleNextDayClick = () => {
   }
 }
 
-
-   render() {
-      return (
-        <React.Fragment>
+toggleModal = () =>
+    this.setState({ isModalVisible: !this.state.isModalVisible });
 
 
-          <View style={styles.topBorder}>
-          </View>
-
-          <View style={styles.banner}>
+  render() {
+    return (
+      <React.Fragment>
+        <View style={styles.topBorder} />
+        <View style={styles.banner}>
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
-          </View>
+        </View>
 
-          <View>
-            <DateComponent viewDate={this.state.viewDate} handlePrevDayClick={this.handlePrevDayClick} handleNextDayClick={this.handleNextDayClick}/>
-          </View>
+        <View>
+          <DateComponent viewDate={this.state.viewDate} handlePrevDayClick={this.handlePrevDayClick} handleNextDayClick={this.handleNextDayClick}/>
+        </View>
 
-          <View style={styles.siteContainer}>
-            <ToDoList items={this.state.items} handleDelete={this.handleDeleteClick}/>
+        <View style={styles.siteContainer}>
+          <ToDoList
+            items={this.state.items}
+            handleDelete={this.handleDeleteClick}
+          />
 
-            <StepCounter />
+          <Addtodo
+            isModalVisible={this.state.isModalVisible}
+            toggleModal={this.toggleModal}
+            addItem={this.addItem}
+            handleInput={this.handleInput}
+            setType={this.setType}
+          />
+          <StepCounter />
+          <TouchableOpacity
+            style={styles.addGoalButton}
+            color="white"
+            onPress={this.toggleModal}
+          >
+            <Text style={styles.addGoalText}>+</Text>
+          </TouchableOpacity>
+        </View>
 
-            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.addItem}>
-            <Text style={styles.text}>Add New Item</Text>
+            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.handleClear}>
+            <Text style={styles.text}>clear</Text>
             </TouchableOpacity>
-
-          </View>
-         </React.Fragment>
-      )
-   }
+      </React.Fragment>
+    );
+  }
 }
-
-const styles = StyleSheet.create ({
-  siteContainer: {
-    backgroundColor: '#dedede',
-    height: '100%',
-    marginTop: 0,
-    alignItems: "center",
-  },
-  topBorder: {
-    height: 20,
-    backgroundColor: '#dedede'
-  },
-  banner: {
-    backgroundColor: '#dedede',
-    marginTop: 0,
-    justifyContent: 'center',
-    height: 80,
-    flexDirection: 'row'
-  },
-   textStyleBanner: {
-
-     fontSize:22,
-    lineHeight:80,
-    textAlignVertical: 'top',
-    color: 'black',
-  },
-   textStyleTM: {
-
-     fontSize:9,
-     lineHeight:60,
-     textAlignVertical: 'top',
-     color: 'black',
-   },
-   addItemButton: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#4f4f4f",
-    height: 35,
-    width: 110,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginTop: 15,
-   },
-   kolonne: {
-     padding: 10,
-   },
-    text: {
-       color: "white",
-    },
-})
