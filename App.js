@@ -25,27 +25,34 @@ export default class App extends Component {
 
 componentDidMount() {
 
+  let key = 0;
   let storedArray = [];
-  let currentCounter = 0;
   AsyncStorage.getAllKeys((err, keys) => {
   AsyncStorage.multiGet(keys, (err, stores) => {
     stores.map((result, i, store) => {
-        let idvalue = i +1;
-        let value = store[i][1];
-        this.setState({itemCounter:idvalue});
-        storedArray.push(JSON.parse(value));
+        let value = JSON.parse(store[i][1]);
+
+        if (key <= value.id) {
+          key = value.id +1;
+        }
+        console.log(key);
+
+        this.setState({itemCounter:key});
+
+        storedArray.push(value);
         console.log(storedArray);
         this.setState({items:storedArray});
       });
     });
   });
+
 }
 
 storeItemData = async (items) => {
   try {
     let storeArray = [];
     for (let i = 0; i < items.length; i++ ) {
-      storeArray.push([i.toString(), JSON.stringify(items[i])]);
+      storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
     }
     await AsyncStorage.multiSet(storeArray);
   } catch (error) {
@@ -79,10 +86,11 @@ storeItemData = async (items) => {
   };
 
   handleDeleteClick = index => {
+    console.log("items lengde: " + this.state.items.length + " index: " + index);
     if (this.state.items.length > 0) {
       var newList = [];
       this.state.items.forEach(function(element) {
-        if (element.id !== index) {
+        if (element.id != index) {
           newList.push({
             id: element.id,
             inputid: "input" + element.inputid,
@@ -90,6 +98,10 @@ storeItemData = async (items) => {
             type: element.type,
             text: element.text
           });
+      }
+      if (element.id == index) {
+          console.log("delete this item.")
+          AsyncStorage.removeItem(index.toString());
       }
     });
     this.setState({items:newList});
