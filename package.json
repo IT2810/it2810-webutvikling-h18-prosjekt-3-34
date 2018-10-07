@@ -1,5 +1,5 @@
 {
-  "name": "empty-project-template",
+  "name": "p3",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "jest-expo": "^30.0.0"
   }
 }
