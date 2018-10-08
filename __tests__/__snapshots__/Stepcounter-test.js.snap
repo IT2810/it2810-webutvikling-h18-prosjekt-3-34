@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#eeeeee",
+      "borderWidth": 1,
+      "flex": 1,
+      "justifyContent": "center",
+      "marginLeft": 20,
+      "marginRight": 20,
+      "marginTop": 20,
+      "maxHeight": 100,
+      "padding": 20,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    PEDOMETER IS AVAILABLE: 
+    checking
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Steps taken in the last 24 hours: 
+    0
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    Step count for the current session: 
+    0
+  </Text>
+</View>
+`;

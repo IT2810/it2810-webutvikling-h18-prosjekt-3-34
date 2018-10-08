@@ -12,11 +12,9 @@ test("renders correctly", () => {
 
 //Test if children components renders correctly
 /*
-const renderer = new ShallowRenderer();
-renderer.render(<Addtodo />);
-const result = renderer.getRenderOutput();
+const shallow = new ShallowRenderer();
+shallow.render(<Addtodo />);
+const result = shallow.getRenderOutput();
 
-expect(result.type).toBe('Modal');
-expect(result.props.children).toEqual([
-// write children of Modal
-])*/
+expect(result.type).toBe("Modal");
+*/
