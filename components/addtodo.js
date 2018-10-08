@@ -51,7 +51,7 @@ class Addtodo extends Component {
           handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}
-          toggleTodoInput={this.toggleTodoInput}
+          toggleTodoInput={this.toggleStepInput}
           setType={this.props.setType}
         />
       );
@@ -68,7 +68,7 @@ class Addtodo extends Component {
     return (
       <Modal isVisible={this.props.isModalVisible}>
         <View style={styles.modal}>
-          <Text>Add Goal: </Text>
+          <Text style={styles.goalText}>Add a goal for the day: </Text>
           <TouchableOpacity
             style={styles.addItemBtn}
             onPress={this.toggleTodoInput}
@@ -83,8 +83,8 @@ class Addtodo extends Component {
             <Text style={styles.modalText}>Steps</Text>
           </TouchableOpacity>
           {stepsinput}
-          <TouchableOpacity onPress={this.closeModal}>
-            <Text>Exit</Text>
+          <TouchableOpacity style={styles.exitButton} onPress={this.closeModal}>
+            <Text style={styles.exitText} >Exit</Text>
           </TouchableOpacity>
         </View>
       </Modal>

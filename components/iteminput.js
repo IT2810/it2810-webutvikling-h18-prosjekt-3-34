@@ -10,10 +10,10 @@ export default class Iteminput extends Component {
 
   render() {
     return (
-      <View>
-        <TextInput onChangeText={this.props.handleInput} />
+      <View style={styles.addItemContainer}>
+        <TextInput style={styles.textInputStyle} autoCapitalize={"words"} placeholder={"Input goes in this field..."} placeholderColor={"black"} onChangeText={this.props.handleInput} />
         <TouchableOpacity style={styles.addItemStyle} onPress={this.addItem}>
-          <Text>Add</Text>
+          <Text>Add item</Text>
         </TouchableOpacity>
       </View>
     );

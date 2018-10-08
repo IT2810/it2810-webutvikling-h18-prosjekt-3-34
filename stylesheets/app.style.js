@@ -30,33 +30,33 @@ export default StyleSheet.create({
        textAlignVertical: 'top',
        color: 'black',
      },
+     viewDateStyle: {
+       backgroundColor: '#dedede',
+       width: "85%",
+     },
      addGoalButton: {
        justifyContent: "center",
        alignItems: "center",
-       backgroundColor: "white",
-       height: 50,
-       width: 50,
-       borderRadius: 100,
-       position: "absolute",
-       right: 20,
-       top: 440 //TODO: Change this to bottom
-     },
-     //knapper inne i modal
-     addItemBtn: {
-       justifyContent: "center",
-       alignItems: "center",
-       margin: 10
-     },
-     //Tekst i modalknapp
-     modalText: {
-       fontSize: 20
-     },
-     modal: {
-       backgroundColor: "white"
-     },
+       backgroundColor: "#a3b3c3",
+       height: 40,
+       width: 100,
+       borderWidth: 1,
+       //borderRadius: 100,
+       borderRadius: 8,
 
+     },
+     emptySpace: {
+       height: 40,
+       width: 100,
+     },
+     buttonContainer: {
+       marginTop: 20,
+       width: "85%",
+       flexDirection: "row",
+       justifyContent: "flex-end"
+     },
      addGoalText: {
-       fontSize: 40
+       fontSize: 20
      },
      kolonne: {
        padding: 10

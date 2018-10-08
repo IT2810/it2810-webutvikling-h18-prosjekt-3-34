@@ -5,13 +5,14 @@ export default StyleSheet.create({
     backgroundColor: "#dedede",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    marginBottom: 10,
   },
 
   prevDay: {
    justifyContent: "center",
    alignItems: "center",
-   backgroundColor: "#00c652",
+   backgroundColor: "#a3b3c3",
    height: 35,
    width: 70,
    borderRadius: 5,
@@ -21,7 +22,7 @@ export default StyleSheet.create({
  nextDay: {
   justifyContent: "center",
   alignItems: "center",
-  backgroundColor: "#00c652",
+  backgroundColor: "#a3b3c3",
   height: 35,
   width: 70,
   borderRadius: 5,
@@ -30,11 +31,13 @@ export default StyleSheet.create({
 dateText: {
   fontSize: 16,
   textAlignVertical: "center",
+  marginLeft: 10,
+  marginRight: 10,
 },
 prevDayClicked: {
  justifyContent: "center",
  alignItems: "center",
- backgroundColor: "gray",
+ backgroundColor: "lightgray",
  height: 35,
  width: 70,
  borderRadius: 5,
@@ -44,7 +47,7 @@ prevDayClicked: {
 nextDayClicked: {
 justifyContent: "center",
 alignItems: "center",
-backgroundColor: "gray",
+backgroundColor: "lightgray",
 height: 35,
 width: 70,
 borderRadius: 5,

@@ -33,7 +33,7 @@ export default class DateComponent extends Component {
               <Text>-1</Text>
             </TouchableOpacity>
 
-            <Text style = {styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
+            <Text style={styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
 
             <TouchableWithoutFeedback>
               <View style = {styles.nextDayClicked}>
@@ -47,14 +47,14 @@ export default class DateComponent extends Component {
           <View style={styles.dateBox}>
             <TouchableWithoutFeedback>
               <View style = {styles.prevDayClicked}>
-                <Text>-1</Text>
+                <Text style={styles.textWhite}>-1</Text>
               </View>
             </TouchableWithoutFeedback>
 
             <Text style = {styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
 
             <TouchableOpacity style = {styles.nextDay} onPress={this.props.handleNextDayClick}>
-              <Text>+1</Text>
+              <Text style={styles.textWhite}>+1</Text>
             </TouchableOpacity>
           </View>
         );
