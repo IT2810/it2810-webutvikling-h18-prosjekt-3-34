@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1538999332799" clover="3.2.0">
-  <project timestamp="1538999332800" name="All files">
-    <metrics statements="54" coveredstatements="39" conditionals="13" coveredconditionals="7" methods="25" coveredmethods="15" elements="92" coveredelements="61" complexity="0" loc="54" ncloc="54" packages="2" files="12" classes="12">
+<coverage generated="1539000098123" clover="3.2.0">
+  <project timestamp="1539000098123" name="All files">
+    <metrics statements="54" coveredstatements="40" conditionals="13" coveredconditionals="7" methods="25" coveredmethods="16" elements="92" coveredelements="63" complexity="0" loc="54" ncloc="54" packages="2" files="12" classes="12">
       <package name="components">
-        <metrics statements="54" coveredstatements="39" conditionals="13" coveredconditionals="7" methods="25" coveredmethods="15"/>
+        <metrics statements="54" coveredstatements="40" conditionals="13" coveredconditionals="7" methods="25" coveredmethods="16"/>
         <file name="addtodo.js" path="/Users/magnus/Projects/app/p3/components/addtodo.js">
           <metrics statements="16" coveredstatements="16" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
           <line num="15" count="3" type="stmt"/>
@@ -35,10 +35,10 @@
           <line num="46" count="0" type="stmt"/>
         </file>
         <file name="itemcomponent.js" path="/Users/magnus/Projects/app/p3/components/itemcomponent.js">
-          <metrics statements="4" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
-          <line num="11" count="0" type="stmt"/>
-          <line num="15" count="1" type="stmt"/>
-          <line num="29" count="1" type="stmt"/>
+          <metrics statements="4" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="29" count="3" type="stmt"/>
           <line num="43" count="0" type="stmt"/>
         </file>
         <file name="iteminput.js" path="/Users/magnus/Projects/app/p3/components/iteminput.js">
