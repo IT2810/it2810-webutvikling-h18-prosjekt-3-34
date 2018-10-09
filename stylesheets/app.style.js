@@ -56,7 +56,7 @@ export default StyleSheet.create({
        justifyContent: "flex-end"
      },
      addGoalText: {
-       fontSize: 20
+       fontSize: 18,
      },
      kolonne: {
        padding: 10
