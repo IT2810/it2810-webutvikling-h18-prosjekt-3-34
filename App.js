@@ -15,8 +15,9 @@ export default class App extends Component {
     isModalVisible: false,
     type: null,
     text: null,
-    viewDate: new Date()
+    viewDate: new Date(),
   };
+
 
   renderList() {
     let newList = this.state.items.slice();
@@ -24,28 +25,28 @@ export default class App extends Component {
   }
 
 componentDidMount() {
+  this.loadListItems();
+}
 
+loadListItems() {
+  console.log(this.state.viewDate.getDay());
+  {/* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE */}
   let key = 0;
   let storedArray = [];
   AsyncStorage.getAllKeys((err, keys) => {
   AsyncStorage.multiGet(keys, (err, stores) => {
     stores.map((result, i, store) => {
         let value = JSON.parse(store[i][1]);
-
+        {/* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */}
         if (key <= value.id) {
           key = value.id +1;
         }
-        console.log(key);
-
         this.setState({itemCounter:key});
-
         storedArray.push(value);
-        console.log(storedArray);
         this.setState({items:storedArray});
       });
     });
   });
-
 }
 
 storeItemData = async (items) => {
@@ -148,11 +149,12 @@ toggleModal = () =>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
 
-        <View>
+        <View style={styles.siteContainer}>
+
+        <View style={styles.viewDateStyle}>
           <DateComponent viewDate={this.state.viewDate} handlePrevDayClick={this.handlePrevDayClick} handleNextDayClick={this.handleNextDayClick}/>
         </View>
 
-        <View style={styles.siteContainer}>
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
@@ -166,18 +168,21 @@ toggleModal = () =>
             setType={this.setType}
           />
           <StepCounter />
-          <TouchableOpacity
-            style={styles.addGoalButton}
-            color="white"
-            onPress={this.toggleModal}
-          >
-            <Text style={styles.addGoalText}>+</Text>
-          </TouchableOpacity>
+
+          <View style={styles.buttonContainer}>
+            <View style={styles.emptySpace}> </View>
+
+            <TouchableOpacity
+              style={styles.addGoalButton}
+              color="white"
+              onPress={this.toggleModal}>
+
+              <Text style={styles.addGoalText}>Add item</Text>
+            </TouchableOpacity>
+          </View>
+
         </View>
 
-            <TouchableOpacity style={styles.addItemButton} color="black" onPress={this.handleClear}>
-            <Text style={styles.text}>clear</Text>
-            </TouchableOpacity>
       </React.Fragment>
     );
   }

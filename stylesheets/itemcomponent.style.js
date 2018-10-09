@@ -27,5 +27,19 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  textStyle: {},
+  textStyle: {
+    width: "70%",
+  },
+  itemComponent: {
+    flexDirection: "row",
+    backgroundColor: "#bdbdbd",
+    alignItems: "center",
+    justifyContent: "space-between",
+    minHeight: 50,
+    marginTop: 10,
+    borderRadius: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: "100%",
+  }
 });

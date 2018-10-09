@@ -3,8 +3,6 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   container: {
     marginTop: 5,
-    marginLeft: 20,
-    marginRight: 20,
     maxHeight: 300,
     borderWidth: 1,
     paddingLeft: 10,
