@@ -171,7 +171,7 @@ toggleModal = () =>
 
           <View style={styles.buttonContainer}>
             <View style={styles.emptySpace}> </View>
-            
+
             <TouchableOpacity
               style={styles.addGoalButton}
               color="white"
