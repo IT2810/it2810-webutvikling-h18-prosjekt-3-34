@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker, AsyncStorage } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView, Button, Picker, AsyncStorage, TouchableWithoutFeedback } from 'react-native'
 import StepCounter from "./components/stepcounter.js"
 import ToDoList from "./components/todolist.js"
 import styles from "./stylesheets/app.style.js";
@@ -16,6 +16,7 @@ export default class App extends Component {
     type: null,
     text: null,
     viewDate: new Date(),
+    addItemDisabled: false,
   };
 
 
@@ -26,11 +27,15 @@ export default class App extends Component {
 
 componentDidMount() {
   this.loadListItems();
+  let liste = [];
+  this.storeItemData(liste);
+  console.log(this.state.items);
 }
 
 loadListItems() {
-  console.log(this.state.viewDate.getDay());
-  {/* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE */}
+  {/* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE FOR CURRENT DAY*/}
+  console.log("Kjør loadListItems()");
+  let dato = this.state.viewDate.getDate();
   let key = 0;
   let storedArray = [];
   AsyncStorage.getAllKeys((err, keys) => {
@@ -38,11 +43,15 @@ loadListItems() {
     stores.map((result, i, store) => {
         let value = JSON.parse(store[i][1]);
         {/* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */}
+        if (value.date === dato) {
+          console.log("Add an item..." + "dato:" + dato + "value.date:" + value.date);
+          storedArray.push(value);
+          console.log(storedArray);
+        }
         if (key <= value.id) {
-          key = value.id +1;
+        key = value.id +1;
         }
         this.setState({itemCounter:key});
-        storedArray.push(value);
         this.setState({items:storedArray});
       });
     });
@@ -64,12 +73,14 @@ storeItemData = async (items) => {
   addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
+      date: this.state.viewDate.getDate(),
       id: this.state.itemCounter,
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
       text: this.state.text
     });
+    console.log(newList);
     this.storeItemData(newList);
     this.setState({ items: newList });
     this.state.itemCounter++;
@@ -87,12 +98,14 @@ storeItemData = async (items) => {
   };
 
   handleDeleteClick = index => {
-    console.log("items lengde: " + this.state.items.length + " index: " + index);
+    console.log(this.state.items);
+    var dato = this.state.viewDate.getDate();
     if (this.state.items.length > 0) {
       var newList = [];
       this.state.items.forEach(function(element) {
-        if (element.id != index) {
+        if ((element.id != index) && (element.date == dato)) {
           newList.push({
+            date: element.date,
             id: element.id,
             inputid: "input" + element.inputid,
             name: "Rad " + element.name,
@@ -101,7 +114,6 @@ storeItemData = async (items) => {
           });
       }
       if (element.id == index) {
-          console.log("delete this item.")
           AsyncStorage.removeItem(index.toString());
       }
     });
@@ -124,6 +136,11 @@ handlePrevDayClick = () => {
     this.setState({
       viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()-1))
     })
+    console.log(this.state.viewDate.getDate());
+    this.loadListItems();
+    if (this.state.viewDate.getDate() < currentDate.getDate()) {
+        this.setState({addItemDisabled: true})
+    }
   }
 }
 
@@ -133,7 +150,16 @@ handleNextDayClick = () => {
     this.setState({
       viewDate: new Date(this.state.viewDate.setDate(this.state.viewDate.getDate()+1))
     })
+    console.log(this.state.viewDate.getDate());
+    this.loadListItems();
+    if (this.state.viewDate.getDate() >= currentDate.getDate()) {
+        this.setState({addItemDisabled: false})
+    }
   }
+}
+
+renderAddItemButton = () => {
+
 }
 
 toggleModal = () =>
@@ -166,19 +192,22 @@ toggleModal = () =>
             addItem={this.addItem}
             handleInput={this.handleInput}
             setType={this.setType}
+            dateToday={this.state.viewDate}
           />
           <StepCounter />
 
           <View style={styles.buttonContainer}>
             <View style={styles.emptySpace}> </View>
 
-            <TouchableOpacity
-              style={styles.addGoalButton}
-              color="white"
-              onPress={this.toggleModal}>
+              <TouchableOpacity
+                style={this.state.addItemDisabled ? styles.addGoalButtonDis : styles.addGoalButton}
+                onPress={this.toggleModal}
+                disabled={this.state.addItemDisabled}>
 
-              <Text style={styles.addGoalText}>Add item</Text>
-            </TouchableOpacity>
+                <Text style={styles.addGoalText}>Add item</Text>
+              </TouchableOpacity>
+            }
+
           </View>
 
         </View>

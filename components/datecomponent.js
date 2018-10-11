@@ -14,49 +14,59 @@ export default class DateComponent extends Component {
     switch(viewDate.getDay()){
       case currentDate.getDay():
         return(
+          <React.Fragment>
+          <Text style={styles.todayText}>Today</Text>
           <View style={styles.dateBox}>
+
             <TouchableOpacity style = {styles.prevDay} onPress={this.props.handlePrevDayClick}>
-              <Text>-1</Text>
+              <Text>{"<--"}</Text>
             </TouchableOpacity>
 
             <Text style = {styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
 
             <TouchableOpacity style = {styles.nextDay} onPress={this.props.handleNextDayClick}>
-              <Text>+1</Text>
+              <Text>{"-->"}</Text>
             </TouchableOpacity>
           </View>
+          </React.Fragment>
         );
       case currentDate.getDay()+1:
         return(
+          <React.Fragment>
+          <Text style={styles.todayText}>Tomorrow</Text>
           <View style={styles.dateBox}>
             <TouchableOpacity style = {styles.prevDay} onPress={this.props.handlePrevDayClick}>
-              <Text>-1</Text>
+              <Text>{"<--"}</Text>
             </TouchableOpacity>
 
             <Text style={styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
 
             <TouchableWithoutFeedback>
               <View style = {styles.nextDayClicked}>
-                <Text>+1</Text>
+                <Text>{"-->"}</Text>
               </View>
             </TouchableWithoutFeedback>
           </View>
+          </React.Fragment>
         );
       case currentDate.getDay()-1:
         return(
+          <React.Fragment>
+          <Text style={styles.todayText}>Yesterday</Text>
           <View style={styles.dateBox}>
             <TouchableWithoutFeedback>
               <View style = {styles.prevDayClicked}>
-                <Text style={styles.textWhite}>-1</Text>
+                <Text style={styles.textWhite}>{"<--"}</Text>
               </View>
             </TouchableWithoutFeedback>
 
             <Text style = {styles.dateText}>{dateFormat(viewDate, "dddd, mmmm dS")}</Text>
 
             <TouchableOpacity style = {styles.nextDay} onPress={this.props.handleNextDayClick}>
-              <Text style={styles.textWhite}>+1</Text>
+              <Text style={styles.textWhite}>{"-->"}</Text>
             </TouchableOpacity>
           </View>
+          </React.Fragment>
         );
 
     }

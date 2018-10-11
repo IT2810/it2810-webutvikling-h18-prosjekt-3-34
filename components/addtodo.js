@@ -64,11 +64,14 @@ class Addtodo extends Component {
   render() {
     const todoinput = this.renderTodoInput(Iteminput);
     const stepsinput = this.renderStepInput(Iteminput);
+    var dateFormat = require("dateformat");
+    let dato = this.props.dateToday;
 
     return (
       <Modal isVisible={this.props.isModalVisible}>
         <View style={styles.modal}>
-          <Text style={styles.goalText}>Add a goal for the day: </Text>
+          <Text style={styles.goalText}>Add a goal for selected day: </Text>
+          <Text>{dateFormat(dato, "dddd, mmmm dS")}</Text>
           <TouchableOpacity
             style={styles.addItemBtn}
             onPress={this.toggleTodoInput}

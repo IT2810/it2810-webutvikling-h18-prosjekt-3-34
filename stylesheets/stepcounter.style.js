@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     width:"85%",
     borderWidth: 1,
-    maxHeight: 100,
+    maxHeight: 80,
     padding: 20,
     flex: 1,
     marginTop: 20,

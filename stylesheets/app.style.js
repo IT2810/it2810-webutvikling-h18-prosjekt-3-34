@@ -15,12 +15,12 @@ export default StyleSheet.create({
       backgroundColor: '#dedede',
       marginTop: 0,
       justifyContent: 'center',
-      height: 80,
+      height: 75,
       flexDirection: 'row'
     },
      textStyleBanner: {
       fontSize:22,
-      lineHeight:80,
+      lineHeight:75,
       textAlignVertical: 'top',
       color: 'black',
     },
@@ -41,9 +41,16 @@ export default StyleSheet.create({
        height: 40,
        width: 100,
        borderWidth: 1,
-       //borderRadius: 100,
        borderRadius: 8,
-
+     },
+     addGoalButtonDis: {
+       justifyContent: "center",
+       alignItems: "center",
+       backgroundColor: "lightgrey",
+       height: 40,
+       width: 100,
+       borderWidth: 1,
+       borderRadius: 8,
      },
      emptySpace: {
        height: 40,
