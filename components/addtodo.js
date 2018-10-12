@@ -4,7 +4,6 @@ import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
 import styles from "../stylesheets/addtodo.style.js";
 
-
 class Addtodo extends Component {
   state = {
     showTodoInputField: false,
@@ -87,7 +86,7 @@ class Addtodo extends Component {
           </TouchableOpacity>
           {stepsinput}
           <TouchableOpacity style={styles.exitButton} onPress={this.closeModal}>
-            <Text style={styles.exitText} >Exit</Text>
+            <Text style={styles.exitText}>Exit</Text>
           </TouchableOpacity>
         </View>
       </Modal>

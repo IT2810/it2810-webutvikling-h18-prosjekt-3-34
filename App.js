@@ -214,7 +214,6 @@ export default class App extends Component {
           <StepCounter />
 
           <View style={styles.buttonContainer}>
-            <View style={styles.emptySpace}> </View>
             <TouchableOpacity
               style={
                 this.state.addItemDisabled
@@ -226,7 +225,6 @@ export default class App extends Component {
             >
               <Text style={styles.addGoalText}>Add item</Text>
             </TouchableOpacity>
-            }
           </View>
         </View>
       </React.Fragment>

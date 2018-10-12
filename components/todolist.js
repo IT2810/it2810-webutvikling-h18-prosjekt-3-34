@@ -4,7 +4,6 @@ import ItemComponent from "./itemcomponent.js";
 import styles from "../stylesheets/todolist.style.js";
 
 export default class ToDoList extends Component {
-
   render() {
     // render component based on type
     const itemMapper = item => {
@@ -34,9 +33,7 @@ export default class ToDoList extends Component {
     return (
       // Maps the items list in app to components through itemMapper method
       <ScrollView style={styles.container}>
-
         {this.props.items.map(itemMapper)}
-
       </ScrollView>
     );
   }
