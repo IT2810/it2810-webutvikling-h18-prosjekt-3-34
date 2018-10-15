@@ -18,7 +18,6 @@ export default class StepCounter extends React.Component {
   componentWillUnmount() {
     this._unsubscribe();
   }
-
   _subscribe = () => {
     this._subscription = Pedometer.watchStepCount(result => {
       this.setState({
@@ -59,21 +58,39 @@ export default class StepCounter extends React.Component {
     this._subscription = null;
   };
 
+  renderStepText = () => {
+    let stepLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
+    if (this.state.pastStepCount < this.props.stepGoal) {
+      return (
+        <Text style={styles.stepCounterText2}>
+          Du mangler {stepLeft} steg for å oppnå dagens mål!
+        </Text>
+      );
+    } else {
+      return (
+        <Text style={styles.stepCounterText2}>Du har oppnådd dagens mål!</Text>
+      );
+    }
+  };
+
   render() {
+    const stepText = this.renderStepText();
     return (
       <View style={styles.container}>
         <Text style={styles.stepCounterText}>
           Steps today: {this.state.pastStepCount}
         </Text>
         <Text style={styles.stepCounterText2}>
-          Steps in current session: {this.state.currentStepCount}
-        </Text>
-        <Text style={styles.stepCounterText}>
           StepGoal: {this.props.stepGoal}
         </Text>
+        {stepText}
       </View>
     );
   }
 }
-
+/*
+<Text style={styles.stepCounterText2}>
+          Steps in current session: {this.state.currentStepCount}
+        </Text>
+*/
 Expo.registerRootComponent(StepCounter);
