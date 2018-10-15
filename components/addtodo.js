@@ -4,7 +4,6 @@ import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
 import styles from "../stylesheets/addtodo.style.js";
 
-
 class Addtodo extends Component {
   state = {
     showTodoInputField: false,
@@ -64,11 +63,14 @@ class Addtodo extends Component {
   render() {
     const todoinput = this.renderTodoInput(Iteminput);
     const stepsinput = this.renderStepInput(Iteminput);
+    var dateFormat = require("dateformat");
+    let dato = this.props.dateToday;
 
     return (
       <Modal isVisible={this.props.isModalVisible}>
         <View style={styles.modal}>
-          <Text style={styles.goalText}>Add a goal for the day: </Text>
+          <Text style={styles.goalText}>Add a goal for selected day: </Text>
+          <Text>{dateFormat(dato, "dddd, mmmm dS")}</Text>
           <TouchableOpacity
             style={styles.addItemBtn}
             onPress={this.toggleTodoInput}
@@ -84,7 +86,7 @@ class Addtodo extends Component {
           </TouchableOpacity>
           {stepsinput}
           <TouchableOpacity style={styles.exitButton} onPress={this.closeModal}>
-            <Text style={styles.exitText} >Exit</Text>
+            <Text style={styles.exitText}>Exit</Text>
           </TouchableOpacity>
         </View>
       </Modal>

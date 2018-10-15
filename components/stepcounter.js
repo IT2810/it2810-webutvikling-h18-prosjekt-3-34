@@ -40,7 +40,7 @@ export default class StepCounter extends React.Component {
     );
 
     const start = new Date();
-    start.setHours(0,0,0,0);
+    start.setHours(0, 0, 0, 0);
     const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
@@ -62,11 +62,12 @@ export default class StepCounter extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-
         <Text style={styles.stepCounterText}>
           Steps today: {this.state.pastStepCount}
         </Text>
-        <Text style={styles.stepCounterText2}>Steps in current session: {this.state.currentStepCount}</Text>
+        <Text style={styles.stepCounterText2}>
+          Steps in current session: {this.state.currentStepCount}
+        </Text>
       </View>
     );
   }
