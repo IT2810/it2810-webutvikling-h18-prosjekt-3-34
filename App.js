@@ -15,7 +15,8 @@ export default class App extends Component {
     type: null,
     text: null,
     viewDate: new Date(),
-    addItemDisabled: false
+    addItemDisabled: false,
+    stepGoal: null
   };
 
   renderList() {
@@ -82,7 +83,8 @@ export default class App extends Component {
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
-      text: this.state.text
+      text: this.state.text,
+      stepGoal: this.stepGoal
     });
     console.log(newList);
     this.storeItemData(newList);
@@ -91,10 +93,15 @@ export default class App extends Component {
     this.toggleModal();
     this.setState({ text: null });
     this.setState({ type: null });
+    this.setState({ stepGoal: null });
   };
 
   handleInput = text => {
     this.setState({ text: text });
+  };
+
+  handleStepGoal = stepGoal => {
+    this.setState({ stepGoal: stepGoal });
   };
 
   setType = text => {
@@ -114,7 +121,8 @@ export default class App extends Component {
             inputid: "input" + element.inputid,
             name: "Rad " + element.name,
             type: element.type,
-            text: element.text
+            text: element.text,
+            stepGoal: element.stepGoal
           });
         }
         if (element.id == index) {
@@ -198,6 +206,7 @@ export default class App extends Component {
             toggleModal={this.toggleModal}
             addItem={this.addItem}
             handleInput={this.handleInput}
+            handleStepGoal={this.handleStepGoal}
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
