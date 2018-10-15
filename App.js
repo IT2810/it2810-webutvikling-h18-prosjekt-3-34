@@ -16,7 +16,7 @@ export default class App extends Component {
     text: null,
     viewDate: new Date(),
     addItemDisabled: false,
-    stepGoal: null
+    stepGoal: 10
   };
 
   renderList() {
@@ -69,7 +69,9 @@ export default class App extends Component {
       for (let i = 0; i < items.length; i++) {
         storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
       }
-      await AsyncStorage.multiSet(storeArray);
+      if (storeArray.length > 0) {
+        await AsyncStorage.multiSet(storeArray);
+      }
     } catch (error) {
       alert("wat" + error);
     }
@@ -93,7 +95,6 @@ export default class App extends Component {
     this.toggleModal();
     this.setState({ text: null });
     this.setState({ type: null });
-    this.setState({ stepGoal: null });
   };
 
   handleInput = text => {

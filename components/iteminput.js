@@ -16,7 +16,7 @@ export default class Iteminput extends Component {
           autoCapitalize={"words"}
           placeholder={"Input goes in this field..."}
           placeholderColor={"black"}
-          onChangeText={this.props.handleStepGoal}
+          onChangeText={this.props.handleInput}
         />
         <TouchableOpacity style={styles.addItemStyle} onPress={this.addItem}>
           <Text>Add item</Text>

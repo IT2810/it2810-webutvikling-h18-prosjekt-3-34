@@ -17,16 +17,6 @@ export default class ToDoList extends Component {
             text={item.text}
           />
         );
-      } else if (item.type === "step") {
-        return (
-          <ItemComponent
-            id={item.id}
-            key={item.inputid}
-            handleDelete={this.props.handleDelete}
-            status={this.props.status}
-            text={item.text}
-          />
-        );
       }
     };
 

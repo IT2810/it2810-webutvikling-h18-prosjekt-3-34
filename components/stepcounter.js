@@ -68,6 +68,9 @@ export default class StepCounter extends React.Component {
         <Text style={styles.stepCounterText2}>
           Steps in current session: {this.state.currentStepCount}
         </Text>
+        <Text style={styles.stepCounterText}>
+          StepGoal: {this.props.stepGoal}
+        </Text>
       </View>
     );
   }
