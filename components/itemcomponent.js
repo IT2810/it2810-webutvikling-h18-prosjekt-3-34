@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import styles from "../stylesheets/itemcomponent.style.js";
 
 export default class ItemComponent extends Component {
-  
+
 
   render() {
 
@@ -12,6 +12,14 @@ export default class ItemComponent extends Component {
         <Text style={styles.textStyle}>{this.props.text}</Text>
 
         <View style={styles.buttonView}>
+
+          <TouchableOpacity
+            style={styles.doneButton}
+            onPress={() => this.props.handleDone(this.props.id)}
+            text={this.props.text}
+          >
+            <Text style={styles.buttonStyleText}>Done</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.deleteButton}

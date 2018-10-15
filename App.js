@@ -111,6 +111,10 @@ export default class App extends Component {
     this.setState({ type: text });
   };
 
+  handleDone = index => {
+    alert("noe");
+  }
+
   handleDeleteClick = index => {
     console.log(this.state.items);
     var dato = this.state.viewDate.getDate();
@@ -201,6 +205,7 @@ export default class App extends Component {
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
+            handleDone={this.handleDone}
           />
 
           <Addtodo
