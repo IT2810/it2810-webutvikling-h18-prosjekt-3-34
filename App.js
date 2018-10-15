@@ -25,7 +25,8 @@ export default class App extends Component {
     type: null,
     text: null,
     viewDate: new Date(),
-    addItemDisabled: false
+    addItemDisabled: false,
+    doneCounter: 0,
   };
 
   renderList() {
@@ -44,6 +45,8 @@ export default class App extends Component {
     {
       /* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE FOR CURRENT DAY*/
     }
+    let currentDate = new Date();
+    let doneToDos = 0;
     console.log("Kjør loadListItems()");
     let dato = this.state.viewDate.getDate();
     let key = 0;
@@ -62,11 +65,20 @@ export default class App extends Component {
             storedArray.push(value);
             console.log(storedArray);
           }
+          { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+              med todo's som er fra de forrige dagene
+              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
+          if (dato >= currentDate.getDate()) {
+            if (value.done == true) {
+              doneToDos = doneToDos + 1;
+            }
+          }
           if (key <= value.id) {
             key = value.id + 1;
           }
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
+          this.setState({ doneCounter : doneToDos })
         });
       });
     });
@@ -92,7 +104,8 @@ export default class App extends Component {
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
-      text: this.state.text
+      text: this.state.text,
+      done: false,
     });
     console.log(newList);
     this.storeItemData(newList);
@@ -112,7 +125,36 @@ export default class App extends Component {
   };
 
   handleDone = index => {
-    alert("noe");
+    var dato = this.state.viewDate.getDate();
+    if (this.state.items.length > 0) {
+      var newList = [];
+      this.state.items.forEach(function(element) {
+        if (element.id != index && element.date == dato) {
+          newList.push({
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            done: element.done,
+          });
+        }
+        else if (element.id == index && element.date == dato) {
+          newList.push({
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            done: true,
+          });
+        }
+      });
+      this.storeItemData(newList);
+      this.loadListItems();
+    }
   }
 
   handleDeleteClick = index => {
@@ -128,7 +170,8 @@ export default class App extends Component {
             inputid: "input" + element.inputid,
             name: "Rad " + element.name,
             type: element.type,
-            text: element.text
+            text: element.text,
+            done: false,
           });
         }
         if (element.id == index) {
@@ -136,14 +179,7 @@ export default class App extends Component {
         }
       });
       this.setState({ items: newList });
-    }
-  };
-
-  handleClear = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch (error) {
-      console.log(error);
+      this.loadListItems();
     }
   };
 
@@ -219,6 +255,7 @@ export default class App extends Component {
           <StepCounter />
 
           <View style={styles.buttonContainer}>
+            <Text style={styles.addGoalText}>{this.state.doneCounter}</Text>
             <TouchableOpacity
               style={
                 this.state.addItemDisabled

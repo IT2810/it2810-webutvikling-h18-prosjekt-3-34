@@ -44,5 +44,17 @@ export default StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     width: "100%",
+  },
+  itemComponentDone: {
+    flexDirection: "row",
+    backgroundColor: "#a5d6a7",
+    alignItems: "center",
+    justifyContent: "space-between",
+    minHeight: 50,
+    marginTop: 10,
+    borderRadius: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
+    width: "100%",
   }
 });
