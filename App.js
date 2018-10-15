@@ -210,7 +210,7 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-          <StepCounter />
+          <StepCounter stepGoal={this.state.stepGoal} />
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
