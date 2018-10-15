@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Button,
-  Picker,
-  AsyncStorage,
-  TouchableWithoutFeedback
-} from "react-native";
+import { Text, View, TouchableOpacity, AsyncStorage } from "react-native";
 import StepCounter from "./components/stepcounter.js";
 import ToDoList from "./components/todolist.js";
 import styles from "./stylesheets/app.style.js";
