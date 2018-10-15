@@ -47,7 +47,7 @@ class Addtodo extends Component {
     if (this.state.showStepInputField) {
       return (
         <Iteminput
-          handleInput={this.props.handleStepGoal}
+          handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}
           toggleTodoInput={this.toggleStepInput}

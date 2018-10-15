@@ -5,7 +5,7 @@ import styles from "../stylesheets/todolist.style.js";
 
 export default class ToDoList extends Component {
   render() {
-    // render component based on type
+    // render component if it is a todo item.
     const itemMapper = item => {
       if (item.type === "todo") {
         return (

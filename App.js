@@ -39,10 +39,14 @@ export default class App extends Component {
     let dato = this.state.viewDate.getDate();
     let key = 0;
     let storedArray = [];
+    let id = 0;
+    let stepGoal = 0;
     AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (err, stores) => {
         stores.map((result, i, store) => {
           let value = JSON.parse(store[i][1]);
+          //finner nyere objekt
+
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
@@ -52,12 +56,18 @@ export default class App extends Component {
             );
             storedArray.push(value);
             console.log(storedArray);
+            if (id < value.id && value.type == "step") {
+              id = value.id;
+              stepGoal = parseInt(value.text);
+            }
           }
           if (key <= value.id) {
             key = value.id + 1;
           }
+
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
+          this.setState({ stepGoal: stepGoal });
         });
       });
     });
@@ -77,6 +87,8 @@ export default class App extends Component {
     }
   };
 
+  storeStepGoal = async goal => {};
+
   addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
@@ -85,8 +97,7 @@ export default class App extends Component {
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
-      text: this.state.text,
-      stepGoal: this.stepGoal
+      text: this.state.text
     });
     console.log(newList);
     this.storeItemData(newList);
