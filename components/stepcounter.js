@@ -47,7 +47,7 @@ export default class StepCounter extends React.Component {
       },
       error => {
         this.setState({
-          pastStepCount: "Unavailable."
+          pastStepCount: "Unavailable.."
         });
       }
     );
