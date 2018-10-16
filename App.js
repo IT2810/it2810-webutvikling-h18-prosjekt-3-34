@@ -68,7 +68,7 @@ export default class App extends Component {
           { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
               Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
-          if (dato >= currentDate.getDate()) {
+          if ((dato == currentDate.getDate()) || (dato == (currentDate.getDate() -1)) || (dato == currentDate.getDate() +1)) {
             if (value.done == true) {
               doneToDos = doneToDos + 1;
             }
