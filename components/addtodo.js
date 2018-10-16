@@ -30,6 +30,7 @@ class Addtodo extends Component {
     if (this.state.showTodoInputField) {
       return (
         <Iteminput
+          keyboardType='default'
           handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}
@@ -47,6 +48,7 @@ class Addtodo extends Component {
     if (this.state.showStepInputField) {
       return (
         <Iteminput
+          keyboardType='number-pad'
           handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}

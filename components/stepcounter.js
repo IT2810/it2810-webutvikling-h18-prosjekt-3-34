@@ -58,6 +58,7 @@ export default class StepCounter extends React.Component {
     this._subscription = null;
   };
 
+
   renderStepText = () => {
     let stepLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
     if (this.state.pastStepCount < this.props.stepGoal) {

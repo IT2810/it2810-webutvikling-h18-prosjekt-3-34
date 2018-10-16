@@ -113,7 +113,9 @@ export default class App extends Component {
   };
 
   handleStepGoal = stepGoal => {
-    this.setState({ stepGoal: stepGoal });
+    if(/^\d+$/.test(stepGoal)){
+      this.setState({ stepGoal: stepGoal });
+    }
   };
 
   setType = text => {
@@ -185,6 +187,7 @@ export default class App extends Component {
     }
   };
 
+
   renderAddItemButton = () => {};
 
   toggleModal = () =>
@@ -222,7 +225,7 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-          <StepCounter stepGoal={this.state.stepGoal} />
+        <StepCounter stepGoal={this.state.stepGoal} />
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
