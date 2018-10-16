@@ -255,7 +255,9 @@ export default class App extends Component {
           <StepCounter />
 
           <View style={styles.buttonContainer}>
-            <Text style={styles.addGoalText}>{this.state.doneCounter}</Text>
+            <View style={styles.doneItemsCounter}>
+            <Text style={styles.doneItemsCounterText}>{"ToDo's done: "}{this.state.doneCounter}</Text>
+            </View>
             <TouchableOpacity
               style={
                 this.state.addItemDisabled

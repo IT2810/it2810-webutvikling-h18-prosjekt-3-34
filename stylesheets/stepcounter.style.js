@@ -9,6 +9,7 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: 20,
     alignItems: "center",
+    borderRadius: 4,
 
     justifyContent: "center",
     backgroundColor: '#eeeeee',
