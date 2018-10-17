@@ -26,7 +26,7 @@ export default class App extends Component {
     text: null,
     viewDate: new Date(),
     addItemDisabled: false,
-    doneCounter: 0,
+    doneCounter: 0
   };
 
   renderList() {
@@ -38,7 +38,6 @@ export default class App extends Component {
     this.loadListItems();
     let liste = [];
     this.storeItemData(liste);
-    console.log(this.state.items);
   }
 
   loadListItems() {
@@ -47,7 +46,6 @@ export default class App extends Component {
     }
     let currentDate = new Date();
     let doneToDos = 0;
-    console.log("Kjør loadListItems()");
     let dato = this.state.viewDate.getDate();
     let key = 0;
     let storedArray = [];
@@ -58,26 +56,22 @@ export default class App extends Component {
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
-          console.log(value);
-          console.log(value.date == currentDate.getDate()-1);
-          console.log(value.date == currentDate.getDate());
-          console.log(value.date == currentDate.getDate()+1);
+
           if (value.date === dato) {
-            console.log(
-              "Add an item..." + "dato:" + dato + "value.date:" + value.date
-            );
             storedArray.push(value);
-            console.log(storedArray);
           }
-          { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+          {
+            /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
-              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
-          if ((value.date == currentDate.getDate())
-            || (value.date == currentDate.getDate() -1) 
-            || (value.date == currentDate.getDate() +1)) {
+              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */
+          }
+          if (
+            value.date == currentDate.getDate() ||
+            value.date == currentDate.getDate() - 1 ||
+            value.date == currentDate.getDate() + 1
+          ) {
             if (value.done == true) {
               doneToDos = doneToDos + 1;
-              console.log("done todos: " + doneToDos);
             }
           }
           if (key <= value.id) {
@@ -85,7 +79,7 @@ export default class App extends Component {
           }
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
-          this.setState({ doneCounter : doneToDos })
+          this.setState({ doneCounter: doneToDos });
         });
       });
     });
@@ -112,9 +106,9 @@ export default class App extends Component {
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
       text: this.state.text,
-      done: false,
+      done: false
     });
-    console.log(newList);
+
     this.storeItemData(newList);
     this.setState({ items: newList });
     this.state.itemCounter++;
@@ -144,10 +138,9 @@ export default class App extends Component {
             name: element.name,
             type: element.type,
             text: element.text,
-            done: element.done,
+            done: element.done
           });
-        }
-        else if (element.id == index && element.date == dato) {
+        } else if (element.id == index && element.date == dato) {
           newList.push({
             date: element.date,
             id: element.id,
@@ -155,17 +148,16 @@ export default class App extends Component {
             name: element.name,
             type: element.type,
             text: element.text,
-            done: true,
+            done: true
           });
         }
       });
       this.storeItemData(newList);
       this.loadListItems();
     }
-  }
+  };
 
   handleDeleteClick = index => {
-    console.log(this.state.items);
     var dato = this.state.viewDate.getDate();
     if (this.state.items.length > 0) {
       var newList = [];
@@ -178,7 +170,7 @@ export default class App extends Component {
             name: "Rad " + element.name,
             type: element.type,
             text: element.text,
-            done: false,
+            done: false
           });
         }
         if (element.id == index) {
@@ -198,7 +190,7 @@ export default class App extends Component {
           this.state.viewDate.setDate(this.state.viewDate.getDate() - 1)
         )
       });
-      console.log(this.state.viewDate.getDate());
+
       this.loadListItems();
       if (this.state.viewDate.getDate() < currentDate.getDate()) {
         this.setState({ addItemDisabled: true });
@@ -214,7 +206,7 @@ export default class App extends Component {
           this.state.viewDate.setDate(this.state.viewDate.getDate() + 1)
         )
       });
-      console.log(this.state.viewDate.getDate());
+
       this.loadListItems();
       if (this.state.viewDate.getDate() >= currentDate.getDate()) {
         this.setState({ addItemDisabled: false });
@@ -263,7 +255,10 @@ export default class App extends Component {
 
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
-            <Text style={styles.doneItemsCounterText}>{"ToDo's done: "}{this.state.doneCounter}</Text>
+              <Text style={styles.doneItemsCounterText}>
+                {"ToDo's done: "}
+                {this.state.doneCounter}
+              </Text>
             </View>
             <TouchableOpacity
               style={
