@@ -73,7 +73,7 @@ exports[`renders correctly 1`] = `
       <DateComponent
         handleNextDayClick={[Function]}
         handlePrevDayClick={[Function]}
-        viewDate={2018-10-17T17:28:52.763Z}
+        viewDate={2018-10-17T18:52:40.225Z}
       />
     </Component>
     <ToDoList
@@ -83,7 +83,7 @@ exports[`renders correctly 1`] = `
     />
     <Addtodo
       addItem={[Function]}
-      dateToday={2018-10-17T17:28:52.763Z}
+      dateToday={2018-10-17T18:52:40.225Z}
       handleInput={[Function]}
       isModalVisible={false}
       setType={[Function]}
