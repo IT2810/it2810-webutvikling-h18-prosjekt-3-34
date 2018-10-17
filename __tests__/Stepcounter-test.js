@@ -9,4 +9,4 @@ test("renders correctly", () => {
   expect(tree).toMatchSnapshot();
 });
 
-// TODO: Mock a pedometer and set past and current stepcount
+// Code gotten from expo docs. Only change is text shown. Not needed to test.

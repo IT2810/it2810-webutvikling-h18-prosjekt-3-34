@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<React.Fragment>
+  <Component
+    style={
+      Object {
+        "backgroundColor": "#dedede",
+        "height": 20,
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "backgroundColor": "#dedede",
+        "flexDirection": "row",
+        "height": 75,
+        "justifyContent": "center",
+        "marginTop": 0,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 22,
+          "lineHeight": 75,
+          "textAlignVertical": "top",
+        }
+      }
+    >
+      DAGSPLANLEGGER'N
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "black",
+          "fontSize": 9,
+          "lineHeight": 60,
+          "textAlignVertical": "top",
+        }
+      }
+    >
+      TM
+    </Text>
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#dedede",
+        "height": "100%",
+        "marginTop": 0,
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "backgroundColor": "#dedede",
+          "width": "85%",
+        }
+      }
+    >
+      <DateComponent
+        handleNextDayClick={[Function]}
+        handlePrevDayClick={[Function]}
+        viewDate={2018-10-17T17:28:52.763Z}
+      />
+    </Component>
+    <ToDoList
+      handleDelete={[Function]}
+      handleDone={[Function]}
+      items={Array []}
+    />
+    <Addtodo
+      addItem={[Function]}
+      dateToday={2018-10-17T17:28:52.763Z}
+      handleInput={[Function]}
+      isModalVisible={false}
+      setType={[Function]}
+      toggleModal={[Function]}
+    />
+    <StepCounter />
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-around",
+          "marginTop": 20,
+          "width": "85%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "justifyContent": "center",
+            "width": "60%",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 16,
+              "textAlign": "center",
+            }
+          }
+        >
+          ToDo's done: 
+          0
+        </Text>
+      </Component>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        disabled={false}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#a3b3c3",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "height": 40,
+            "justifyContent": "center",
+            "width": 100,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "fontSize": 18,
+            }
+          }
+        >
+          Add item
+        </Text>
+      </TouchableOpacity>
+    </Component>
+  </Component>
+</React.Fragment>
+`;
