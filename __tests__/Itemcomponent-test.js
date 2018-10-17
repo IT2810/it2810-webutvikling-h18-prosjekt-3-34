@@ -3,17 +3,8 @@ import Itemcomponent from ".././components/itemcomponent";
 
 import renderer from "react-test-renderer";
 
-//Snapshot test
+//Snapshot test of a completed item component
 test("renders correctly", () => {
-  const tree = renderer.create(<Itemcomponent />).toJSON();
+  const tree = renderer.create(<Itemcomponent status={true} />).toJSON();
   expect(tree).toMatchSnapshot();
-});
-
-//Test statechanging methods
-it("hasDoneClick should change background color to green", () => {
-  let itemComponent = renderer.create(<Itemcomponent />).getInstance();
-
-  expect(itemComponent.state.backgroundColor).toBe("#bdbdbd");
-  itemComponent.handleDoneClick();
-  expect(itemComponent.state.backgroundColor).toBe("green");
 });

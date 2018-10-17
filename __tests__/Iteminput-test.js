@@ -12,5 +12,3 @@ test("renders correctly", () => {
   const tree = renderer.create(<Iteminput />).toJSON();
   expect(tree).toMatchSnapshot();
 });
-
-// 2.

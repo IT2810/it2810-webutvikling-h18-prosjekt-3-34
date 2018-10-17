@@ -8,3 +8,5 @@ test("renders correctly", () => {
   const tree = renderer.create(<Stepcounter />).toJSON();
   expect(tree).toMatchSnapshot();
 });
+
+// TODO: Mock a pedometer and set past and current stepcount

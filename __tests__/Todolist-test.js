@@ -12,15 +12,17 @@ let items = [
 ];
 
 //Snapshot test
-
+/*
 test("renders correctly", () => {
   const tree = renderer.create(<Todolist items={items} />).toJSON();
   expect(tree).toMatchSnapshot();
 });
-
+*/
 const shallow = new ShallowRenderer();
 shallow.render(<Todolist items={items} />);
 const result = shallow.getRenderOutput();
+
+expect(result).toMatchSnapshot();
 
 expect(result.type).toBe(ScrollView);
 expect(result.props.children).toEqual([

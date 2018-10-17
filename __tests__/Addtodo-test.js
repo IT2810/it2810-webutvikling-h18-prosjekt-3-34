@@ -12,6 +12,7 @@ test("renders correctly", () => {
   expect(tree).toMatchSnapshot();
 });
 
+//TODO: Render and render input. Maype include props in the
 //Test if children components renders correctly
 const shallow = new ShallowRenderer();
 shallow.render(<Addtodo />);

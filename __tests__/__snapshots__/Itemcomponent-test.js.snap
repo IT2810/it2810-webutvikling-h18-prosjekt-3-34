@@ -5,14 +5,15 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#bdbdbd",
+      "backgroundColor": "#a5d6a7",
       "borderRadius": 5,
       "flexDirection": "row",
-      "height": 50,
       "justifyContent": "space-between",
       "marginTop": 10,
+      "minHeight": 50,
       "paddingLeft": 10,
       "paddingRight": 10,
+      "width": "100%",
     }
   }
 >
@@ -20,10 +21,12 @@ exports[`renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={Object {}}
-  >
-     
-  </Text>
+    style={
+      Object {
+        "width": "60%",
+      }
+    }
+  />
   <View
     style={
       Object {
@@ -45,38 +48,6 @@ exports[`renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#a5d6a7",
-          "borderRadius": 5,
-          "borderWidth": 1,
-          "height": 30,
-          "justifyContent": "center",
-          "marginTop": 0,
-          "opacity": 1,
-          "width": 50,
-        }
-      }
-    >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={Object {}}
-      >
-        Done
-      </Text>
-    </View>
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
-      style={
-        Object {
-          "alignItems": "center",
           "backgroundColor": "#ef9a9a",
           "borderRadius": 5,
           "borderWidth": 1,
@@ -85,7 +56,7 @@ exports[`renders correctly 1`] = `
           "marginLeft": 5,
           "marginTop": 0,
           "opacity": 1,
-          "width": 70,
+          "width": 55,
         }
       }
     >
@@ -93,9 +64,8 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
-        style={Object {}}
       >
-        Delete 
+        Delete
       </Text>
     </View>
   </View>
