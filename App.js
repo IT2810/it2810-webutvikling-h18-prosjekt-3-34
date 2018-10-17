@@ -58,6 +58,10 @@ export default class App extends Component {
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
+          console.log(value);
+          console.log(value.date == currentDate.getDate()-1);
+          console.log(value.date == currentDate.getDate());
+          console.log(value.date == currentDate.getDate()+1);
           if (value.date === dato) {
             console.log(
               "Add an item..." + "dato:" + dato + "value.date:" + value.date
@@ -68,9 +72,12 @@ export default class App extends Component {
           { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
               Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
-          if ((dato == currentDate.getDate()) || (dato == (currentDate.getDate() -1)) || (dato == currentDate.getDate() +1)) {
+          if ((value.date == currentDate.getDate())
+            || (value.date == currentDate.getDate() -1) 
+            || (value.date == currentDate.getDate() +1)) {
             if (value.done == true) {
               doneToDos = doneToDos + 1;
+              console.log("done todos: " + doneToDos);
             }
           }
           if (key <= value.id) {
