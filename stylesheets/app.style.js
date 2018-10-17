@@ -15,12 +15,12 @@ export default StyleSheet.create({
       backgroundColor: '#dedede',
       marginTop: 0,
       justifyContent: 'center',
-      height: 80,
+      height: 75,
       flexDirection: 'row'
     },
      textStyleBanner: {
       fontSize:22,
-      lineHeight:80,
+      lineHeight:75,
       textAlignVertical: 'top',
       color: 'black',
     },
@@ -30,33 +30,51 @@ export default StyleSheet.create({
        textAlignVertical: 'top',
        color: 'black',
      },
+     viewDateStyle: {
+       backgroundColor: '#dedede',
+       width: "85%",
+     },
      addGoalButton: {
        justifyContent: "center",
        alignItems: "center",
-       backgroundColor: "white",
-       height: 50,
-       width: 50,
-       borderRadius: 100,
-       position: "absolute",
-       right: 20,
-       top: 440 //TODO: Change this to bottom
+       backgroundColor: "#a3b3c3",
+       height: 40,
+       width: 100,
+       borderWidth: 1,
+       borderRadius: 4,
      },
-     //knapper inne i modal
-     addItemBtn: {
+     addGoalButtonDis: {
        justifyContent: "center",
        alignItems: "center",
-       margin: 10
+       backgroundColor: "lightgrey",
+       height: 40,
+       width: 100,
+       borderWidth: 1,
+       borderRadius: 4,
      },
-     //Tekst i modalknapp
-     modalText: {
-       fontSize: 20
+     emptySpace: {
+       height: 40,
+       width: 100,
      },
-     modal: {
-       backgroundColor: "white"
+     buttonContainer: {
+       marginTop: 20,
+       width: "85%",
+       flexDirection: "row",
+       justifyContent: "space-around"
      },
-
      addGoalText: {
-       fontSize: 40
+       fontSize: 18,
+     },
+     doneItemsCounter: {
+       justifyContent: "center",
+       alignItems: "center",
+       borderWidth: 1,
+       width: "60%",
+       borderRadius: 4,
+     },
+     doneItemsCounterText: {
+       fontSize: 16,
+       textAlign: "center",
      },
      kolonne: {
        padding: 10

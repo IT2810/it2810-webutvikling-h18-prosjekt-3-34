@@ -39,16 +39,16 @@ export default class StepCounter extends React.Component {
       }
     );
 
-    const end = new Date();
     const start = new Date();
-    start.setDate(end.getDate() - 1);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
         this.setState({ pastStepCount: result.steps });
       },
       error => {
         this.setState({
-          pastStepCount: "Could not get stepCount: " + error
+          pastStepCount: "Unavailable."
         });
       }
     );
@@ -62,15 +62,12 @@ export default class StepCounter extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-      {/*  <Text>
-         Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}
+        <Text style={styles.stepCounterText}>
+          Steps today: {this.state.pastStepCount}
         </Text>
-      */}
-        <Text>PEDOMETER IS AVAILABLE: {this.state.isPedometerAvailable}</Text>
-        <Text>
-          Steps taken in the last 24 hours: {this.state.pastStepCount}
+        <Text style={styles.stepCounterText2}>
+          Steps in current session: {this.state.currentStepCount}
         </Text>
-        <Text>Step count for the current session: {this.state.currentStepCount}</Text>
       </View>
     );
   }

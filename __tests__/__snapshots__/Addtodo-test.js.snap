@@ -72,7 +72,8 @@ exports[`renders correctly 1`] = `
     <View
       style={
         Object {
-          "backgroundColor": "white",
+          "alignItems": "center",
+          "backgroundColor": "#eeeeee",
         }
       }
     >
@@ -80,8 +81,21 @@ exports[`renders correctly 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 24,
+            "marginTop": 8,
+          }
+        }
       >
-        Add Goal: 
+        Add a goal for selected day: 
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Wednesday, October 17th
       </Text>
       <View
         accessible={true}
@@ -95,9 +109,14 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
+            "backgroundColor": "#a3b3c3",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "height": 40,
             "justifyContent": "center",
             "margin": 10,
             "opacity": 1,
+            "width": 65,
           }
         }
       >
@@ -108,6 +127,7 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "fontSize": 20,
+              "padding": 5,
             }
           }
         >
@@ -126,9 +146,14 @@ exports[`renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
+            "backgroundColor": "#a3b3c3",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "height": 40,
             "justifyContent": "center",
             "margin": 10,
             "opacity": 1,
+            "width": 65,
           }
         }
       >
@@ -139,6 +164,7 @@ exports[`renders correctly 1`] = `
           style={
             Object {
               "fontSize": 20,
+              "padding": 5,
             }
           }
         >
@@ -156,7 +182,17 @@ exports[`renders correctly 1`] = `
         onStartShouldSetResponder={[Function]}
         style={
           Object {
+            "alignItems": "center",
+            "backgroundColor": "#494949",
+            "borderRadius": 4,
+            "borderWidth": 1,
+            "height": 35,
+            "justifyContent": "center",
+            "marginBottom": 15,
+            "marginTop": 5,
             "opacity": 1,
+            "padding": 5,
+            "width": 55,
           }
         }
       >
@@ -164,6 +200,12 @@ exports[`renders correctly 1`] = `
           accessible={true}
           allowFontScaling={true}
           ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+            }
+          }
         >
           Exit
         </Text>

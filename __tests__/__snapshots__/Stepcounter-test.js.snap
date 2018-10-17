@@ -6,14 +6,14 @@ exports[`renders correctly 1`] = `
     Object {
       "alignItems": "center",
       "backgroundColor": "#eeeeee",
+      "borderRadius": 4,
       "borderWidth": 1,
       "flex": 1,
       "justifyContent": "center",
-      "marginLeft": 20,
-      "marginRight": 20,
       "marginTop": 20,
-      "maxHeight": 100,
+      "maxHeight": 80,
       "padding": 20,
+      "width": "85%",
     }
   }
 >
@@ -21,24 +21,29 @@ exports[`renders correctly 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 16,
+        "marginBottom": 12,
+        "textAlign": "center",
+      }
+    }
   >
-    PEDOMETER IS AVAILABLE: 
-    checking
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Steps taken in the last 24 hours: 
+    Steps today: 
     0
   </Text>
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 16,
+        "textAlign": "center",
+      }
+    }
   >
-    Step count for the current session: 
+    Steps in current session: 
     0
   </Text>
 </View>

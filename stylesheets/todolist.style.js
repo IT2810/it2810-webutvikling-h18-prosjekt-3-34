@@ -3,13 +3,12 @@ import {StyleSheet} from 'react-native'
 export default StyleSheet.create({
   container: {
     marginTop: 5,
-    marginLeft: 20,
-    marginRight: 20,
     maxHeight: 300,
     borderWidth: 1,
     paddingLeft: 10,
     paddingRight: 10,
-    width: "85%"
+    width: "85%",
+    borderRadius: 4,
   },
   text: {
      color: 'black',

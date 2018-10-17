@@ -1,9 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 25,
+    }
+  }
+>
   <TextInput
     allowFontScaling={true}
+    autoCapitalize="words"
+    placeholder="Input goes in this field..."
+    placeholderColor="black"
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "marginBottom": 15,
+        "marginRight": 10,
+        "width": 170,
+      }
+    }
   />
   <View
     accessible={true}
@@ -16,8 +39,15 @@ exports[`renders correctly 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
-        "backgroundColor": "grey",
+        "alignItems": "center",
+        "backgroundColor": "lightgrey",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 20,
+        "justifyContent": "center",
+        "marginBottom": 10,
         "opacity": 1,
+        "width": 70,
       }
     }
   >
@@ -26,7 +56,7 @@ exports[`renders correctly 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
     >
-      Add
+      Add item
     </Text>
   </View>
 </View>
