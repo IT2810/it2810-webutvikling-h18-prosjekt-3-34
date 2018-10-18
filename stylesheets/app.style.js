@@ -41,7 +41,7 @@ export default StyleSheet.create({
        height: 40,
        width: 100,
        borderWidth: 1,
-       borderRadius: 8,
+       borderRadius: 4,
      },
      addGoalButtonDis: {
        justifyContent: "center",
@@ -50,7 +50,7 @@ export default StyleSheet.create({
        height: 40,
        width: 100,
        borderWidth: 1,
-       borderRadius: 8,
+       borderRadius: 4,
      },
      emptySpace: {
        height: 40,
@@ -60,10 +60,21 @@ export default StyleSheet.create({
        marginTop: 20,
        width: "85%",
        flexDirection: "row",
-       justifyContent: "flex-end"
+       justifyContent: "space-around"
      },
      addGoalText: {
        fontSize: 18,
+     },
+     doneItemsCounter: {
+       justifyContent: "center",
+       alignItems: "center",
+       borderWidth: 1,
+       width: "60%",
+       borderRadius: 4,
+     },
+     doneItemsCounterText: {
+       fontSize: 16,
+       textAlign: "center",
      },
      kolonne: {
        padding: 10

@@ -13,8 +13,9 @@ export default class ToDoList extends Component {
             id={item.id}
             key={item.inputid}
             handleDelete={this.props.handleDelete}
-            status={this.props.status}
+            handleDone={this.props.handleDone}
             text={item.text}
+            status={item.done}
           />
         );
       }

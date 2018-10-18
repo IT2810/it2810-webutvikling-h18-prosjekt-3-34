@@ -16,7 +16,8 @@ export default class App extends Component {
     text: null,
     viewDate: new Date(),
     addItemDisabled: false,
-    stepGoal: null
+    stepGoal: null,
+    doneCounter: 0
   };
 
   renderList() {
@@ -35,6 +36,8 @@ export default class App extends Component {
     {
       /* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE FOR CURRENT DAY*/
     }
+    let currentDate = new Date();
+    let doneToDos = 0;
     console.log("Kjør loadListItems()");
     let dato = this.state.viewDate.getDate();
     let key = 0;
@@ -50,6 +53,10 @@ export default class App extends Component {
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
+          console.log(value);
+          console.log(value.date == currentDate.getDate()-1);
+          console.log(value.date == currentDate.getDate());
+          console.log(value.date == currentDate.getDate()+1);
           if (value.date === dato) {
             console.log(
               "Add an item..." + "dato:" + dato + "value.date:" + value.date
@@ -61,6 +68,17 @@ export default class App extends Component {
               stepGoal = parseInt(value.stepgoal);
             }
           }
+          { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+              med todo's som er fra de forrige dagene
+              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
+          if ((value.date == currentDate.getDate())
+            || (value.date == currentDate.getDate() -1) 
+            || (value.date == currentDate.getDate() +1)) {
+            if (value.done == true) {
+              doneToDos = doneToDos + 1;
+              console.log("done todos: " + doneToDos);
+            }
+          }
           if (key <= value.id) {
             key = value.id + 1;
           }
@@ -68,6 +86,7 @@ export default class App extends Component {
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
           this.setState({ stepGoal: stepGoal});
+          this.setState({ doneCounter : doneToDos });
         });
       });
     });
@@ -96,7 +115,8 @@ export default class App extends Component {
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
       text: this.state.text,
-      stepgoal: this.state.stepGoal
+      stepgoal: this.state.stepGoal,
+      done: false
     });
     console.log(newList);
     this.storeItemData(newList);
@@ -122,6 +142,39 @@ export default class App extends Component {
     this.setState({ type: text });
   };
 
+  handleDone = index => {
+    var dato = this.state.viewDate.getDate();
+    if (this.state.items.length > 0) {
+      var newList = [];
+      this.state.items.forEach(function(element) {
+        if (element.id != index && element.date == dato) {
+          newList.push({
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            done: element.done,
+          });
+        }
+        else if (element.id == index && element.date == dato) {
+          newList.push({
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            done: true,
+          });
+        }
+      });
+      this.storeItemData(newList);
+      this.loadListItems();
+    }
+  }
+
   handleDeleteClick = index => {
     console.log(this.state.items);
     var dato = this.state.viewDate.getDate();
@@ -136,7 +189,8 @@ export default class App extends Component {
             name: "Rad " + element.name,
             type: element.type,
             text: element.text,
-            stepGoal: element.stepGoal
+            stepGoal: element.stepGoal,
+            done: false
           });
         }
         if (element.id == index) {
@@ -144,14 +198,7 @@ export default class App extends Component {
         }
       });
       this.setState({ items: newList });
-    }
-  };
-
-  handleClear = async () => {
-    try {
-      await AsyncStorage.clear();
-    } catch (error) {
-      console.log(error);
+      this.loadListItems();
     }
   };
 
@@ -214,6 +261,7 @@ export default class App extends Component {
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
+            handleDone={this.handleDone}
           />
 
           <Addtodo
@@ -228,6 +276,9 @@ export default class App extends Component {
         <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
 
           <View style={styles.buttonContainer}>
+            <View style={styles.doneItemsCounter}>
+            <Text style={styles.doneItemsCounterText}>{"ToDo's done: "}{this.state.doneCounter}</Text>
+            </View>
             <TouchableOpacity
               style={
                 this.state.addItemDisabled

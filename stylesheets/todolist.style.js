@@ -7,7 +7,8 @@ export default StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 10,
     paddingRight: 10,
-    width: "85%"
+    width: "85%",
+    borderRadius: 4,
   },
   text: {
      color: 'black',
