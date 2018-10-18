@@ -64,7 +64,7 @@ Prosjektet er testet med Jest. Vi har testet at komponentene laster inn riktig v
 
 For at testene skulle kjøre igjennom, måtte vi lage et mock object av Date funksjonen til JavaScript. Dette fordi at vi i applikasjonen har et felt i state som bruker New Date(). Mocking av Date er også iht retningslinjene til Jest, som sier at all data i snapshottester bør være deterministisk.
 I tillegg har vi fokusert på å gi testene gode beskrivelser. Alle snapshottene er derfor beskrevet slik de burde rendes.
-Alle snapshottestene blir godkjent uten problemer. Noen spesifikke komponenter rendrer forskjellig basert på hvilken input vi gir dem, og på disse har vi bare valgt å laste inn en av de (ettersom vi mener dette er nok for å illustrere testing av komponenten).
+Alle snapshottestene blir godkjent, bortsett fra App. Vi fikk ikke til å mocke Date konstroktøren, så her må man kjøre npm test -- --u for at Snapshoten skal bli riktig. Noen spesifikke komponenter rendrer forskjellig basert på hvilken input vi gir dem, og på disse har vi bare valgt å laste inn en av de (ettersom vi mener dette er nok for å illustrere testing av komponenten).
 
 Det vi har misset litt på er å behandle snapshots som kode, altså å ha de med under utviklingen. Testene ble stort sett skrevet på slutten, og om vi skulle ha gjort det på nytt i et ekte system ville vi ha skrevet de underveis, slik at vi kunne brukt de til å feilsøke kode under utvikling.
 

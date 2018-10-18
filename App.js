@@ -30,7 +30,6 @@ export default class App extends Component {
     this.loadListItems();
     let liste = [];
     let date = new Date();
-    console.log(date);
     this.storeItemData(liste);
   }
 
@@ -59,7 +58,6 @@ export default class App extends Component {
 
           if (value.date === dato) {
             storedArray.push(value);
-            console.log(storedArray);
             if (id < value.id && value.type == "step") {
               id = value.id;
               stepsGoal = parseInt(value.stepgoal);

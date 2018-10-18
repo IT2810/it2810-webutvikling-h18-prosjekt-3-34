@@ -14,30 +14,30 @@ const mockAsync = () => {
 const releaseMockAsync = () => jest.unmock("AsyncStorage");
 
 beforeAll(() => {
-  console.log("Start");
   // Set Date object to a deterministic value
-  MockDate.set("2018-10-10");
+  //MockDate.set("2018-10-10");
   // Setup for AsyncStorage mock
   mockAsync();
 });
 
 afterAll(() => {
   //Release Date
-  MockDate.reset();
+  // MockDate.reset();
   //Release mockAsync
   releaseMockAsync();
 });
 
 //Snapshot test
-let props = { viewDate: new Date() };
+
 const shallow = new ShallowRenderer();
-shallow.render(<App {...props} />);
+shallow.render(<App />);
 const result = shallow.getRenderOutput();
 test("renders correctly", () => {
   expect(result).toMatchSnapshot();
 });
 
-let appComponent = renderer.create(<App {...props} />).getInstance();
+let appComponent = renderer.create(<App />).getInstance();
+
 it("addItem should add an item to items list", () => {
   expect(appComponent.state.items).toEqual([]);
   appComponent.setState({ type: "todo" });
@@ -73,11 +73,12 @@ let yesterDay = new Date().getDate() - 1;
 it("handlePrevDayClick should set a new date", () => {
   appComponent.handlePrevDayClick();
   expect(appComponent.state.viewDate.getDate()).toBe(yesterDay);
+  appComponent.handleNextDayClick();
 });
 
-let tomorrow = new Date().getDate + 1;
+let tomorrow = new Date().getDate() + 1;
 it("handleNextDayClick should set a new date", () => {
-  appComponent.handlePrevDayClick();
+  appComponent.handleNextDayClick();
   expect(appComponent.state.viewDate.getDate()).toBe(tomorrow);
 });
 /*
