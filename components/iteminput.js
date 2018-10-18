@@ -12,9 +12,10 @@ export default class Iteminput extends Component {
     return (
       <View style={styles.addItemContainer}>
         <TextInput
+          keyboardType={this.props.keyboardType}
           style={styles.textInputStyle}
           autoCapitalize={"words"}
-          placeholder={"Input goes in this field..."}
+          placeholder={this.props.placeholder}
           placeholderColor={"black"}
           onChangeText={this.props.handleInput}
         />

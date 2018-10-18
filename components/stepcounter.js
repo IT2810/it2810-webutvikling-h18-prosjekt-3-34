@@ -8,7 +8,8 @@ export default class StepCounter extends React.Component {
   state = {
     isPedometerAvailable: "checking",
     pastStepCount: 0,
-    currentStepCount: 0
+    currentStepCount: 0,
+    stepLeft: 0
   };
 
   componentDidMount() {
@@ -18,7 +19,6 @@ export default class StepCounter extends React.Component {
   componentWillUnmount() {
     this._unsubscribe();
   }
-
   _subscribe = () => {
     this._subscription = Pedometer.watchStepCount(result => {
       this.setState({
@@ -44,11 +44,11 @@ export default class StepCounter extends React.Component {
     const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
-        this.setState({ pastStepCount: result.steps });
+        this.setState({pastStepCount: result.steps});
       },
       error => {
         this.setState({
-          pastStepCount: "Unavailable."
+          pastStepCount: "Unavailable.."
         });
       }
     );
@@ -59,18 +59,61 @@ export default class StepCounter extends React.Component {
     this._subscription = null;
   };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.stepCounterText}>
-          Steps today: {this.state.pastStepCount}
-        </Text>
+
+  renderStepText = () => {
+    let stepsLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
+    if (this.state.pastStepCount < this.props.stepGoal) {
+      return (
         <Text style={styles.stepCounterText2}>
-          Steps in current session: {this.state.currentStepCount}
+          You are off by {stepsLeft} steps!
         </Text>
-      </View>
-    );
+      );
+    } else {
+      return (
+        <Text style={styles.stepCounterText2}>You have reached todays goal!</Text>
+      );
+    }
+  };
+
+  render() {
+    const stepText = this.renderStepText();
+    let viewDate = this.props.viewDate;
+    let currentDate = new Date();
+    switch (viewDate.getDay()){
+      case currentDate.getDay():
+        return (
+          <View style={styles.container}>
+            <Text style={styles.stepCounterText}>
+              Steps today: {this.state.pastStepCount}
+            </Text>
+            <Text style={styles.stepCounterText2}>
+              StepGoal: {this.props.stepGoal}
+            </Text>
+            {stepText}
+          </View>
+        );
+      case currentDate.getDay() + 1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+      case currentDate.getDay() -1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+    }
   }
 }
-
+/*
+<Text style={styles.stepCounterText2}>
+          Steps in current session: {this.state.currentStepCount}
+        </Text>
+*/
 Expo.registerRootComponent(StepCounter);
