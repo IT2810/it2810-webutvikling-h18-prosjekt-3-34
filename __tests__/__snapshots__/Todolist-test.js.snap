@@ -7,7 +7,7 @@ exports[`renders correctly 1`] = `
       "borderRadius": 4,
       "borderWidth": 1,
       "marginTop": 5,
-      "maxHeight": 300,
+      "maxHeight": "38%",
       "paddingLeft": 10,
       "paddingRight": 10,
       "width": "85%",

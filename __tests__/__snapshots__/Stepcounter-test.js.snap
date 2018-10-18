@@ -43,8 +43,20 @@ exports[`renders correctly 1`] = `
       }
     }
   >
-    Steps in current session: 
-    0
+    StepGoal: 
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 16,
+        "textAlign": "center",
+      }
+    }
+  >
+    You have reached todays goal!
   </Text>
 </View>
 `;

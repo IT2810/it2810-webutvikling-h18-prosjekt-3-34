@@ -51,6 +51,7 @@ it("addItem should add an item to items list", () => {
       id: 0,
       inputid: "input0",
       name: "Rad 0",
+      stepgoal: null,
       type: "todo",
       text: "hello",
       done: false

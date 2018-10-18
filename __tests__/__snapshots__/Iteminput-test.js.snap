@@ -17,7 +17,6 @@ exports[`renders correctly 1`] = `
   <TextInput
     allowFontScaling={true}
     autoCapitalize="words"
-    placeholder="Input goes in this field..."
     placeholderColor="black"
     style={
       Object {

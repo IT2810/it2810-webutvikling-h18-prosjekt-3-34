@@ -56,7 +56,7 @@ exports[`renders correctly 1`] = `
           "marginLeft": 5,
           "marginTop": 0,
           "opacity": 1,
-          "width": 55,
+          "width": 48,
         }
       }
     >

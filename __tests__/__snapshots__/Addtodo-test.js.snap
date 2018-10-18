@@ -95,7 +95,7 @@ exports[`renders correctly 1`] = `
         allowFontScaling={true}
         ellipsizeMode="tail"
       >
-        Wednesday, October 17th
+        Thursday, October 18th
       </Text>
       <View
         accessible={true}
