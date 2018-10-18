@@ -75,9 +75,20 @@ it("handlePrevDayClick should set a new date", () => {
   appComponent.handlePrevDayClick();
   expect(appComponent.state.viewDate.getDate()).toBe(yesterDay);
 });
-
+/*
 it("Mock async storage working", async () => {
   await storage.setItem("steps", "15000");
   const value = await storage.getItem("steps");
   expect(value).toBe("15000");
+});
+*/
+it("addItem method should store data in async list", async () => {
+  //Key for this value is 1, since state.itemCounter is now 1.
+  appComponent.setState({ text: "text To AsyncStorage" });
+  appComponent.setState({ type: "todo" });
+  appComponent.addItem();
+  const key = appComponent.state.items[0].id.toString(); //key = 1
+  const value = await storage.getItem(key);
+  const valueAsObject = JSON.parse(value);
+  expect(valueAsObject).toEqual(appComponent.state.items[0]);
 });
