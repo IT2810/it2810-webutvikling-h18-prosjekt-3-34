@@ -30,11 +30,13 @@ class Addtodo extends Component {
     if (this.state.showTodoInputField) {
       return (
         <Iteminput
+          keyboardType='default'
           handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}
           toggleTodoInput={this.toggleTodoInput}
           setType={this.props.setType}
+          placeholder="Enter a todo-task!"
         />
       );
     } else {
@@ -42,16 +44,17 @@ class Addtodo extends Component {
     }
     //hide stepinput
   };
-  // number validation
   renderStepInput = Iteminput => {
     if (this.state.showStepInputField) {
       return (
         <Iteminput
-          handleInput={this.props.handleInput}
+          keyboardType='number-pad'
+          handleInput={this.props.handleStepGoal}
           text={this.props.text}
           addItem={this.props.addItem}
           toggleTodoInput={this.toggleStepInput}
           setType={this.props.setType}
+          placeholder="Enter number of steps!"
         />
       );
     } else {

@@ -1,15 +1,5 @@
 import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Button,
-  Picker,
-  AsyncStorage,
-  TouchableWithoutFeedback
-} from "react-native";
+import { Text, View, TouchableOpacity, AsyncStorage } from "react-native";
 import StepCounter from "./components/stepcounter.js";
 import ToDoList from "./components/todolist.js";
 import styles from "./stylesheets/app.style.js";
@@ -26,7 +16,8 @@ export default class App extends Component {
     text: null,
     viewDate: new Date(),
     addItemDisabled: false,
-    doneCounter: 0,
+    stepGoal: null,
+    doneCounter: 0
   };
 
   renderList() {
@@ -51,10 +42,14 @@ export default class App extends Component {
     let dato = this.state.viewDate.getDate();
     let key = 0;
     let storedArray = [];
+    let id = 0;
+    let stepGoal = 0;
     AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (err, stores) => {
         stores.map((result, i, store) => {
           let value = JSON.parse(store[i][1]);
+          //finner nyere objekt
+
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
@@ -68,6 +63,10 @@ export default class App extends Component {
             );
             storedArray.push(value);
             console.log(storedArray);
+            if (id < value.id && value.type == "step") {
+              id = value.id;
+              stepGoal = parseInt(value.stepgoal);
+            }
           }
           { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
@@ -83,9 +82,11 @@ export default class App extends Component {
           if (key <= value.id) {
             key = value.id + 1;
           }
+
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
-          this.setState({ doneCounter : doneToDos })
+          this.setState({ stepGoal: stepGoal});
+          this.setState({ doneCounter : doneToDos });
         });
       });
     });
@@ -97,7 +98,9 @@ export default class App extends Component {
       for (let i = 0; i < items.length; i++) {
         storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
       }
-      await AsyncStorage.multiSet(storeArray);
+      if (storeArray.length > 0) {
+        await AsyncStorage.multiSet(storeArray);
+      }
     } catch (error) {
       alert("wat" + error);
     }
@@ -112,7 +115,8 @@ export default class App extends Component {
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
       text: this.state.text,
-      done: false,
+      stepgoal: this.state.stepGoal,
+      done: false
     });
     console.log(newList);
     this.storeItemData(newList);
@@ -125,6 +129,13 @@ export default class App extends Component {
 
   handleInput = text => {
     this.setState({ text: text });
+  };
+
+  handleStepGoal = stepGoal => {
+    //if(/^\d+$/.test(stepGoal)){
+    console.log(stepGoal);
+    this.setState({ stepGoal: stepGoal });
+    //}
   };
 
   setType = text => {
@@ -178,7 +189,8 @@ export default class App extends Component {
             name: "Rad " + element.name,
             type: element.type,
             text: element.text,
-            done: false,
+            stepGoal: element.stepGoal,
+            done: false
           });
         }
         if (element.id == index) {
@@ -222,6 +234,7 @@ export default class App extends Component {
     }
   };
 
+
   renderAddItemButton = () => {};
 
   toggleModal = () =>
@@ -256,10 +269,11 @@ export default class App extends Component {
             toggleModal={this.toggleModal}
             addItem={this.addItem}
             handleInput={this.handleInput}
+            handleStepGoal={this.handleStepGoal}
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-          <StepCounter />
+        <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
 
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
