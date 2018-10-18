@@ -88,10 +88,12 @@ export default class App extends Component {
   storeItemData = async items => {
     try {
       let storeArray = [];
-      for (let i = 0; i < items.length; i++) {
-        storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
+      if (items.length > 0) {
+        for (let i = 0; i < items.length; i++) {
+          storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
+          await AsyncStorage.multiSet(storeArray);
+        }
       }
-      await AsyncStorage.multiSet(storeArray);
     } catch (error) {
       alert("wat" + error);
     }
