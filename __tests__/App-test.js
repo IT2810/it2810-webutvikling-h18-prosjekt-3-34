@@ -1,7 +1,7 @@
+import MockDate from "mockdate";
 import React from "react";
 import ShallowRenderer from "react-test-renderer/shallow";
 import { AsyncStorage as storage } from "react-native";
-
 import App from "../App";
 import MockAsyncStorage from "mock-async-storage";
 import renderer from "react-test-renderer";
@@ -16,29 +16,27 @@ const releaseMockAsync = () => jest.unmock("AsyncStorage");
 beforeAll(() => {
   console.log("Start");
   // Set Date object to a deterministic value
-
+  MockDate.set("2018-10-10");
   // Setup for AsyncStorage mock
   mockAsync();
 });
 
 afterAll(() => {
   //Release Date
-
+  MockDate.reset();
   //Release mockAsync
   releaseMockAsync();
-  console.log("end");
 });
 
 //Snapshot test
 const shallow = new ShallowRenderer();
 shallow.render(<App />);
 const result = shallow.getRenderOutput();
-/* Fix mock date
 test("renders correctly", () => {
   expect(result).toMatchSnapshot(); //Mock date object beforeAll
   expect(result.type).toBe(React.Fragment);
 });
-*/
+
 let appComponent = renderer.create(<App />).getInstance();
 it("addItem should add an item to items list", () => {
   expect(appComponent.state.items).toEqual([]);

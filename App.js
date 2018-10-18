@@ -29,6 +29,8 @@ export default class App extends Component {
   componentDidMount() {
     this.loadListItems();
     let liste = [];
+    let date = new Date();
+    console.log(date);
     this.storeItemData(liste);
   }
 
