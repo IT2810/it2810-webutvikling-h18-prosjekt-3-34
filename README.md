@@ -47,6 +47,11 @@ Når vi kjører appen samtidig som vi lagrer endringer i koden - og appen autoop
 Vi har brukt GitHub og issuetracking her aktivt helt fra starten av prosjektet slik at vi alltid har en god oversikt over fremgangen i prosjektet. 
 
 Vi har også navngitt branchene våre ut ifra en standard der vi skiller mellom for eksempel en ny feature (feat), og en hotfix på følgende måte:
+
+For en ny feature:
+
 > feat/navnPåFeatureHer
-Eller:
+
+Eller for en hotfix:
+
 > hotfix/navnPåHotfixHer
