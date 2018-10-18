@@ -4,7 +4,7 @@ export default StyleSheet.create({
   buttonView: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   doneButton: {
     backgroundColor: "#a5d6a7",
@@ -19,7 +19,7 @@ export default StyleSheet.create({
   deleteButton: {
     backgroundColor: "#ef9a9a",
     height: 30,
-    width: 55,
+    width: 48,
     marginLeft: 5,
     borderRadius: 5,
     borderWidth: 1,
