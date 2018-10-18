@@ -9,8 +9,18 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "dateformat": "^3.0.3",
     "expo": "^30.0.1",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-dropdown-menu": "^2.0.0",
+    "react-native-modal": "^6.5.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.6.0",
+    "jest-expo": "^30.0.0"
   }
 }

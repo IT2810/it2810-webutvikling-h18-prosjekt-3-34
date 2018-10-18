@@ -2,12 +2,14 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { StyleSheet, Text, View } from "react-native";
+import styles from "../stylesheets/stepcounter.style.js";
 
 export default class StepCounter extends React.Component {
   state = {
     isPedometerAvailable: "checking",
     pastStepCount: 0,
-    currentStepCount: 0
+    currentStepCount: 0,
+    stepLeft: 0
   };
 
   componentDidMount() {
@@ -17,7 +19,6 @@ export default class StepCounter extends React.Component {
   componentWillUnmount() {
     this._unsubscribe();
   }
-
   _subscribe = () => {
     this._subscription = Pedometer.watchStepCount(result => {
       this.setState({
@@ -38,16 +39,16 @@ export default class StepCounter extends React.Component {
       }
     );
 
-    const end = new Date();
     const start = new Date();
-    start.setDate(end.getDate() - 1);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
-        this.setState({ pastStepCount: result.steps });
+        this.setState({pastStepCount: result.steps});
       },
       error => {
         this.setState({
-          pastStepCount: "Could not get stepCount: " + error
+          pastStepCount: "Unavailable.."
         });
       }
     );
@@ -58,35 +59,61 @@ export default class StepCounter extends React.Component {
     this._subscription = null;
   };
 
+
+  renderStepText = () => {
+    let stepsLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
+    if (this.state.pastStepCount < this.props.stepGoal) {
+      return (
+        <Text style={styles.stepCounterText2}>
+          You are off by {stepsLeft} steps!
+        </Text>
+      );
+    } else {
+      return (
+        <Text style={styles.stepCounterText2}>You have reached todays goal!</Text>
+      );
+    }
+  };
+
   render() {
-    return (
-      <View style={styles.container}>
-      {/*  <Text>
-         Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}
-        </Text>
-      */}
-        <Text>
-          Steps taken in the last 24 hours: {this.state.pastStepCount}
-        </Text>
-        <Text>Step count for the current session: {this.state.currentStepCount}</Text>
-      </View>
-    );
+    const stepText = this.renderStepText();
+    let viewDate = this.props.viewDate;
+    let currentDate = new Date();
+    switch (viewDate.getDay()){
+      case currentDate.getDay():
+        return (
+          <View style={styles.container}>
+            <Text style={styles.stepCounterText}>
+              Steps today: {this.state.pastStepCount}
+            </Text>
+            <Text style={styles.stepCounterText2}>
+              StepGoal: {this.props.stepGoal}
+            </Text>
+            {stepText}
+          </View>
+        );
+      case currentDate.getDay() + 1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+      case currentDate.getDay() -1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+    }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginLeft: 20,
-    marginRight: 20,
-    borderWidth: 1,
-    maxHeight: 150,
-    padding: 20,
-    flex: 1,
-    marginTop: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: '#eeeeee',
-  }
-});
-
+/*
+<Text style={styles.stepCounterText2}>
+          Steps in current session: {this.state.currentStepCount}
+        </Text>
+*/
 Expo.registerRootComponent(StepCounter);
