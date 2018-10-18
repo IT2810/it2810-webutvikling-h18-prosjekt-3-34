@@ -25,6 +25,7 @@ export default class App extends Component {
     this.setState({ items: newList });
   }
 
+  // Kode som kjører når appen starter. Laster blant annet liste-elementene fra asyncstorage.
   componentDidMount() {
     this.loadListItems();
     let liste = [];
@@ -32,6 +33,8 @@ export default class App extends Component {
     console.log(this.state.items);
   }
 
+  // Denne funksjonen laster elementene fra AsyncStorage inn i lista, og gjør et par
+  // andre småting som gjør at state blir riktig basert på lagret informasjon.
   loadListItems() {
     {
       /* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE FOR CURRENT DAY*/
@@ -92,6 +95,7 @@ export default class App extends Component {
     });
   }
 
+  // Lagrer liste-elementer i AsyncStorage.
   storeItemData = async items => {
     try {
       let storeArray = [];
@@ -106,6 +110,7 @@ export default class App extends Component {
     }
   };
 
+  // Funksjon for å legge til et element i lista eller step som stepgoal.
   addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
@@ -127,21 +132,25 @@ export default class App extends Component {
     this.setState({ type: null });
   };
 
+  // Funksjon for å handle textinput enten som todo-item, eller som step-item (bare nummer).
   handleInput = text => {
     this.setState({ text: text });
   };
 
+  // Veldig lik funksjonen over, håndterer input.
   handleStepGoal = stepGoal => {
-    //if(/^\d+$/.test(stepGoal)){
-    console.log(stepGoal);
-    this.setState({ stepGoal: stepGoal });
-    //}
+    if(/^\d+$/.test(stepGoal)){
+      this.setState({ stepGoal: stepGoal });
+    }
   };
 
+  // Hånterer typen element (step- eller todo-element)
   setType = text => {
     this.setState({ type: text });
   };
 
+  // Funksjonen som kalles når man trykker på "Done"-knappen på et element i lista.
+  // Skal gjøre elementet grønt og øke counteren.
   handleDone = index => {
     var dato = this.state.viewDate.getDate();
     if (this.state.items.length > 0) {
@@ -177,6 +186,8 @@ export default class App extends Component {
     }
   }
 
+  // Funksjonen som kalles når man trykker på "Delete"-knappen på et element i lista.
+  // Skal fjerne elementet fra den synlige lista, og fra AsyncStorage.
   handleDeleteClick = index => {
     console.log(this.state.items);
     var dato = this.state.viewDate.getDate();
@@ -204,6 +215,8 @@ export default class App extends Component {
     }
   };
 
+  // Funksjonen som kalles når man trykker på "<--"-knappen (tilbake en dag).
+  // Skal rendre lista for den forrige dagen.
   handlePrevDayClick = () => {
     let currentDate = new Date();
     if (this.state.viewDate.getDate() !== currentDate.getDate() - 1) {
@@ -220,6 +233,8 @@ export default class App extends Component {
     }
   };
 
+  // Funksjonen som kalles når man trykker på "-->"-knappen (framover en dag).
+  // Skal rendre lista for den neste dagen.
   handleNextDayClick = () => {
     let currentDate = new Date();
     if (this.state.viewDate.getDate() !== currentDate.getDate() + 1) {
@@ -236,12 +251,12 @@ export default class App extends Component {
     }
   };
 
-
-  renderAddItemButton = () => {};
-
+  // Funksjonen som toggler av og på modal (der man legger til et item).
   toggleModal = () =>
     this.setState({ isModalVisible: !this.state.isModalVisible });
 
+
+  // Render funksjonen som blir initialisert ved start av appen.
   render() {
     return (
       <React.Fragment>
@@ -251,6 +266,7 @@ export default class App extends Component {
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
 
+        // Container for the whole side (exclusive the banner)
         <View style={styles.siteContainer}>
           <View style={styles.viewDateStyle}>
             <DateComponent
@@ -260,12 +276,14 @@ export default class App extends Component {
             />
           </View>
 
+          // Selve lista med ToDo-elementer.
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
             handleDone={this.handleDone}
           />
 
+          // Modal'en som vises hvis man trykker på "Add item"-knappen.
           <Addtodo
             isModalVisible={this.state.isModalVisible}
             toggleModal={this.toggleModal}
@@ -275,8 +293,11 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-        <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
 
+          // Skritteller komponenten.
+          <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
+
+          // Bottom row of the page, containing the "Done"-counter and "Add item"-button.
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
             <Text style={styles.doneItemsCounterText}>{"ToDo's done: "}{this.state.doneCounter}</Text>
@@ -293,6 +314,8 @@ export default class App extends Component {
               <Text style={styles.addGoalText}>Add item</Text>
             </TouchableOpacity>
           </View>
+
+          // siteContainer is closed here.
         </View>
       </React.Fragment>
     );
