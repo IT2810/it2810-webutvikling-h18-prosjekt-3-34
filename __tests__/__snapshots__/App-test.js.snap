@@ -74,7 +74,7 @@ exports[`renders correctly 1`] = `
       <DateComponent
         handleNextDayClick={[Function]}
         handlePrevDayClick={[Function]}
-        viewDate={2018-10-18T17:55:50.932Z}
+        viewDate={2018-10-18T18:23:21.961Z}
       />
     </Component>
     // Selve lista med ToDo-elementer.
@@ -86,7 +86,7 @@ exports[`renders correctly 1`] = `
     // Modal'en som vises hvis man trykker på "Add item"-knappen.
     <Addtodo
       addItem={[Function]}
-      dateToday={2018-10-18T17:55:50.932Z}
+      dateToday={2018-10-18T18:23:21.961Z}
       handleInput={[Function]}
       handleStepGoal={[Function]}
       isModalVisible={false}
@@ -96,7 +96,7 @@ exports[`renders correctly 1`] = `
     // Skritteller komponenten.
     <StepCounter
       stepGoal={null}
-      viewDate={2018-10-18T17:55:50.932Z}
+      viewDate={2018-10-18T18:23:21.961Z}
     />
     // Bottom row of the page, containing the "Done"-counter and "Add item"-button.
     <Component

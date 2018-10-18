@@ -58,19 +58,27 @@ Underveis i utviklingen av applikasjonen har vi brukt mye parprogrammering. Det 
 
 ## Testing
 
-Prosjektet er testet med Jest. Vi har testet at komponentene laster inn riktig ved å lage snapshots, og vi har testet de fleste metodene som endrer state.
+Prosjektet er testet med Jest. Vi har testet at komponentene laster inn riktig ved å lage snapshots, og vi har testet funksjoner som endrer state.
 
 ### Snapshottesting
 
+For at testene skulle kjøre igjennom, måtte vi lage et mock object av Date funksjonen til JavaScript. Dette fordi at vi i applikasjonen har et felt i state som bruker New Date(). Mocking av Date er også iht retningslinjene til Jest, som sier at all data i snapshottester bør være deterministisk.
+I tillegg har vi fokusert på å gi testene gode beskrivelser. Alle snapshottene er derfor beskrevet slik de burde rendes.
 Alle snapshottestene blir godkjent uten problemer. Noen spesifikke komponenter rendrer forskjellig basert på hvilken input vi gir dem, og på disse har vi bare valgt å laste inn en av de (ettersom vi mener dette er nok for å illustrere testing av komponenten).
+
+Det vi har misset litt på er å behandle snapshots som kode, altså å ha de med under utviklingen. Testene ble stort sett skrevet på slutten, og om vi skulle ha gjort det på nytt i et ekte system ville vi ha skrevet de underveis, slik at vi kunne brukt de til å feilsøke kode under utvikling.
 
 ### Testing av funksjoner
 
-Vi har skrevet enhetstester for de fleste metodene som brukes til lagring.
+Vi har skrevet enhetstester for de fleste funksjonene som brukes til lagring av state.
 Stepcounter komponenten er tatt fra expo docs, og vi har ikke skrevet noen egne spesifikke enhetstester her annet enn snapshot tester.
+
+I App komponenten har vi brukt AsyncStorage, og for å teste denne har vi tatt i bruk MockAsyncStorage fra pakken 'mock-async-storage'. Denne setter vi opp før testen, og fjerner den når alle testene er kjørt. AsyncStorage ser vi funker i funksjonene våre, da vi tester den opp mot addItem funksjonen og den returnerer riktig.
+
+Vi har ikke fokusert veldig på å få et høyt coverage tall, men vi har uansett vist at vi kan å teste. Det viktigste for at systemet fungerer er testet og vi ser at funksjonene gjør det de skal. I tillegg har vi vist at vi kan Mocke objekter, og bruke dette i testingen vår.
 
 ### Funksjonstesting
 
-Vi har også funksjonstestet applikasjonen når den har blitt ferdig og under utvikling.
-Her har vi funnet en Androidbug som vi får under utvikling:
+Vi har også funksjonstestet applikasjonen under utvikling, og når den har blitt ferdig.
+Under utvikling har vi fått en Androidbug:
 Når vi kjører appen samtidig som vi lagrer endringer i koden - og appen autooppdateres får vi en feilmelding med at det allerede finnes en GoogleApiClient med id 0. Dette får vi kun under utvikling, og har valgt å ikke bruke mye tid på å prøve å rette det, da det ikke gir noen funksjonelle utfordringer under bruk.

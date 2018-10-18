@@ -29,15 +29,15 @@ afterAll(() => {
 });
 
 //Snapshot test
+let props = { viewDate: new Date() };
 const shallow = new ShallowRenderer();
-shallow.render(<App />);
+shallow.render(<App {...props} />);
 const result = shallow.getRenderOutput();
 test("renders correctly", () => {
-  expect(result).toMatchSnapshot(); //Mock date object beforeAll
-  expect(result.type).toBe(React.Fragment);
+  expect(result).toMatchSnapshot();
 });
 
-let appComponent = renderer.create(<App />).getInstance();
+let appComponent = renderer.create(<App {...props} />).getInstance();
 it("addItem should add an item to items list", () => {
   expect(appComponent.state.items).toEqual([]);
   appComponent.setState({ type: "todo" });
@@ -73,6 +73,12 @@ let yesterDay = new Date().getDate() - 1;
 it("handlePrevDayClick should set a new date", () => {
   appComponent.handlePrevDayClick();
   expect(appComponent.state.viewDate.getDate()).toBe(yesterDay);
+});
+
+let tomorrow = new Date().getDate + 1;
+it("handleNextDayClick should set a new date", () => {
+  appComponent.handlePrevDayClick();
+  expect(appComponent.state.viewDate.getDate()).toBe(tomorrow);
 });
 /*
 it("Mock async storage working", async () => {
