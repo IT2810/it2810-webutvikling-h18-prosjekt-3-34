@@ -43,7 +43,7 @@ export default class App extends Component {
     let key = 0;
     let storedArray = [];
     let id = 0;
-    let stepGoal = 0;
+    let stepsGoal = 0;
     AsyncStorage.getAllKeys((err, keys) => {
       AsyncStorage.multiGet(keys, (err, stores) => {
         stores.map((result, i, store) => {
@@ -65,14 +65,14 @@ export default class App extends Component {
             console.log(storedArray);
             if (id < value.id && value.type == "step") {
               id = value.id;
-              stepGoal = parseInt(value.stepgoal);
+              stepsGoal = parseInt(value.stepgoal);
             }
           }
           { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
               Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
           if ((value.date == currentDate.getDate())
-            || (value.date == currentDate.getDate() -1) 
+            || (value.date == currentDate.getDate() -1)
             || (value.date == currentDate.getDate() +1)) {
             if (value.done == true) {
               doneToDos = doneToDos + 1;
@@ -85,7 +85,7 @@ export default class App extends Component {
 
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
-          this.setState({ stepGoal: stepGoal});
+          this.setState({ stepGoal: stepsGoal});
           this.setState({ doneCounter : doneToDos });
         });
       });
