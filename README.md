@@ -17,13 +17,15 @@ Vi har valgt å ikke implementere en kalender i vår app, men heller utvide ToDo
 ## Viktigste valg og løsninger
 ### Dependencies
 
-###Komponentstruktur
+### Komponentstruktur
 Vi valgte å strukturere appen 
 ![Komponentstrukturen](Componentstructure.png)
 
-## Expo SDK
+## Teknologi
+### React Native
+### Expo
 
-## Valg av teknologi
+## Tredjepartskomponenter og bibliotek
 
 ## Testing
 Prosjektet er testet med Jest. Vi har testet at komponentene laster inn riktig ved å lage snapshots, og vi har testet de fleste metodene som endrer state.
@@ -42,4 +44,9 @@ Når vi kjører appen samtidig som vi lagrer endringer i koden - og appen autoop
 
 
 ## Utvikling og sammarbeid ved bruk av GitHub
-Vi har i dette prosjektet prøvd å bruke GitHub aktivt fra starten av, for å 
+Vi har brukt GitHub og issuetracking her aktivt helt fra starten av prosjektet slik at vi alltid har en god oversikt over fremgangen i prosjektet. 
+
+Vi har også navngitt branchene våre ut ifra en standard der vi skiller mellom for eksempel en ny feature (feat), og en hotfix på følgende måte:
+> feat/navnPåFeatureHer
+Eller:
+> hotfix/navnPåHotfixHer
