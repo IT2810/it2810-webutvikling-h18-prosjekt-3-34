@@ -155,6 +155,7 @@ export default class App extends Component {
             name: element.name,
             type: element.type,
             text: element.text,
+            stepgoal: element.stepgoal,
             done: element.done,
           });
         }
@@ -166,6 +167,7 @@ export default class App extends Component {
             name: element.name,
             type: element.type,
             text: element.text,
+            stepgoal: element.stepgoal,
             done: true,
           });
         }
