@@ -16,7 +16,7 @@ export default class App extends Component {
     text: null,
     viewDate: new Date(),
     addItemDisabled: false,
-    stepGoal: 10
+    stepGoal: null
   };
 
   renderList() {
@@ -58,7 +58,7 @@ export default class App extends Component {
             console.log(storedArray);
             if (id < value.id && value.type == "step") {
               id = value.id;
-              stepGoal = parseInt(value.text);
+              stepGoal = parseInt(value.stepgoal);
             }
           }
           if (key <= value.id) {
@@ -67,7 +67,7 @@ export default class App extends Component {
 
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
-          this.setState({ stepGoal: stepGoal });
+          this.setState({ stepGoal: stepGoal});
         });
       });
     });
@@ -87,8 +87,6 @@ export default class App extends Component {
     }
   };
 
-  storeStepGoal = async goal => {};
-
   addItem = item => {
     let newList = this.state.items.slice();
     newList.push({
@@ -97,7 +95,8 @@ export default class App extends Component {
       inputid: "input" + this.state.itemCounter,
       name: "Rad " + this.state.itemCounter,
       type: this.state.type,
-      text: this.state.text
+      text: this.state.text,
+      stepgoal: this.state.stepGoal
     });
     console.log(newList);
     this.storeItemData(newList);
@@ -113,9 +112,10 @@ export default class App extends Component {
   };
 
   handleStepGoal = stepGoal => {
-    if(/^\d+$/.test(stepGoal)){
-      this.setState({ stepGoal: stepGoal });
-    }
+    //if(/^\d+$/.test(stepGoal)){
+    console.log(stepGoal);
+    this.setState({ stepGoal: stepGoal });
+    //}
   };
 
   setType = text => {
@@ -225,7 +225,7 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-        <StepCounter stepGoal={this.state.stepGoal} />
+        <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity

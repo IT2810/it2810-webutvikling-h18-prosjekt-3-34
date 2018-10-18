@@ -8,7 +8,8 @@ export default class StepCounter extends React.Component {
   state = {
     isPedometerAvailable: "checking",
     pastStepCount: 0,
-    currentStepCount: 0
+    currentStepCount: 0,
+    stepLeft: 0
   };
 
   componentDidMount() {
@@ -43,7 +44,7 @@ export default class StepCounter extends React.Component {
     const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
-        this.setState({ pastStepCount: result.steps });
+        this.setState({pastStepCount: result.steps});
       },
       error => {
         this.setState({
@@ -60,33 +61,54 @@ export default class StepCounter extends React.Component {
 
 
   renderStepText = () => {
-    let stepLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
+    let stepsLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
     if (this.state.pastStepCount < this.props.stepGoal) {
       return (
         <Text style={styles.stepCounterText2}>
-          Du mangler {stepLeft} steg for å oppnå dagens mål!
+          You are off by {stepsLeft} steps!
         </Text>
       );
     } else {
       return (
-        <Text style={styles.stepCounterText2}>Du har oppnådd dagens mål!</Text>
+        <Text style={styles.stepCounterText2}>You have reached todays goal!</Text>
       );
     }
   };
 
   render() {
     const stepText = this.renderStepText();
-    return (
-      <View style={styles.container}>
-        <Text style={styles.stepCounterText}>
-          Steps today: {this.state.pastStepCount}
-        </Text>
-        <Text style={styles.stepCounterText2}>
-          StepGoal: {this.props.stepGoal}
-        </Text>
-        {stepText}
-      </View>
-    );
+    let viewDate = this.props.viewDate;
+    let currentDate = new Date();
+    switch (viewDate.getDay()){
+      case currentDate.getDay():
+        return (
+          <View style={styles.container}>
+            <Text style={styles.stepCounterText}>
+              Steps today: {this.state.pastStepCount}
+            </Text>
+            <Text style={styles.stepCounterText2}>
+              StepGoal: {this.props.stepGoal}
+            </Text>
+            {stepText}
+          </View>
+        );
+      case currentDate.getDay() + 1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+      case currentDate.getDay() -1:
+      return (
+        <View style={styles.container}>
+          <Text style={styles.stepCounterText2}>
+            StepGoal: {this.props.stepGoal}
+          </Text>
+        </View>
+      );
+    }
   }
 }
 /*
