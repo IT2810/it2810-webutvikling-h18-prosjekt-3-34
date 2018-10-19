@@ -25,7 +25,7 @@ Vi har valgt å ikke implementere en kalender i vår app, men heller utvide ToDo
 ### Komponentstruktur
 
 Vi valgte å strukturere appen
-![Komponentstrukturen](Componentstructure.png)
+![Komponentstrukturen](Componentstructure.PNG)
 
 ## Teknologi
 
@@ -38,13 +38,13 @@ Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Nat
 ## Tredjepartskomponenter og bibliotek
 For å lage en brukervennlig «Dagsplanlegger» med skrittmål trengte vi å bruke mobilens skritteller. Til dette har vi brukt expo sitt Pedometer API. Dette ga oss akkurat det vi var ute etter, og dette API’et bygger på Core Motion for iOS og Google Fit for Android.
 https://docs.expo.io/versions/latest/sdk/pedometer
-For å ta den i bruk må man 
+For å ta den i bruk må man
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
 Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
 
 Under testingen har vi også hentet noen pakker.
-Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage. 
+Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage.
 Den installeres med «npm install --save mock-async-storage»
 Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
 
