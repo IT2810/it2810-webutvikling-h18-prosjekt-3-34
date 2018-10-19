@@ -55,16 +55,51 @@ For å lage en brukervennlig «Dagsplanlegger» med skrittmål trengte vi å bru
 ```
 https://docs.expo.io/versions/latest/sdk/pedometer
 ```
-For å ta den i bruk må man
+For å tilgang til Pedometer API'et må man importere komponenten på følgende måte:
+```
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
+```
 Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
+Man kan selv bestemme tidsintervallet man vil hente ut skritt fra, og hvordan man endrer dette er ved å endre "start" og "end" konstantene i koden under.
+
+
+Utdrag fra Stepcounter komponenten vår (noen av kodelinjene er nærmere forklart under):
+``` 
+    const start = new Date();
+    start.setHours(0, 0, 0, 0);
+    const end = new Date();
+    Pedometer.getStepCountAsync(start, end).then(
+      result => {
+        this.setState({ pastStepCount: result.steps });
+      },
+      error => {
+        this.setState({
+          pastStepCount: "Unavailable.."
+        });
+      }
+    );
+```
+
+Denne linjen kode er for å sette start til kl 00:00 i dag, altså helt i starten av dagen. Her kan man variere starttidspunktet for å få skritt fra et annet tidsintervall.
+```
+ start.setHours(0, 0, 0, 0);
+```
+
+Her setter vi slutttidspunktet i intervallet vårt, som er tidspunktet akkurat nå. Dette gjør at vi alltid henter antall skritt en bruker har gått fra kl 00:00 i dag, til akkurat nå.
+```
+ const end = new Date();
+```
+
+Selve funksjonen som henter ut skrittinformasjonen fra telefonen er getStepCountAsync. Enkelt og greit så tar funksjonen inn to verdier, start og slutt) og henter ut antall skritt mellom disse to tidspunktene.
+```
+Pedometer.getStepCountAsync(start, end).then(...);
+```
 
 Under testingen har vi også hentet noen pakker.
 Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage.
 Den installeres med «npm install --save mock-async-storage»
 Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
-
 
 ## Bruk av GitHub
 Vi har brukt GitHub og issuetracking her aktivt helt fra starten av prosjektet slik at vi alltid har hatt en god oversikt over fremgangen i prosjektet.
