@@ -44,9 +44,13 @@ Etter anbefaling fra fagstaben valgte vi også å ha et stylesheet for hver komp
 
 Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Native med bruk av Expo verktøyet. React Native er ganske likt React som vi brukte i forrige prosjekt, der den største forskjellen er at man i React Native ikke bruker web-komponenter, men heller native-komponenter. React Native var ganske greit å sette seg inn i når vi hadde erfaringen fra forrige prosjekt.
 
+#### AsyncStorage
+
+AsyncStorage blir brukt for å lagre elementer på mobilen slik at de ikke forsvinner når brukeren går ut av appen. I vår løsning har vi valgt å bruke multiGet, multiSet og getAllKeys istedenfor getItems og setItems da dette passet bedre med vår implementasjon av items-liste. De forskjellige løsningene ser man i funksjonene storeItems() og loadListItems(). De blir henholdsvis brukt til å lagre og laste inn.
+
 ### Expo
 
-Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.  
+Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.
 
 ## Tredjepartskomponenter og bibliotek
 
@@ -60,6 +64,9 @@ For å tilgang til Pedometer API'et må man importere komponenten på følgende 
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
 ```
+Pedometer API’et tilbyr funksjonalitet for å hente ut skritt som tidligere er gått gjennom getStepCountAsync(start, end) funksjonen og for å hente ut skritt man tar når man har applikasjonen oppe. Dette kan gjøres ved watchStepCount funksjonen.
+I vår applikasjon har vi kun brukt getStepCountAsync, fordi applikasjonen ikke er ment å være en treningsapp, men heller en applikasjon for å se om man oppnår mål.
+
 Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
 Man kan selv bestemme tidsintervallet man vil hente ut skritt fra, og hvordan man endrer dette er ved å endre "start" og "end" konstantene i koden under.
 
@@ -95,11 +102,22 @@ Selve funksjonen som henter ut skrittinformasjonen fra telefonen er getStepCount
 ```
 Pedometer.getStepCountAsync(start, end).then(...);
 ```
+### Testpakker
+Vi hentet pakke fra "mock-async-storage" og den bruker vi til å lage et mockobjekt til asyncStorage.
+Den installeres med 
+```
+    npm install --save mock-async-storage
+```
+Og når man importerer definerer man to funksjoner. 
+```
+const mockAsync = () => {
+  const mockImpl = new MockAsyncStorage();
+  jest.mock("AsyncStorage", () => mockImpl);
+};
 
-Under testingen har vi også hentet noen pakker.
-Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage.
-Den installeres med «npm install --save mock-async-storage»
-Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
+const releaseMockAsync = () => jest.unmock("AsyncStorage");
+```
+En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
 
 ## Bruk av GitHub
 Vi har brukt GitHub og issuetracking her aktivt helt fra starten av prosjektet slik at vi alltid har hatt en god oversikt over fremgangen i prosjektet.
