@@ -3,7 +3,7 @@
 ## Avgrensning av oppgaven
 Applikasjonen vår heter «Dagsplanlegger’n». Poenget med den er å kunne ha en «Personal Information and Motivation Manager» med fokus på dagen i dag. Det finnes hundrevis av kalendere og todoapplikasjoner, men med slike applikasjoner er det lett å være ivrig i starten, planlegge masse ting, for så at alt går i glemmeboken fordi det blir for overveldende. Derfor så vi behovet for en applikasjon hvor fokuset var på det man har å gjøre i dag. Vi har også lagt til en navigering, hvor man kan gå en dag fram i tid, og det er for å kunne planlegge morgendagen i tillegg. Motivasjonsdelen av oppgaven oppfylles ved at man ser hvor mange oppgaver man har gjennomført, og man ser hvor mange skritt man mangler for å oppnå skriftmålet sitt. Har man oppnådd målet vil det dynamisk komme en tekst som forteller deg dette.
 
-## Appen's funksjonalitet
+## Funksjonalitet
 Hovedfunksjonaliteten til appen vår er at man kan opprette gjøremål og skrittmål. Meningen er at man skal kunne holde oversikt over ting man har som mål å få gjort de neste dagene. Et skrittmål vil ikke dukke opp i lista over gjøremål, men heller oppdatere skrittmålet ditt litt lenger ned i appen. Du kan kun ha et skrittmål per dag.
 Foreløpig har vi gjort det slik at man kun kan se lister (med gjøremål) for en dag tilbake og en dag framover i tid (samt gjeldende dag). Denne funksjonaliteten vil kunne utvides lett senere, men vi valgte nå at fokuset skulle være på de "mindre" gjøremålene man møter i løpet av en vanlig dag. Antallet ferdige gjøremål i løpet av de tre dagene (i går, i dag og i morgen) vil vises ved hjelp av en counter i bunnen av skjermen.
 
