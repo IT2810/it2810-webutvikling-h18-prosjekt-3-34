@@ -20,7 +20,7 @@ Vi har valgt å ikke implementere en kalender i vår app, men heller utvide ToDo
 ## Komponentstruktur
 
 Vi valgte å strukturere komponentene i appen som på bildet under:
-![Komponentstrukturen](Componentstructure.png)
+![Komponentstrukturen](Componentstructure.PNG)
 
 Noen vil kanskje mene at appen vår er delt opp i litt mange komponenter, men vi mener dette er hensiktsmessig da dette gir oss god oversikt over hvilken kode som er hvor.
 
