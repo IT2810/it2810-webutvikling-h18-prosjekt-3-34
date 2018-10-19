@@ -29,8 +29,8 @@ export default class App extends Component {
   componentDidMount() {
     this.loadListItems();
     let liste = [];
+    let date = new Date();
     this.storeItemData(liste);
-    console.log(this.state.items);
   }
 
   // Denne funksjonen laster elementene fra AsyncStorage inn i lista, og gjør et par
@@ -41,7 +41,6 @@ export default class App extends Component {
     }
     let currentDate = new Date();
     let doneToDos = 0;
-    console.log("Kjør loadListItems()");
     let dato = this.state.viewDate.getDate();
     let key = 0;
     let storedArray = [];
@@ -56,30 +55,26 @@ export default class App extends Component {
           {
             /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
           }
-          console.log(value);
-          console.log(value.date == currentDate.getDate()-1);
-          console.log(value.date == currentDate.getDate());
-          console.log(value.date == currentDate.getDate()+1);
+
           if (value.date === dato) {
-            console.log(
-              "Add an item..." + "dato:" + dato + "value.date:" + value.date
-            );
             storedArray.push(value);
-            console.log(storedArray);
             if (id < value.id && value.type == "step") {
               id = value.id;
               stepsGoal = parseInt(value.stepgoal);
             }
           }
-          { /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+          {
+            /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
-              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */}
-          if ((value.date == currentDate.getDate())
-            || (value.date == currentDate.getDate() -1)
-            || (value.date == currentDate.getDate() +1)) {
+              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */
+          }
+          if (
+            value.date == currentDate.getDate() ||
+            value.date == currentDate.getDate() - 1 ||
+            value.date == currentDate.getDate() + 1
+          ) {
             if (value.done == true) {
               doneToDos = doneToDos + 1;
-              console.log("done todos: " + doneToDos);
             }
           }
           if (key <= value.id) {
@@ -88,8 +83,8 @@ export default class App extends Component {
 
           this.setState({ itemCounter: key });
           this.setState({ items: storedArray });
-          this.setState({ stepGoal: stepsGoal});
-          this.setState({ doneCounter : doneToDos });
+          this.setState({ stepGoal: stepsGoal });
+          this.setState({ doneCounter: doneToDos });
         });
       });
     });
@@ -99,8 +94,11 @@ export default class App extends Component {
   storeItemData = async items => {
     try {
       let storeArray = [];
-      for (let i = 0; i < items.length; i++) {
-        storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
+      if (items.length > 0) {
+        for (let i = 0; i < items.length; i++) {
+          storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
+          await AsyncStorage.multiSet(storeArray);
+        }
       }
       if (storeArray.length > 0) {
         await AsyncStorage.multiSet(storeArray);
@@ -123,7 +121,7 @@ export default class App extends Component {
       stepgoal: this.state.stepGoal,
       done: false
     });
-    console.log(newList);
+
     this.storeItemData(newList);
     this.setState({ items: newList });
     this.state.itemCounter++;
@@ -139,7 +137,7 @@ export default class App extends Component {
 
   // Veldig lik funksjonen over, håndterer input.
   handleStepGoal = stepGoal => {
-    if(/^\d+$/.test(stepGoal)){
+    if (/^\d+$/.test(stepGoal)) {
       this.setState({ stepGoal: stepGoal });
     }
   };
@@ -165,10 +163,9 @@ export default class App extends Component {
             type: element.type,
             text: element.text,
             stepgoal: element.stepgoal,
-            done: element.done,
+            done: element.done
           });
-        }
-        else if (element.id == index && element.date == dato) {
+        } else if (element.id == index && element.date == dato) {
           newList.push({
             date: element.date,
             id: element.id,
@@ -177,19 +174,18 @@ export default class App extends Component {
             type: element.type,
             text: element.text,
             stepgoal: element.stepgoal,
-            done: true,
+            done: true
           });
         }
       });
       this.storeItemData(newList);
       this.loadListItems();
     }
-  }
+  };
 
   // Funksjonen som kalles når man trykker på "Delete"-knappen på et element i lista.
   // Skal fjerne elementet fra den synlige lista, og fra AsyncStorage.
   handleDeleteClick = index => {
-    console.log(this.state.items);
     var dato = this.state.viewDate.getDate();
     if (this.state.items.length > 0) {
       var newList = [];
@@ -225,7 +221,7 @@ export default class App extends Component {
           this.state.viewDate.setDate(this.state.viewDate.getDate() - 1)
         )
       });
-      console.log(this.state.viewDate.getDate());
+
       this.loadListItems();
       if (this.state.viewDate.getDate() < currentDate.getDate()) {
         this.setState({ addItemDisabled: true });
@@ -243,7 +239,7 @@ export default class App extends Component {
           this.state.viewDate.setDate(this.state.viewDate.getDate() + 1)
         )
       });
-      console.log(this.state.viewDate.getDate());
+
       this.loadListItems();
       if (this.state.viewDate.getDate() >= currentDate.getDate()) {
         this.setState({ addItemDisabled: false });
@@ -255,7 +251,6 @@ export default class App extends Component {
   toggleModal = () =>
     this.setState({ isModalVisible: !this.state.isModalVisible });
 
-
   // Render funksjonen som blir initialisert ved start av appen.
   render() {
     return (
@@ -265,7 +260,6 @@ export default class App extends Component {
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
-
         // Container for the whole side (exclusive the banner)
         <View style={styles.siteContainer}>
           <View style={styles.viewDateStyle}>
@@ -275,14 +269,12 @@ export default class App extends Component {
               handleNextDayClick={this.handleNextDayClick}
             />
           </View>
-
           // Selve lista med ToDo-elementer.
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
             handleDone={this.handleDone}
           />
-
           // Modal'en som vises hvis man trykker på "Add item"-knappen.
           <Addtodo
             isModalVisible={this.state.isModalVisible}
@@ -293,14 +285,19 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-
           // Skritteller komponenten.
-          <StepCounter stepGoal={this.state.stepGoal} viewDate={this.state.viewDate} />
-
-          // Bottom row of the page, containing the "Done"-counter and "Add item"-button.
+          <StepCounter
+            stepGoal={this.state.stepGoal}
+            viewDate={this.state.viewDate}
+          />
+          // Bottom row of the page, containing the "Done"-counter and "Add
+          item"-button.
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
-            <Text style={styles.doneItemsCounterText}>{"ToDo's done: "}{this.state.doneCounter}</Text>
+              <Text style={styles.doneItemsCounterText}>
+                {"ToDo's done: "}
+                {this.state.doneCounter}
+              </Text>
             </View>
             <TouchableOpacity
               style={
@@ -314,7 +311,6 @@ export default class App extends Component {
               <Text style={styles.addGoalText}>Add item</Text>
             </TouchableOpacity>
           </View>
-
           // siteContainer is closed here.
         </View>
       </React.Fragment>
