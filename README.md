@@ -1,8 +1,10 @@
 # IT2810 Webutvikling Prosjekt 3
 
-## Appen's funksjonalitet
+## Avgrensning av oppgaven
+Applikasjonen vår heter «Dagsplanlegger’n». Poenget med den er å kunne ha en «Personal Information and Motivation Manager» med fokus på dagen i dag. Det finnes hundrevis av kalendere og todoapplikasjoner, men med slike applikasjoner er det lett å være ivrig i starten, planlegge masse ting, for så at alt går i glemmeboken fordi det blir for overveldende. Derfor så vi behovet for en applikasjon hvor fokuset var på det man har å gjøre i dag. Vi har også lagt til en navigering, hvor man kan gå en dag fram i tid, og det er for å kunne planlegge morgendagen i tillegg. Motivasjonsdelen av oppgaven oppfylles ved at man ser hvor mange oppgaver man har gjennomført, og man ser hvor mange skritt man mangler for å oppnå skriftmålet sitt. Har man oppnådd målet vil det dynamisk komme en tekst som forteller deg dette.
 
-Hovedfunksjonaliteten til appen vår er at man kan opprette gjøremål eller skrittmål. Meningen er at man skal kunne holde oversikt over ting man har som mål å få gjort de neste dagene. Et skrittmål vil ikke dukke opp i lista over gjøremål, men heller oppdatere skrittmålet ditt litt lenger ned i appen. Du kan kun ha et skrittmål per dag.
+## Funksjonalitet
+Hovedfunksjonaliteten til appen vår er at man kan opprette gjøremål og skrittmål. Meningen er at man skal kunne holde oversikt over ting man har som mål å få gjort de neste dagene. Et skrittmål vil ikke dukke opp i lista over gjøremål, men heller oppdatere skrittmålet ditt litt lenger ned i appen. Du kan kun ha et skrittmål per dag.
 Foreløpig har vi gjort det slik at man kun kan se lister (med gjøremål) for en dag tilbake og en dag framover i tid (samt gjeldende dag). Denne funksjonaliteten vil kunne utvides lett senere, men vi valgte nå at fokuset skulle være på de "mindre" gjøremålene man møter i løpet av en vanlig dag. Antallet ferdige gjøremål i løpet av de tre dagene (i går, i dag og i morgen) vil vises ved hjelp av en counter i bunnen av skjermen.
 
 ### ToDo-liste:
@@ -14,8 +16,7 @@ Dette er som beskrevet over en slags huskeliste der man kan legge til gjøremål
 En skritteller som henter ut antall skritt for den nåværende dagen, og sjekker dette opp mot skrittmålet du har oppgitt i appen.
 
 ### Datoviser:
-
-Vi har valgt å ikke implementere en kalender i vår app, men heller utvide ToDo-lista slik at man får opp en liste med gjøremål for hver dag. Datoviseren er foreløpig implementert slik at man kan gå en dag fram i tid, og en dag tilbake i tid.
+Vi har valgt å ikke implementere en kalender i vår app, men heller utvide ToDo-lista slik at man får opp en liste med gjøremål for hver dag. Datoviseren er foreløpig implementert slik at man kan gå en dag fram i tid, og en dag tilbake i tid. Dette er for å enkelt kunne planlegge en dag frem i tid.
 
 ## Viktigste valg og løsninger
 
@@ -35,6 +36,18 @@ Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Nat
 ### Expo
 
 ## Tredjepartskomponenter og bibliotek
+For å lage en brukervennlig «Dagsplanlegger» med skrittmål trengte vi å bruke mobilens skritteller. Til dette har vi brukt expo sitt Pedometer API. Dette ga oss akkurat det vi var ute etter, og dette API’et bygger på Core Motion for iOS og Google Fit for Android.
+https://docs.expo.io/versions/latest/sdk/pedometer
+For å ta den i bruk må man 
+Import Expo from «expo»;
+Import { Pedometer } from «expo»;
+Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
+
+Under testingen har vi også hentet noen pakker.
+Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage. 
+Den installeres med «npm install --save mock-async-storage»
+Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
+
 
 ## Bruk av GitHub
 
