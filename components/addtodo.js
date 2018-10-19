@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, Platform } from "react-native";
 import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
 import styles from "../stylesheets/addtodo.style.js";
@@ -66,10 +66,11 @@ class Addtodo extends Component {
 
   /**
    * @desc Rendrer inputfelt basert på hvilken type det er. Step godtar kun tall
+   * Rendrer forskjellig keyboard type basert på OS, da number-pad ser best ut, men funker kun på ios.
    * @see App.js for handleInput
    */
   renderStepInput = Iteminput => {
-    if (this.state.showStepInputField) {
+    if (this.state.showStepInputField && Platform.OS === "ios") {
       return (
         <Iteminput
           keyboardType="number-pad"
@@ -81,10 +82,21 @@ class Addtodo extends Component {
           placeholder="Enter number of steps!"
         />
       );
+    } else if (this.state.showStepInputField && Platform.OS === "android") {
+      return (
+        <Iteminput
+          keyboardType="numeric"
+          handleInput={this.props.handleStepGoal}
+          text={this.props.text}
+          addItem={this.props.addItem}
+          toggleTodoInput={this.toggleStepInput}
+          setType={this.props.setType}
+          placeholder="Enter number of steps!"
+        />
+      );
     } else {
       return null;
     }
-    //hide stepinput
   };
 
   render() {
