@@ -44,9 +44,13 @@ Etter anbefaling fra fagstaben valgte vi også å ha et stylesheet for hver komp
 
 Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Native med bruk av Expo verktøyet. React Native er ganske likt React som vi brukte i forrige prosjekt, der den største forskjellen er at man i React Native ikke bruker web-komponenter, men heller native-komponenter. React Native var ganske greit å sette seg inn i når vi hadde erfaringen fra forrige prosjekt.
 
+#### AsyncStorage
+
+AsyncStorage blir brukt for å lagre elementer på mobilen slik at de ikke forsvinner når brukeren går ut av appen. I vår løsning har vi valgt å bruke multiGet, multiSet og getAllKeys istedenfor getItems og setItems da dette passet bedre med vår implementasjon av items-liste. De forskjellige løsningene ser man i funksjonene storeItems() og loadListItems(). De blir henholdsvis brukt til å lagre og laste inn.
+
 ### Expo
 
-Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.  
+Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.
 
 ## Tredjepartskomponenter og bibliotek
 
