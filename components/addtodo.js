@@ -69,6 +69,19 @@ class Addtodo extends Component {
    * Rendrer forskjellig keyboard type basert på OS, da number-pad ser best ut, men funker kun på ios.
    * @see App.js for handleInput
    */
+
+  handleAndroidInput = stepGoal => {
+    let newText = "";
+    let numbers = "0123456789";
+
+    for (var i = 0; i < stepGoal.length; i++) {
+      if (numbers.indexOf(stepGoal[i]) > -1) {
+        newText = newText + stepGoal[i];
+      }
+    }
+    this.props.handleStepGoal(newText);
+  };
+
   renderStepInput = Iteminput => {
     if (this.state.showStepInputField && Platform.OS === "ios") {
       return (
@@ -86,7 +99,7 @@ class Addtodo extends Component {
       return (
         <Iteminput
           keyboardType="numeric"
-          handleInput={this.props.handleStepGoal}
+          handleInput={this.handleAndroidInput}
           text={this.props.text}
           addItem={this.props.addItem}
           toggleTodoInput={this.toggleStepInput}
