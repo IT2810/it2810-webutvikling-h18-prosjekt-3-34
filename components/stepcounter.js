@@ -4,12 +4,18 @@ import { Pedometer } from "expo";
 import { StyleSheet, Text, View } from "react-native";
 import styles from "../stylesheets/stepcounter.style.js";
 
+/**
+ * @desc Denne komponenten bruker expo sitt Pedometer API for å bruke skrittelleren til mobilen.
+ * Stort sett er alle metodene lik som beskrevet i API dokumentasjonen, men vi rendrer komponenten annerledes, tilpasset vårt behov.
+ * @author Erik Larsen
+ * @see https://docs.expo.io/versions/latest/sdk/pedometer
+ */
+
 export default class StepCounter extends React.Component {
   state = {
     isPedometerAvailable: "checking",
     pastStepCount: 0,
-    currentStepCount: 0,
-    stepLeft: 0
+    currentStepCount: 0
   };
 
   componentDidMount() {
@@ -19,6 +25,7 @@ export default class StepCounter extends React.Component {
   componentWillUnmount() {
     this._unsubscribe();
   }
+
   _subscribe = () => {
     this._subscription = Pedometer.watchStepCount(result => {
       this.setState({
@@ -44,7 +51,7 @@ export default class StepCounter extends React.Component {
     const end = new Date();
     Pedometer.getStepCountAsync(start, end).then(
       result => {
-        this.setState({pastStepCount: result.steps});
+        this.setState({ pastStepCount: result.steps });
       },
       error => {
         this.setState({
@@ -59,7 +66,6 @@ export default class StepCounter extends React.Component {
     this._subscription = null;
   };
 
-
   renderStepText = () => {
     let stepsLeft = parseInt(this.props.stepGoal - this.state.pastStepCount);
     if (this.state.pastStepCount < this.props.stepGoal) {
@@ -70,16 +76,22 @@ export default class StepCounter extends React.Component {
       );
     } else {
       return (
-        <Text style={styles.stepCounterText2}>You have reached todays goal!</Text>
+        <Text style={styles.stepCounterText2}>
+          You have reached todays goal!
+        </Text>
       );
     }
   };
 
+  /**
+   * Render forskjellig basert på hvilken dato det er.
+   * Dette gjøres for å skille på dagene, og at komponenten passer med resten av applikasjonen.
+   */
   render() {
     const stepText = this.renderStepText();
     let viewDate = this.props.viewDate;
     let currentDate = new Date();
-    switch (viewDate.getDay()){
+    switch (viewDate.getDay()) {
       case currentDate.getDay():
         return (
           <View style={styles.container}>
@@ -93,21 +105,21 @@ export default class StepCounter extends React.Component {
           </View>
         );
       case currentDate.getDay() + 1:
-      return (
-        <View style={styles.container}>
-          <Text style={styles.stepCounterText2}>
-            StepGoal: {this.props.stepGoal}
-          </Text>
-        </View>
-      );
-      case currentDate.getDay() -1:
-      return (
-        <View style={styles.container}>
-          <Text style={styles.stepCounterText2}>
-            StepGoal: {this.props.stepGoal}
-          </Text>
-        </View>
-      );
+        return (
+          <View style={styles.container}>
+            <Text style={styles.stepCounterText2}>
+              StepGoal: {this.props.stepGoal}
+            </Text>
+          </View>
+        );
+      case currentDate.getDay() - 1:
+        return (
+          <View style={styles.container}>
+            <Text style={styles.stepCounterText2}>
+              StepGoal: {this.props.stepGoal}
+            </Text>
+          </View>
+        );
     }
   }
 }
