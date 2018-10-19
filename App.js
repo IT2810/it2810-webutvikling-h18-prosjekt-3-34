@@ -6,6 +6,11 @@ import styles from "./stylesheets/app.style.js";
 import Addtodo from "./components/addtodo.js";
 import DateComponent from "./components/datecomponent.js";
 
+/** @desc App komponent for 'Dagsplanleggern'. Render todoliste, har funksjonalitet for å legge til gjøremål og skrittmål
+ * og viser hvor mange skritt man har tatt for dagen og hvor mange skritt man mangler for å nå sine mål.
+ * @see addtodo, datecomponent, itemcomponent, iteminput, stepcounter, todolist.
+ * @author Thusan Arul, Erik Larsen, Magnus Eriksson
+ */
 export default class App extends Component {
   state = {
     items: [],
