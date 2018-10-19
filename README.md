@@ -49,8 +49,12 @@ Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Nat
 Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.  
 
 ## Tredjepartskomponenter og bibliotek
+
+### Pedometer API
 For å lage en brukervennlig «Dagsplanlegger» med skrittmål trengte vi å bruke mobilens skritteller. Til dette har vi brukt expo sitt Pedometer API. Dette ga oss akkurat det vi var ute etter, og dette API’et bygger på Core Motion for iOS og Google Fit for Android.
+```
 https://docs.expo.io/versions/latest/sdk/pedometer
+```
 For å ta den i bruk må man
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
