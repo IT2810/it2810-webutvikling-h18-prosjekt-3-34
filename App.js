@@ -290,8 +290,7 @@ export default class App extends Component {
             stepGoal={this.state.stepGoal}
             viewDate={this.state.viewDate}
           />
-          // Bottom row of the page, containing the "Done"-counter and "Add
-          item"-button.
+          // Bottom row of the page, containing the "Done"-counter and "Add item"-button.
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
               <Text style={styles.doneItemsCounterText}>
