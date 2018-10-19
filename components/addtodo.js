@@ -23,12 +23,14 @@ class Addtodo extends Component {
   toggleTodoInput = () => {
     this.props.setType("todo");
     this.setState({ showTodoInputField: !this.state.showTodoInputField });
+    this.setState({ showStepInputField: false });
   };
 
   //Samme logikk som toggleTodoInput
   toggleStepInput = () => {
     this.props.setType("step");
     this.setState({ showStepInputField: !this.state.showStepInputField });
+    this.setState({ showTodoInputField: false });
   };
 
   /**
