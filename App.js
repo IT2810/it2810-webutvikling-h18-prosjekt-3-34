@@ -34,7 +34,6 @@ export default class App extends Component {
   componentDidMount() {
     this.loadListItems();
     let liste = [];
-    let date = new Date();
     this.storeItemData(liste);
   }
 
@@ -51,65 +50,65 @@ export default class App extends Component {
     let storedArray = [];
     let id = 0;
     let stepsGoal = 0;
-    AsyncStorage.getAllKeys((err, keys) => {
-      AsyncStorage.multiGet(keys, (err, stores) => {
-        stores.map((result, i, store) => {
-          let value = JSON.parse(store[i][1]);
-          //finner nyere objekt
+    if (AsyncStorage.getItem("0"))
+      AsyncStorage.getAllKeys((err, keys) => {
+        AsyncStorage.multiGet(keys, (err, stores) => {
+          stores.map((result, i, store) => {
+            let value = JSON.parse(store[i][1]);
+            //finner nyere objekt
 
-          {
-            /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
-          }
-
-          if (value.date === dato) {
-            storedArray.push(value);
-            if (id < value.id && value.type == "step") {
-              id = value.id;
-              stepsGoal = parseInt(value.stepgoal);
+            {
+              /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
             }
-          }
-          {
-            /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+
+            if (value.date === dato) {
+              storedArray.push(value);
+              if (id < value.id && value.type == "step") {
+                id = value.id;
+                stepsGoal = parseInt(value.stepgoal);
+              }
+            }
+            {
+              /* sjekk om datoen er større eller lik dagens, for å unngå å telle
               med todo's som er fra de forrige dagene
               Teller altså bare med ferdige todo's som er i dag eller frem i tid. */
-          }
-          if (
-            value.date == currentDate.getDate() ||
-            value.date == currentDate.getDate() - 1 ||
-            value.date == currentDate.getDate() + 1
-          ) {
-            if (value.done == true) {
-              doneToDos = doneToDos + 1;
             }
-          }
-          if (key <= value.id) {
-            key = value.id + 1;
-          }
+            if (
+              value.date == currentDate.getDate() ||
+              value.date == currentDate.getDate() - 1 ||
+              value.date == currentDate.getDate() + 1
+            ) {
+              if (value.done == true) {
+                doneToDos = doneToDos + 1;
+              }
+            }
+            if (key <= value.id) {
+              key = value.id + 1;
+            }
 
-          this.setState({ itemCounter: key });
-          this.setState({ items: storedArray });
-          this.setState({ stepGoal: stepsGoal });
-          this.setState({ doneCounter: doneToDos });
+            this.setState({ itemCounter: key });
+            this.setState({ items: storedArray });
+            this.setState({ stepGoal: stepsGoal });
+            this.setState({ doneCounter: doneToDos });
+          });
         });
       });
-    });
   }
 
   // Lagrer liste-elementer i AsyncStorage.
   storeItemData = async items => {
     try {
       let storeArray = [];
-      if (items.length > 0) {
-        for (let i = 0; i < items.length; i++) {
-          storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
-          await AsyncStorage.multiSet(storeArray);
-        }
+      for (let i = 0; i < items.length; i++) {
+        storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
       }
+
       if (storeArray.length > 0) {
         await AsyncStorage.multiSet(storeArray);
       }
     } catch (error) {
       alert("wat" + error);
+      console.trace(error);
     }
   };
 
@@ -191,9 +190,9 @@ export default class App extends Component {
   // Funksjonen som kalles når man trykker på "Delete"-knappen på et element i lista.
   // Skal fjerne elementet fra den synlige lista, og fra AsyncStorage.
   handleDeleteClick = index => {
-    var dato = this.state.viewDate.getDate();
+    let dato = this.state.viewDate.getDate();
+    let newList = [];
     if (this.state.items.length > 0) {
-      var newList = [];
       this.state.items.forEach(function(element) {
         if (element.id != index && element.date == dato) {
           newList.push({
@@ -204,7 +203,7 @@ export default class App extends Component {
             type: element.type,
             text: element.text,
             stepGoal: element.stepGoal,
-            done: false
+            done: element.done
           });
         }
         if (element.id == index) {
@@ -213,7 +212,15 @@ export default class App extends Component {
       });
       this.setState({ items: newList });
       this.loadListItems();
+
+      if (newList.length === 0) {
+        this.resetDoneCounter();
+      }
     }
+  };
+
+  resetDoneCounter = () => {
+    this.setState({ doneCounter: 0 });
   };
 
   // Funksjonen som kalles når man trykker på "<--"-knappen (tilbake en dag).
@@ -265,7 +272,6 @@ export default class App extends Component {
           <Text style={styles.textStyleBanner}>{"DAGSPLANLEGGER'N"}</Text>
           <Text style={styles.textStyleTM}>{"TM"}</Text>
         </View>
-        // Container for the whole side (exclusive the banner)
         <View style={styles.siteContainer}>
           <View style={styles.viewDateStyle}>
             <DateComponent
@@ -274,13 +280,13 @@ export default class App extends Component {
               handleNextDayClick={this.handleNextDayClick}
             />
           </View>
-          // Selve lista med ToDo-elementer.
+
           <ToDoList
             items={this.state.items}
             handleDelete={this.handleDeleteClick}
             handleDone={this.handleDone}
           />
-          // Modal'en som vises hvis man trykker på "Add item"-knappen.
+
           <Addtodo
             isModalVisible={this.state.isModalVisible}
             toggleModal={this.toggleModal}
@@ -290,12 +296,11 @@ export default class App extends Component {
             setType={this.setType}
             dateToday={this.state.viewDate}
           />
-          // Skritteller komponenten.
+
           <StepCounter
             stepGoal={this.state.stepGoal}
             viewDate={this.state.viewDate}
           />
-          // Bottom row of the page, containing the "Done"-counter and "Add item"-button.
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
               <Text style={styles.doneItemsCounterText}>
@@ -315,7 +320,6 @@ export default class App extends Component {
               <Text style={styles.addGoalText}>Add item</Text>
             </TouchableOpacity>
           </View>
-          // siteContainer is closed here.
         </View>
       </React.Fragment>
     );
