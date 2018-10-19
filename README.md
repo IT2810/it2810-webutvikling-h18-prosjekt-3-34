@@ -32,16 +32,18 @@ Som spesifisert i oppgaveteksten skulle løsningen vår basere seg på React Nat
 
 ### Expo
 
+Expo tilbyr muligheten til å slippe å skrive "native" kode, da de har shared native runtime. Dette betyr at med denne teknologien så kan man bare fokusere på å skrive JavaScript kode, og slipper å tenke på IOS eller Android spesifikke innstillinger. Det kommer også med egen CLI og web UI som gjør utviklingen og distribusjonen enklere. Expo utvider også React Native plattformen ved å tilby ekstra moduler, som skal bety at man bruker mindre tid på å konfigurere og mer tid på å utvikle.  
+
 ## Tredjepartskomponenter og bibliotek
 For å lage en brukervennlig «Dagsplanlegger» med skrittmål trengte vi å bruke mobilens skritteller. Til dette har vi brukt expo sitt Pedometer API. Dette ga oss akkurat det vi var ute etter, og dette API’et bygger på Core Motion for iOS og Google Fit for Android.
 https://docs.expo.io/versions/latest/sdk/pedometer
-For å ta den i bruk må man 
+For å ta den i bruk må man
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
 Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
 
 Under testingen har vi også hentet noen pakker.
-Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage. 
+Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage.
 Den installeres med «npm install --save mock-async-storage»
 Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
 
