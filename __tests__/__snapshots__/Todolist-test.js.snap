@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<ScrollViewMock
+  style={
+    Object {
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "marginTop": 5,
+      "maxHeight": "38%",
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "width": "85%",
+    }
+  }
+>
+  <ItemComponent
+    id={1}
+    status={true}
+    text="kjop melk"
+  />
+</ScrollViewMock>
+`;

@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+Array [
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 18,
+        "textAlign": "center",
+      }
+    }
+  >
+    Today
+  </Text>,
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#dedede",
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "center",
+        "marginBottom": 5,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#a3b3c3",
+          "borderRadius": 5,
+          "borderWidth": 1,
+          "height": 35,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 60,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        &lt;--
+      </Text>
+    </View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 15,
+          "marginBottom": 5,
+          "marginLeft": 10,
+          "marginRight": 10,
+          "textAlign": "center",
+          "width": "58%",
+        }
+      }
+    >
+      Thursday, October 18th
+    </Text>
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#a3b3c3",
+          "borderRadius": 5,
+          "borderWidth": 1,
+          "height": 35,
+          "justifyContent": "center",
+          "opacity": 1,
+          "width": 60,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        --&gt;
+      </Text>
+    </View>
+  </View>,
+]
+`;

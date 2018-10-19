@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#a5d6a7",
+      "borderRadius": 5,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginTop": 10,
+      "minHeight": 50,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "width": "100%",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "width": "60%",
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ef9a9a",
+          "borderRadius": 5,
+          "borderWidth": 1,
+          "height": 30,
+          "justifyContent": "center",
+          "marginLeft": 5,
+          "marginTop": 0,
+          "opacity": 1,
+          "width": 48,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Delete
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "marginBottom": 10,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 25,
+    }
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    autoCapitalize="words"
+    placeholderColor="black"
+    style={
+      Object {
+        "borderBottomWidth": 1,
+        "marginBottom": 15,
+        "marginRight": 10,
+        "width": 170,
+      }
+    }
+  />
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "lightgrey",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "height": 20,
+        "justifyContent": "center",
+        "marginBottom": 10,
+        "opacity": 1,
+        "width": 70,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Add item
+    </Text>
+  </View>
+</View>
+`;

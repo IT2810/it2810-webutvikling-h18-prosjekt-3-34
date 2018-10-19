@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for p3/App.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">p3</a> App.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.28% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>57/86</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">36.73% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>18/49</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.16% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.28% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>57/86</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from "react";
+import { Text, View, TouchableOpacity, AsyncStorage } from "react-native";
+import StepCounter from "./components/stepcounter.js";
+import ToDoList from "./components/todolist.js";
+import styles from "./stylesheets/app.style.js";
+import Addtodo from "./components/addtodo.js";
+import DateComponent from "./components/datecomponent.js";
+&nbsp;
+export default class App extends Component {
+  state = {
+    items: [],
+    itemCounter: 0,
+    completedItems: [],
+    isModalVisible: false,
+    type: null,
+    text: null,
+    viewDate: new Date(),
+    addItemDisabled: false,
+    stepGoal: null,
+    doneCounter: 0
+  };
+&nbsp;
+<span class="fstat-no" title="function not covered" >  re</span>nderList() {
+    let newList = <span class="cstat-no" title="statement not covered" >this.state.items.slice();</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ items: newList });</span>
+  }
+&nbsp;
+  // Kode som kjører når appen starter. Laster blant annet liste-elementene fra asyncstorage.
+  componentDidMount() {
+    this.loadListItems();
+    let liste = [];
+    let date = new Date();
+    this.storeItemData(liste);
+  }
+&nbsp;
+  // Denne funksjonen laster elementene fra AsyncStorage inn i lista, og gjør et par
+  // andre småting som gjør at state blir riktig basert på lagret informasjon.
+  loadListItems() {
+    {
+      /* LASTER INN LISTE-ELEMENTENE SOM ER LAGRET I ASYNCSTORAGE FOR CURRENT DAY*/
+    }
+    let currentDate = new Date();
+    let doneToDos = 0;
+    let dato = this.state.viewDate.getDate();
+    let key = 0;
+    let storedArray = [];
+    let id = 0;
+    let stepsGoal = 0;
+    AsyncStorage.getAllKeys((err, keys) =&gt; {
+      AsyncStorage.multiGet(keys, (err, stores) =&gt; {
+        stores.map((result, i, store) =&gt; {
+          let value = JSON.parse(store[i][1]);
+          //finner nyere objekt
+&nbsp;
+          {
+            /* OPPDATERER KEY (SLIK AT STATE TIL ITEMCOUNTER BLIR RIKTIG) TIL 1 MER ENN DEN HØYESTE KEYEN */
+          }
+&nbsp;
+          if (value.date === dato) {
+            storedArray.push(value);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (id &lt; value.id &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >value.type == "step")</span> {
+<span class="cstat-no" title="statement not covered" >              id = value.id;</span>
+<span class="cstat-no" title="statement not covered" >              stepsGoal = parseInt(value.stepgoal);</span>
+            }
+          }
+          {
+            /* sjekk om datoen er større eller lik dagens, for å unngå å telle
+              med todo's som er fra de forrige dagene
+              Teller altså bare med ferdige todo's som er i dag eller frem i tid. */
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (
+            value.date == currentDate.getDate() ||
+<span class="branch-1 cbranch-no" title="branch not covered" >            value.date == currentDate.getDate() - 1 </span>||
+<span class="branch-2 cbranch-no" title="branch not covered" >            value.date == currentDate.getDate() + 1</span>
+          ) {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (value.done == true) {
+<span class="cstat-no" title="statement not covered" >              doneToDos = doneToDos + 1;</span>
+            }
+          }
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (key &lt;= value.id) {
+            key = value.id + 1;
+          }
+&nbsp;
+          this.setState({ itemCounter: key });
+          this.setState({ items: storedArray });
+          this.setState({ stepGoal: stepsGoal });
+          this.setState({ doneCounter: doneToDos });
+        });
+      });
+    });
+  }
+&nbsp;
+  // Lagrer liste-elementer i AsyncStorage.
+  storeItemData = async items =&gt; {
+    try {
+      let storeArray = [];
+      if (items.length &gt; 0) {
+        for (let i = 0; i &lt; items.length; i++) {
+          storeArray.push([items[i].id.toString(), JSON.stringify(items[i])]);
+          await AsyncStorage.multiSet(storeArray);
+        }
+      }
+      if (storeArray.length &gt; 0) {
+        await AsyncStorage.multiSet(storeArray);
+      }
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >      alert("wat" + error);</span>
+    }
+  };
+&nbsp;
+  // Funksjon for å legge til et element i lista eller step som stepgoal.
+  addItem = item =&gt; {
+    let newList = this.state.items.slice();
+    newList.push({
+      date: this.state.viewDate.getDate(),
+      id: this.state.itemCounter,
+      inputid: "input" + this.state.itemCounter,
+      name: "Rad " + this.state.itemCounter,
+      type: this.state.type,
+      text: this.state.text,
+      stepgoal: this.state.stepGoal,
+      done: false
+    });
+&nbsp;
+    this.storeItemData(newList);
+    this.setState({ items: newList });
+    this.state.itemCounter++;
+    this.toggleModal();
+    this.setState({ text: null });
+    this.setState({ type: null });
+  };
+&nbsp;
+  // Funksjon for å handle textinput enten som todo-item, eller som step-item (bare nummer).
+  handleInput = text =&gt; {
+    this.setState({ text: text });
+  };
+&nbsp;
+  // Veldig lik funksjonen over, håndterer input.
+  handleStepGoal = <span class="fstat-no" title="function not covered" >st</span>epGoal =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (/^\d+$/.test(stepGoal)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({ stepGoal: stepGoal });</span>
+    }
+  };
+&nbsp;
+  // Hånterer typen element (step- eller todo-element)
+  setType = <span class="fstat-no" title="function not covered" >te</span>xt =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.setState({ type: text });</span>
+  };
+&nbsp;
+  // Funksjonen som kalles når man trykker på "Done"-knappen på et element i lista.
+  // Skal gjøre elementet grønt og øke counteren.
+  handleDone = <span class="fstat-no" title="function not covered" >in</span>dex =&gt; {
+    var dato = <span class="cstat-no" title="statement not covered" >this.state.viewDate.getDate();</span>
+<span class="cstat-no" title="statement not covered" >    if (this.state.items.length &gt; 0) {</span>
+      var newList = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >      this.state.items.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(element) {</span>
+<span class="cstat-no" title="statement not covered" >        if (element.id != index &amp;&amp; element.date == dato) {</span>
+<span class="cstat-no" title="statement not covered" >          newList.push({</span>
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            stepgoal: element.stepgoal,
+            done: element.done
+          });
+        } else <span class="cstat-no" title="statement not covered" >if (element.id == index &amp;&amp; element.date == dato) {</span>
+<span class="cstat-no" title="statement not covered" >          newList.push({</span>
+            date: element.date,
+            id: element.id,
+            inputid: element.inputid,
+            name: element.name,
+            type: element.type,
+            text: element.text,
+            stepgoal: element.stepgoal,
+            done: true
+          });
+        }
+      });
+<span class="cstat-no" title="statement not covered" >      this.storeItemData(newList);</span>
+<span class="cstat-no" title="statement not covered" >      this.loadListItems();</span>
+    }
+  };
+&nbsp;
+  // Funksjonen som kalles når man trykker på "Delete"-knappen på et element i lista.
+  // Skal fjerne elementet fra den synlige lista, og fra AsyncStorage.
+  handleDeleteClick = <span class="fstat-no" title="function not covered" >in</span>dex =&gt; {
+    var dato = <span class="cstat-no" title="statement not covered" >this.state.viewDate.getDate();</span>
+<span class="cstat-no" title="statement not covered" >    if (this.state.items.length &gt; 0) {</span>
+      var newList = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >      this.state.items.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction(element) {</span>
+<span class="cstat-no" title="statement not covered" >        if (element.id != index &amp;&amp; element.date == dato) {</span>
+<span class="cstat-no" title="statement not covered" >          newList.push({</span>
+            date: element.date,
+            id: element.id,
+            inputid: "input" + element.inputid,
+            name: "Rad " + element.name,
+            type: element.type,
+            text: element.text,
+            stepGoal: element.stepGoal,
+            done: false
+          });
+        }
+<span class="cstat-no" title="statement not covered" >        if (element.id == index) {</span>
+<span class="cstat-no" title="statement not covered" >          AsyncStorage.removeItem(index.toString());</span>
+        }
+      });
+<span class="cstat-no" title="statement not covered" >      this.setState({ items: newList });</span>
+<span class="cstat-no" title="statement not covered" >      this.loadListItems();</span>
+    }
+  };
+&nbsp;
+  // Funksjonen som kalles når man trykker på "&lt;--"-knappen (tilbake en dag).
+  // Skal rendre lista for den forrige dagen.
+  handlePrevDayClick = () =&gt; {
+    let currentDate = new Date();
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.state.viewDate.getDate() !== currentDate.getDate() - 1) {
+      this.setState({
+        viewDate: new Date(
+          this.state.viewDate.setDate(this.state.viewDate.getDate() - 1)
+        )
+      });
+&nbsp;
+      this.loadListItems();
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.state.viewDate.getDate() &lt; currentDate.getDate()) {
+        this.setState({ addItemDisabled: true });
+      }
+    }
+  };
+&nbsp;
+  // Funksjonen som kalles når man trykker på "--&gt;"-knappen (framover en dag).
+  // Skal rendre lista for den neste dagen.
+  handleNextDayClick = () =&gt; {
+    let currentDate = new Date();
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.state.viewDate.getDate() !== currentDate.getDate() + 1) {
+      this.setState({
+        viewDate: new Date(
+          this.state.viewDate.setDate(this.state.viewDate.getDate() + 1)
+        )
+      });
+&nbsp;
+      this.loadListItems();
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (this.state.viewDate.getDate() &gt;= currentDate.getDate()) {
+        this.setState({ addItemDisabled: false });
+      }
+    }
+  };
+&nbsp;
+  // Funksjonen som toggler av og på modal (der man legger til et item).
+  toggleModal = () =&gt;
+    this.setState({ isModalVisible: !this.state.isModalVisible });
+&nbsp;
+  // Render funksjonen som blir initialisert ved start av appen.
+  render() {
+    return (
+      &lt;React.Fragment&gt;
+        &lt;View style={styles.topBorder} /&gt;
+        &lt;View style={styles.banner}&gt;
+          &lt;Text style={styles.textStyleBanner}&gt;{"DAGSPLANLEGGER'N"}&lt;/Text&gt;
+          &lt;Text style={styles.textStyleTM}&gt;{"TM"}&lt;/Text&gt;
+        &lt;/View&gt;
+        // Container for the whole side (exclusive the banner)
+        &lt;View style={styles.siteContainer}&gt;
+          &lt;View style={styles.viewDateStyle}&gt;
+            &lt;DateComponent
+              viewDate={this.state.viewDate}
+              handlePrevDayClick={this.handlePrevDayClick}
+              handleNextDayClick={this.handleNextDayClick}
+            /&gt;
+          &lt;/View&gt;
+          // Selve lista med ToDo-elementer.
+          &lt;ToDoList
+            items={this.state.items}
+            handleDelete={this.handleDeleteClick}
+            handleDone={this.handleDone}
+          /&gt;
+          // Modal'en som vises hvis man trykker på "Add item"-knappen.
+          &lt;Addtodo
+            isModalVisible={this.state.isModalVisible}
+            toggleModal={this.toggleModal}
+            addItem={this.addItem}
+            handleInput={this.handleInput}
+            handleStepGoal={this.handleStepGoal}
+            setType={this.setType}
+            dateToday={this.state.viewDate}
+          /&gt;
+          // Skritteller komponenten.
+          &lt;StepCounter
+            stepGoal={this.state.stepGoal}
+            viewDate={this.state.viewDate}
+          /&gt;
+          // Bottom row of the page, containing the "Done"-counter and "Add
+          item"-button.
+          &lt;View style={styles.buttonContainer}&gt;
+            &lt;View style={styles.doneItemsCounter}&gt;
+              &lt;Text style={styles.doneItemsCounterText}&gt;
+                {"ToDo's done: "}
+                {this.state.doneCounter}
+              &lt;/Text&gt;
+            &lt;/View&gt;
+            &lt;TouchableOpacity
+              style={
+                this.state.addItemDisabled
+                  ? styles.addGoalButtonDis
+                  : styles.addGoalButton
+              }
+              onPress={this.toggleModal}
+              disabled={this.state.addItemDisabled}
+            &gt;
+              &lt;Text style={styles.addGoalText}&gt;Add item&lt;/Text&gt;
+            &lt;/TouchableOpacity&gt;
+          &lt;/View&gt;
+          // siteContainer is closed here.
+        &lt;/View&gt;
+      &lt;/React.Fragment&gt;
+    );
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Oct 18 2018 23:13:49 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

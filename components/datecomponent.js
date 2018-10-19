@@ -3,12 +3,14 @@ import {
   Text,
   View,
   TouchableOpacity,
-  StyleSheet,
-  Button,
-  Vibration,
   TouchableWithoutFeedback
 } from "react-native";
 import styles from "../stylesheets/datecomponent.style.js";
+
+/**
+ * @desc Brukes til navigering mellom dagene. Rendrer forskjellig baser på hvilken dag det er.
+ * @author Thusan Arul
+ */
 
 export default class DateComponent extends Component {
   constructor(props) {

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1539897229489" clover="3.2.0">
+  <project timestamp="1539897229489" name="All files">
+    <metrics statements="153" coveredstatements="111" conditionals="69" coveredconditionals="32" methods="46" coveredmethods="30" elements="268" coveredelements="173" complexity="0" loc="153" ncloc="153" packages="3" files="14" classes="14">
+      <package name="p3">
+        <metrics statements="86" coveredstatements="57" conditionals="49" coveredconditionals="18" methods="19" coveredmethods="12"/>
+        <file name="App.js" path="/Users/magnus/Projects/app/p3/App.js">
+          <metrics statements="86" coveredstatements="57" conditionals="49" coveredconditionals="18" methods="19" coveredmethods="12"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="30" count="1" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="42" count="4" type="stmt"/>
+          <line num="43" count="4" type="stmt"/>
+          <line num="44" count="4" type="stmt"/>
+          <line num="45" count="4" type="stmt"/>
+          <line num="46" count="4" type="stmt"/>
+          <line num="47" count="4" type="stmt"/>
+          <line num="48" count="4" type="stmt"/>
+          <line num="49" count="4" type="stmt"/>
+          <line num="50" count="4" type="stmt"/>
+          <line num="51" count="4" type="stmt"/>
+          <line num="52" count="3" type="stmt"/>
+          <line num="59" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="60" count="1" type="stmt"/>
+          <line num="61" count="1" type="cond" truecount="2" falsecount="2"/>
+          <line num="62" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+          <line num="71" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="76" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="80" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="81" count="3" type="stmt"/>
+          <line num="84" count="3" type="stmt"/>
+          <line num="85" count="3" type="stmt"/>
+          <line num="86" count="3" type="stmt"/>
+          <line num="87" count="3" type="stmt"/>
+          <line num="95" count="3" type="stmt"/>
+          <line num="96" count="3" type="stmt"/>
+          <line num="97" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="98" count="2" type="stmt"/>
+          <line num="99" count="2" type="stmt"/>
+          <line num="100" count="2" type="stmt"/>
+          <line num="103" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="104" count="2" type="stmt"/>
+          <line num="107" count="0" type="stmt"/>
+          <line num="113" count="2" type="stmt"/>
+          <line num="114" count="2" type="stmt"/>
+          <line num="125" count="2" type="stmt"/>
+          <line num="126" count="2" type="stmt"/>
+          <line num="127" count="2" type="stmt"/>
+          <line num="128" count="2" type="stmt"/>
+          <line num="129" count="2" type="stmt"/>
+          <line num="130" count="2" type="stmt"/>
+          <line num="135" count="1" type="stmt"/>
+          <line num="140" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="141" count="0" type="stmt"/>
+          <line num="147" count="0" type="stmt"/>
+          <line num="153" count="0" type="stmt"/>
+          <line num="154" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="155" count="0" type="stmt"/>
+          <line num="156" count="0" type="stmt"/>
+          <line num="157" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="158" count="0" type="stmt"/>
+          <line num="168" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="169" count="0" type="stmt"/>
+          <line num="181" count="0" type="stmt"/>
+          <line num="182" count="0" type="stmt"/>
+          <line num="189" count="0" type="stmt"/>
+          <line num="190" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="191" count="0" type="stmt"/>
+          <line num="192" count="0" type="stmt"/>
+          <line num="193" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="194" count="0" type="stmt"/>
+          <line num="205" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="206" count="0" type="stmt"/>
+          <line num="209" count="0" type="stmt"/>
+          <line num="210" count="0" type="stmt"/>
+          <line num="217" count="1" type="stmt"/>
+          <line num="218" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="219" count="1" type="stmt"/>
+          <line num="225" count="1" type="stmt"/>
+          <line num="226" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="227" count="1" type="stmt"/>
+          <line num="235" count="2" type="stmt"/>
+          <line num="236" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="237" count="2" type="stmt"/>
+          <line num="243" count="2" type="stmt"/>
+          <line num="244" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="245" count="2" type="stmt"/>
+          <line num="252" count="2" type="stmt"/>
+          <line num="256" count="33" type="stmt"/>
+        </file>
+      </package>
+      <package name="p3.components">
+        <metrics statements="67" coveredstatements="54" conditionals="20" coveredconditionals="14" methods="27" coveredmethods="18"/>
+        <file name="addtodo.js" path="/Users/magnus/Projects/app/p3/components/addtodo.js">
+          <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+          <line num="14" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
+          <line num="19" count="3" type="stmt"/>
+          <line num="20" count="3" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="30" count="45" type="cond" truecount="2" falsecount="0"/>
+          <line num="31" count="3" type="stmt"/>
+          <line num="43" count="42" type="stmt"/>
+          <line num="48" count="45" type="cond" truecount="2" falsecount="0"/>
+          <line num="49" count="3" type="stmt"/>
+          <line num="61" count="42" type="stmt"/>
+          <line num="67" count="45" type="stmt"/>
+          <line num="68" count="45" type="stmt"/>
+          <line num="69" count="45" type="stmt"/>
+          <line num="70" count="45" type="stmt"/>
+          <line num="72" count="45" type="stmt"/>
+        </file>
+        <file name="datecomponent.js" path="/Users/magnus/Projects/app/p3/components/datecomponent.js">
+          <metrics statements="8" coveredstatements="8" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="19" count="33" type="stmt"/>
+          <line num="20" count="33" type="stmt"/>
+          <line num="21" count="33" type="stmt"/>
+          <line num="22" count="33" type="cond" truecount="3" falsecount="0"/>
+          <line num="24" count="15" type="stmt"/>
+          <line num="49" count="12" type="stmt"/>
+          <line num="73" count="6" type="stmt"/>
+        </file>
+        <file name="itemcomponent.js" path="/Users/magnus/Projects/app/p3/components/itemcomponent.js">
+          <metrics statements="7" coveredstatements="3" conditionals="4" coveredconditionals="2" methods="4" coveredmethods="1"/>
+          <line num="10" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="27" count="0" type="stmt"/>
+          <line num="36" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+        </file>
+        <file name="iteminput.js" path="/Users/magnus/Projects/app/p3/components/iteminput.js">
+          <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="12" count="7" type="stmt"/>
+        </file>
+        <file name="stepcounter.js" path="/Users/magnus/Projects/app/p3/components/stepcounter.js">
+          <metrics statements="27" coveredstatements="20" conditionals="7" coveredconditionals="4" methods="11" coveredmethods="6"/>
+          <line num="16" count="2" type="stmt"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="23" count="2" type="stmt"/>
+          <line num="24" count="0" type="stmt"/>
+          <line num="29" count="2" type="stmt"/>
+          <line num="31" count="1" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="42" count="2" type="stmt"/>
+          <line num="43" count="2" type="stmt"/>
+          <line num="44" count="2" type="stmt"/>
+          <line num="45" count="2" type="stmt"/>
+          <line num="47" count="1" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="58" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="64" count="34" type="stmt"/>
+          <line num="65" count="34" type="cond" truecount="1" falsecount="1"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="72" count="34" type="stmt"/>
+          <line num="79" count="34" type="stmt"/>
+          <line num="80" count="34" type="stmt"/>
+          <line num="81" count="34" type="stmt"/>
+          <line num="82" count="34" type="cond" truecount="3" falsecount="0"/>
+          <line num="84" count="15" type="stmt"/>
+          <line num="96" count="13" type="stmt"/>
+          <line num="104" count="6" type="stmt"/>
+          <line num="119" count="2" type="stmt"/>
+        </file>
+        <file name="todolist.js" path="/Users/magnus/Projects/app/p3/components/todolist.js">
+          <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+          <line num="9" count="33" type="stmt"/>
+          <line num="10" count="18" type="cond" truecount="1" falsecount="1"/>
+          <line num="11" count="18" type="stmt"/>
+          <line num="24" count="33" type="stmt"/>
+        </file>
+      </package>
+      <package name="p3.stylesheets">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="addtodo.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/addtodo.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="app.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/app.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="datecomponent.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/datecomponent.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="itemcomponent.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/itemcomponent.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="iteminput.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/iteminput.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="stepcounter.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/stepcounter.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+        <file name="todolist.style.js" path="/Users/magnus/Projects/app/p3/stylesheets/todolist.style.js">
+          <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

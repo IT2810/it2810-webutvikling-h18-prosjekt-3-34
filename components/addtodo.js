@@ -1,8 +1,16 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, View, TouchableOpacity, Platform } from "react-native";
 import Modal from "react-native-modal";
 import Iteminput from "./iteminput";
 import styles from "../stylesheets/addtodo.style.js";
+
+/**
+ * @desc Er en modal som tar i mot input fra brukeren og legger itemcomponent til i todolist hvis det er en "todo". Hvis det er et
+ * skrittmål som blir registrert, blir oppdateres state, og dermed også stepcounter.
+ * Har state for å kontrollere hvilken av inputfeltene som skal vises.
+ * @author Magnus Eriksson
+ * @see iteminput.js for inputfeltene.
+ */
 
 class Addtodo extends Component {
   state = {
@@ -10,27 +18,41 @@ class Addtodo extends Component {
     showStepInputField: false
   };
 
+  // Kjøres når man trykker på todo knappen i modal. Setter App sin state til todo, for at itemet som blir opprettet blir riktig.
+  // setter showTodoInputField for å rendre inputfelt.
   toggleTodoInput = () => {
     this.props.setType("todo");
     this.setState({ showTodoInputField: !this.state.showTodoInputField });
+    this.setState({ showStepInputField: false });
   };
 
+  //Samme logikk som toggleTodoInput
   toggleStepInput = () => {
     this.props.setType("step");
     this.setState({ showStepInputField: !this.state.showStepInputField });
+    this.setState({ showTodoInputField: false });
   };
 
+  /**
+   * Fjerner vising av begge inputfeltene når man trykker på exit av modal.
+   * This props toggleModal er funksjonen som åpner/lukker modal.
+   * @see App.js for toggleModal
+   */
   closeModal = () => {
     this.setState({ showTodoInputField: false });
     this.setState({ showStepInputField: false });
     this.props.toggleModal();
   };
 
+  /**
+   * @desc Rendrer inputfelt basert på hvilken type det er. Todo godtar input av både tekst og tall
+   * @see App.js for handleInput
+   */
   renderTodoInput = Iteminput => {
     if (this.state.showTodoInputField) {
       return (
         <Iteminput
-          keyboardType='default'
+          keyboardType="default"
           handleInput={this.props.handleInput}
           text={this.props.text}
           addItem={this.props.addItem}
@@ -42,14 +64,44 @@ class Addtodo extends Component {
     } else {
       return null;
     }
-    //hide stepinput
   };
+
+  /**
+   * @desc Rendrer inputfelt basert på hvilken type det er. Step godtar kun tall
+   * Rendrer forskjellig keyboard type basert på OS, da number-pad ser best ut, men funker kun på ios.
+   * @see App.js for handleInput
+   */
+
+  handleAndroidInput = stepGoal => {
+    let newText = "";
+    let numbers = "0123456789";
+
+    for (var i = 0; i < stepGoal.length; i++) {
+      if (numbers.indexOf(stepGoal[i]) > -1) {
+        newText = newText + stepGoal[i];
+      }
+    }
+    this.props.handleStepGoal(newText);
+  };
+
   renderStepInput = Iteminput => {
-    if (this.state.showStepInputField) {
+    if (this.state.showStepInputField && Platform.OS === "ios") {
       return (
         <Iteminput
-          keyboardType='number-pad'
+          keyboardType="number-pad"
           handleInput={this.props.handleStepGoal}
+          text={this.props.text}
+          addItem={this.props.addItem}
+          toggleTodoInput={this.toggleStepInput}
+          setType={this.props.setType}
+          placeholder="Enter number of steps!"
+        />
+      );
+    } else if (this.state.showStepInputField && Platform.OS === "android") {
+      return (
+        <Iteminput
+          keyboardType="numeric"
+          handleInput={this.handleAndroidInput}
           text={this.props.text}
           addItem={this.props.addItem}
           toggleTodoInput={this.toggleStepInput}
@@ -60,7 +112,6 @@ class Addtodo extends Component {
     } else {
       return null;
     }
-    //hide stepinput
   };
 
   render() {

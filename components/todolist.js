@@ -3,6 +3,12 @@ import { StyleSheet, ScrollView } from "react-native";
 import ItemComponent from "./itemcomponent.js";
 import styles from "../stylesheets/todolist.style.js";
 
+/**
+ * @desc render en liste med itemcomponents. Dette representerer todolisten i applikasjonen.
+ * @author Erik Larsen, Magnus Eriksson
+ * @see Itemcomponent
+ */
+
 export default class ToDoList extends Component {
   render() {
     // render component if it is a todo item.
