@@ -22,17 +22,17 @@ Vi valgte å strukturere komponentene i appen som på bildet under:
 Noen vil kanskje mene at appen vår er delt opp i litt mange komponenter, men vi mener dette er hensiktsmessig da dette gir oss god oversikt over hvilken kode som er hvor.
 
 Hovedkomponenten vår er App, og det er den som rendres når man starter appen. I App rendres en header (som ikke er en egen komponent), fire komponenter, en counter for antall ferdige gjøremål og en knapp for å legge til nye gjøremål/skrittmål. De fire komponentene er:
-#### datecomponent
+#### Datecomponent
 Denne komponenten består av knappene som gjør at man kan navigere mellom dager, samt en visning av current date.
 Knappene får sine funksjoner fra App, på grunn av at knappene endrer state i App.
 
-#### todolist
+#### Todolist
 Dette er komponenten som viser alle gjøremålene i ruten midt på skjermen. Denne komponenten har en underkomponent, itemcomponent. Hovedsakelig fungerer todolist sånn at man rendrer et scrollview med itemcomponents, som er selve komponenten for de individuelle gjøremålene.
 
-#### addtodo
+#### Addtodo
 Dette er komponenten som rendres når man trykker på "Add item"-knappen. Det er i denne komponenten vi bruker react-native-modal. Funksjonene som brukes her kommer også fra, app av samme grunn som over, at staten funksjonene endrer er i app.
 
-#### stepcounter
+#### Stepcounter
 Komponenten som viser antall steps du har tatt i dag. Vi regner også ut hvor mange steps som mangler før du har nådd målet ditt. Dersom målet er nådd vil teksten endre seg til en motiverende melding.
 
 ### Styling
