@@ -301,7 +301,6 @@ export default class App extends Component {
             stepGoal={this.state.stepGoal}
             viewDate={this.state.viewDate}
           />
-
           <View style={styles.buttonContainer}>
             <View style={styles.doneItemsCounter}>
               <Text style={styles.doneItemsCounterText}>
