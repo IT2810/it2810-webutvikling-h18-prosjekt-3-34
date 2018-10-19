@@ -64,6 +64,9 @@ For å tilgang til Pedometer API'et må man importere komponenten på følgende 
 Import Expo from «expo»;
 Import { Pedometer } from «expo»;
 ```
+Pedometer API’et tilbyr funksjonalitet for å hente ut skritt som tidligere er gått gjennom getStepCountAsync(start, end) funksjonen og for å hente ut skritt man tar når man har applikasjonen oppe. Dette kan gjøres ved watchStepCount funksjonen.
+I vår applikasjon har vi kun brukt getStepCountAsync, fordi applikasjonen ikke er ment å være en treningsapp, men heller en applikasjon for å se om man oppnår mål.
+
 Vi har stort sett brukt den samme koden som det eksemplet de viser, men har tilpasset det slik at skrittelleren starter fra klokken 00:00 og varer til 23:59 i stedet for å se på de siste 24 timene. Dette gjør at det passer inn i vår «Dagsplanlegger».
 Man kan selv bestemme tidsintervallet man vil hente ut skritt fra, og hvordan man endrer dette er ved å endre "start" og "end" konstantene i koden under.
 
@@ -99,11 +102,22 @@ Selve funksjonen som henter ut skrittinformasjonen fra telefonen er getStepCount
 ```
 Pedometer.getStepCountAsync(start, end).then(...);
 ```
+### Testpakker
+Vi hentet pakke fra "mock-async-storage" og den bruker vi til å lage et mockobjekt til asyncStorage.
+Den installeres med 
+```
+    npm install --save mock-async-storage
+```
+Og når man importerer definerer man to funksjoner. 
+```
+const mockAsync = () => {
+  const mockImpl = new MockAsyncStorage();
+  jest.mock("AsyncStorage", () => mockImpl);
+};
 
-Under testingen har vi også hentet noen pakker.
-Det første vi bruker kommer fra «mock-async-storage» og den bruker vi til å lage et mockobjekt til asyncStorage.
-Den installeres med «npm install --save mock-async-storage»
-Og når man importerer definerer man to funksjoner. En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
+const releaseMockAsync = () => jest.unmock("AsyncStorage");
+```
+En for å sette opp objektet og en for å ta den ned igjen. Dette har vi så lagt ihhv beforeAll og afterAll funksjonene.
 
 ## Bruk av GitHub
 Vi har brukt GitHub og issuetracking her aktivt helt fra starten av prosjektet slik at vi alltid har hatt en god oversikt over fremgangen i prosjektet.
